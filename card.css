@@ -1,0 +1,37 @@
+.newcrs{
+    display:flex;
+    justify-content: center;
+    padding-top: 40px; position: relative;
+    top:130px;
+}
+.newly{
+    position: relative;
+    top:-20px;
+}
+.newlylaunched{
+    position: relative;
+    top:150px;
+}
+.card-group{
+    padding-top: 40px;
+    padding-left: 50px;
+    padding-right: 10px;
+    padding-bottom: 40px;
+    position: relative;
+    background-color: red;
+    display:flex;
+    justify-content: space-evenly;
+    top:150px;
+    height: 500px;
+}
+.crd{
+    width:280px;
+    background-color:white;
+    border-radius:20px;
+  
+}
+ 
+.inner{
+    height: 150px!important;
+    width:15px!important;
+}

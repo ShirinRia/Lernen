@@ -1,0 +1,119 @@
+.crsside{
+    background-color:black;
+    position: fixed;
+    height:100%;
+    width:20%;
+    left:0;
+    top:0;
+    color:wheat;
+    display:flex;
+    flex-direction: column;
+    
+    align-items: center;
+}
+a{
+    text-decoration: none;
+    color:white; 
+}
+.sdcntnt{
+    color:white;
+    width:100%;
+    padding: 20px;
+    border: 1px solid white;
+    padding-left: 200px;  
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+    font-size: 20px;
+}
+.hdr{
+    padding:20px;
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+    font-weight: 700;
+    font-size: 20px;
+}
+.crsmid{
+    position:absolute;
+    width:79%;
+    height:100%;
+    top:0;
+    background-color:whitesmoke;
+    left: 280px;
+}
+.form-select{
+    padding:10px;
+}
+.cat{
+    width:200px;
+    position:relative;
+    left: 100px;
+}
+.crupper{
+    position:relative;
+    top: 80px;
+    left: 100px;
+    background-color:whitesmoke;
+    width:800px;
+    height:100px;
+}
+.crmid{
+    background-color:whitesmoke;
+    width:800px;
+    height:300px;
+    position:relative;
+    top: 90px;
+    left: 100px;
+    display:flex;
+    justify-content:space-evenly;
+}
+.crsdes,.vdbx{
+
+    height:200px;
+    border-radius: 10px;
+    background-color:white;
+}
+.crsdes{
+    position:relative;
+    top: 10px;
+    left: 170px;
+    border:none;
+}
+.crsde{
+    position:relative;
+    top: 10px;
+    left: 90px;
+    width:250px;
+    display:flex;
+    justify-content: center;
+
+}
+.brdr{
+    border: 2px solid black;
+    border-radius:10px;
+    height:600px;
+    position:absolute;
+    width:87%;
+    top:20px;
+    left:50px;
+  
+}
+.crvdo{
+    position:absolute;
+    top: 150px;
+    left: 20px;
+    display:flex;
+    justify-content: center;
+}
+.vdbx{
+    width:250px;
+    position:absolute;
+    top: 10px;
+    left: 0px;
+    display:flex;
+    justify-content: center;
+}
+.img{
+    padding: 20px;
+}
+.in{
+    left: 700px;
+    top: 500px;
+}
