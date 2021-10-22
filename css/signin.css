@@ -99,7 +99,7 @@ hr {
     left: 850px;
     background-color: white;
     width: 400px;
-    height: 450px;
+    height: 500px;
     border-radius:30px;
     box-shadow: 0 0 8px black;
    box-sizing: border-box;
@@ -180,20 +180,41 @@ hr {
 }
 .up{
     position: fixed;
-    top: 380px;
+    top: 430px;
+    left:93px;
     border: none;
     outline: none;
-    width: 200px;
+    width: 100px;
 }
+.lrnr{
+    left: 230px;
+}
+h5{
+    position: fixed;
+    top: 400px; 
+    color:purple;
+    font-weight: normal;
+}
+h6{
+    position: fixed;
+    top: 240px; 
+    color:purple;
+    font-weight: normal;
+}
+
 .in{
   
         position: fixed;
         top: 270px;
+        left:900px;
         border: none;
         outline: none;
         width: 130px;
         font-family: Arial, Helvetica, sans-serif;
         font-size: 18px;
+}
+.lrn{
+    left: 1060px;
 }
 .sg{
     position: relative;
@@ -239,3 +260,7 @@ hr {
     visibility:hidden; 
 }
 
+.type{
+   display: flex;
+   justify-content:space-evenly;
+}

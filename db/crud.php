@@ -36,6 +36,35 @@
          return false;
        }
       }
+      public function inserttcr($full,$user,$pass,$email,$gender,$otp){
+        try {
+         $sql = "select * from sign where  username = :user OR email = :email";
+         $stmt = $this->db->prepare($sql);
+         $stmt->bindparam(':user',$user);
+         $stmt->bindparam(':email',$email);
+         $stmt->execute();
+         $reslt = $stmt->rowCount();
+        if($reslt==0)
+       {
+ 
+         
+         $sql2 = "INSERT INTO teach (username,pass) VALUES ( :user, :pass)";
+        
+         
+         $stmt = $this->db->prepare($sql2);
+         $stmt->bindparam(':user',$user);
+         $stmt->bindparam(':pass',$pass);
+ 
+         $stmt->execute();
+         return true;
+        }
+        
+       }
+        catch (PDOException $e) {
+          echo $e->getMessage();
+          return false;
+        }
+       }
       public function num(){
         try {
     

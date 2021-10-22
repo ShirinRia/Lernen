@@ -55,7 +55,7 @@ else if(isset($_POST['sotp'])){
   if($result) {
  // echo '<h2>MATCH<h2>';
   //require_once 'index.php';
-  header("Location: home.php");
+  header("Location: lrnrhome.php");
 }
 else{
  echo 'Not Match';
