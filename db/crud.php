@@ -112,6 +112,105 @@
      }
       
      }
+     public function best(){
+      try{
+        $sql = "SELECT * FROM `books` ";
+        $result = $this->db->query($sql);
+        return $result;
+    }catch (PDOException $e) {
+        echo $e->getMessage();
+        return false;
+   }
+    
+   }
+   public function devlpmnt(){
+    try{
+      $sql = "SELECT * FROM `books` ";
+      $result = $this->db->query($sql);
+      return $result;
+  }catch (PDOException $e) {
+      echo $e->getMessage();
+      return false;
+ }
+  
+ }
+ public function genknw(){
+  try{
+    $sql = "SELECT * FROM `books` ";
+    $result = $this->db->query($sql);
+    return $result;
+}catch (PDOException $e) {
+    echo $e->getMessage();
+    return false;
+}
+
+}
+public function ilts(){
+  try{
+    $sql = "SELECT * FROM `books` ";
+    $result = $this->db->query($sql);
+    return $result;
+}catch (PDOException $e) {
+    echo $e->getMessage();
+    return false;
+}
+
+}
+public function islamic(){
+  try{
+    $sql = "SELECT * FROM `books` ";
+    $result = $this->db->query($sql);
+    return $result;
+}catch (PDOException $e) {
+    echo $e->getMessage();
+    return false;
+}
+
+}
+public function design(){
+  try{
+    $sql = "SELECT * FROM `books` ";
+    $result = $this->db->query($sql);
+    return $result;
+}catch (PDOException $e) {
+    echo $e->getMessage();
+    return false;
+}
+
+}
+public function school(){
+  try{
+    $sql = "SELECT * FROM `books` ";
+    $result = $this->db->query($sql);
+    return $result;
+}catch (PDOException $e) {
+    echo $e->getMessage();
+    return false;
+}
+
+}
+public function college(){
+  try{
+    $sql = "SELECT * FROM `books` ";
+    $result = $this->db->query($sql);
+    return $result;
+}catch (PDOException $e) {
+    echo $e->getMessage();
+    return false;
+}
+
+}
+public function english(){
+  try{
+    $sql = "SELECT * FROM `books` ";
+    $result = $this->db->query($sql);
+    return $result;
+}catch (PDOException $e) {
+    echo $e->getMessage();
+    return false;
+}
+
+}
      public function crslst(){
       try{
         $sql = "SELECT * FROM `course` ";
@@ -181,6 +280,28 @@
      $stmt->bindparam(':descrip',$descrip);
      
 
+     $stmt->execute();
+     return true;
+    }
+
+    catch (PDOException $e) {
+      echo $e->getMessage();
+      return false;
+    }
+   }
+
+   public function insertbooks( $title,$descrip,$price,$author,$cat){
+    try {
+    
+
+     $sql = "INSERT INTO books (bname,bdes,bprice,aname,bcat) VALUES (:title, :descrip, :price, :author, :cat)";
+     $stmt = $this->db->prepare($sql);
+
+     $stmt->bindparam(':title',$title);
+     $stmt->bindparam(':cat',$cat);
+     $stmt->bindparam(':price',$price);
+     $stmt->bindparam(':descrip',$descrip);
+     $stmt->bindparam(':author',$author);
      $stmt->execute();
      return true;
     }

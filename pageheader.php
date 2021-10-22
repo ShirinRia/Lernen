@@ -10,7 +10,7 @@ $results = $crud->crd();
             <div class="mrow">
                 <div class="headeritem left">
                     <div class="logo">
-                        <a href="new.php" class=anchor >Lernen</a>
+                        <a href="home.php" class=anchor >Lernen</a>
                     </div>
                 </div>
                 
@@ -87,7 +87,7 @@ $results = $crud->crd();
                                 </div>
                             </li>
                             <li>
-                                <a href="#" class="anchor">Books</a>
+                                <a href="bklst.php" class="anchor">Books</a>
                             </li>
                              <li>
                                 <a href="upload.php" class="anchor upload" >
