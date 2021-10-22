@@ -21,5 +21,23 @@
          return false;
        }
       }
+
+      public function gettchr($user,$pass){
+        try {
+         $sql = "select * from teach where username = :user AND pass = :pass";
+         $stmt = $this->db->prepare($sql);
+ 
+         $stmt->bindparam(':user',$user);
+         $stmt->bindparam(':pass',$pass);
+        
+         $stmt->execute();
+         $result=$stmt->fetch();
+         return $result;
+        } 
+        catch (PDOException $e) {
+          echo $e->getMessage();
+          return false;
+        }
+       }
   }
 ?>

@@ -44,12 +44,12 @@ a{
 .cat{
     width:200px;
     position:relative;
-    left: 100px;
+    left: 10px;
 }
 .crupper{
     position:relative;
     top: 80px;
-    left: 100px;
+    left: 60px;
     background-color:whitesmoke;
     width:800px;
     height:100px;
@@ -60,7 +60,7 @@ a{
     height:300px;
     position:relative;
     top: 90px;
-    left: 100px;
+    left: 60px;
     display:flex;
     justify-content:space-evenly;
 }
@@ -117,3 +117,43 @@ a{
     left: 700px;
     top: 500px;
 }
+.aname{
+    position: relative;
+    left: 20px;
+} 
+.price{
+    position: relative;
+    left: 30px;
+}
+.TK{
+    position: absolute;
+    left: 765px;
+    top:1px;
+    width: 35px;
+    background-color:chocolate;
+    border:none;
+    height:17px;
+    color:white;
+    
+}
+.sttsbar{
+    background-color:lightgray;
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    position: relative;
+    top: 70px;
+    left:60px;
+    height:100px;
+    width:90%;
+    font-size: 20px;
+    padding-top: 15px;
+}
+.crstbl{
+    position: relative;
+    top: 90px;
+    left: 60px;
+    width:90%;
+    border:1px solid lightgray;
+}
+

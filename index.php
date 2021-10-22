@@ -20,7 +20,43 @@ if(isset($_POST['sub'])){
     $success = $crud->insert($full,$user,$newpass,$email,$gender,$otp);
   //echo $otp;
     if($success) {
-       sendemail ::sendmail($email,$full,$sub,$otp);
+      // sendemail ::sendmail($email,$full,$sub,$otp);
+       //echo '<h1>sccs</h1>';
+      // $success = $crud->num();
+    //  header("Location: homepage.php");
+    $_SESSION['user'] = $user;
+    $_SESSION['full'] = $full;
+    $_SESSION['email'] = $email;
+    header("Location: lrnrsccs.php");
+       
+    }
+    else{
+        echo '<div class="alert alert-danger" id= "alert">Username already exist! </div>';
+    }
+}
+else{
+    echo '<div class="alert alert-danger" id= "alert">Password does not match </div>';
+    }
+}
+else if(isset($_POST['subt'])){
+    
+    $full= $_POST['full'];
+    $user= $_POST['user'];
+    $pass=$_POST['pass'];
+    $newpass=md5($pass);
+    $cpass=$_POST['cpass'];
+    $cnfpass=md5($cpass);
+    $email= $_POST['email'];
+    $gender= $_POST['gen'];
+    $sub="VERIFICATION";
+    $otp=rand(1000,99999);
+    if($newpass==$cnfpass){
+    $succ = $crud->inserttcr($full,$user,$newpass,$email,$gender,$otp);
+    
+    $success = $crud->insert($full,$user,$newpass,$email,$gender,$otp);
+  //echo $otp;
+    if($success) {
+      // sendemail ::sendmail($email,$full,$sub,$otp);
        //echo '<h1>sccs</h1>';
       // $success = $crud->num();
     //  header("Location: homepage.php");
@@ -45,7 +81,7 @@ if(isset($_POST['submit'])){
 $result=$login->getuser($duser,$newpass);
 if($result) {
     $_SESSION['user']=$duser;
-    header("Location: test.php");
+    header("Location: lrnrhome.php");
     //require_once 'homepage.php';
 }
 else{
@@ -53,7 +89,21 @@ else{
    echo 'failllll';
 }
 }
-
+if(isset($_POST['tsubmit'])){
+    $duser= $_POST['user'];
+    $pass=$_POST['pass'];
+    $newpass=md5($pass);
+$result=$login->gettchr($duser,$newpass);
+if($result) {
+    $_SESSION['user']=$duser;
+    header("Location: home.php");
+    //require_once 'homepage.php';
+}
+else{
+   // echo '<div class ="alert alert-danger"Username or Password is Incorrect! Please try again</div>';
+   echo 'failllll';
+}
+}
 ?>
 
 
@@ -70,8 +120,9 @@ else{
                 <div class="lf">
                 <input type="text" class="field" name = "user" placeholder="username" >
                 <input type="password" class="field" name="pass" placeholder="password" >
-                <input type="submit" name="submit" class="btn in" value=" Login">
-            
+                <h6><u>Sign in as</u></h6>
+                <input type="submit" name="tsubmit" class="btn in" value=" Teacher">
+                <input type="submit" name="submit" class="btn in lrn" value=" Learner">
                <hr>
             
             </div>
@@ -105,8 +156,12 @@ else{
                     <input type="radio" id="gen" name="gen" value="other">                            
                     <label for="gen" class="malee">Other</label></div>
                 </div>
-                <input type="submit" name="sub" class="btn up" value="Sign Up">
-            </div>
+                <h5><u>Sign up as</u></h5>
+               
+                <input type="submit" name="subt" class="btn up" value="Teacher">
+                
+                <input type="submit" name="sub" class="btn up lrnr" value="Learner"></div>
+            
                     
                 </form>
             

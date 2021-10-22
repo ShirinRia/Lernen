@@ -89,12 +89,7 @@ $results = $crud->crd();
                             <li>
                                 <a href="bklst.php" class="anchor">Books</a>
                             </li>
-                             <li>
-                                <a href="upload.php" class="anchor upload" >
-                              
-                                <img src="up.png" class="upl" width="30">
-                            </a>
-                            </li>
+                            
                             <li class="children ">
                                 <a href="profile.php?us=<?php echo $_SESSION['user'];?>" class="anchor prfl">
                                 <input type="text" class="uname"  value= "<?php echo $_SESSION['user'];?>">
