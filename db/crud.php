@@ -100,6 +100,21 @@
         }
         
        }
+       public function getcrsid($title){
+        
+        try{
+          $sql = "select * from course where c_name = :title";
+          $stmt = $this->db->prepare($sql);
+          $stmt->bindparam(':title', $title);
+          $stmt->execute();
+          $result = $stmt->fetch();
+          return $result;
+     }catch (PDOException $e) {
+          echo $e->getMessage();
+          return false;
+      }
+      
+     }
     
        public function crd(){
         try{
@@ -233,6 +248,20 @@ public function english(){
    }
     
    }
+   public function section(){
+    try{
+      $sql = "SELECT * FROM `section` where crs_id=34";
+     // $sql = "SELECT sectn FROM `course` a inner join section s on a.c_id = s.crs_id";
+      $stmt = $this->db->prepare($sql);
+
+      $result = $this->db->query($sql);
+      return $result;
+  }catch (PDOException $e) {
+      echo $e->getMessage();
+      return false;
+ }
+  
+ }
 
      public function delete($usr){
       try{
@@ -269,15 +298,16 @@ public function english(){
     }
   }
 
-  public function insertcrs($title,$descrip){
+  public function insertcrs($title,$descrip,$sec){
     try {
     
 
-     $sql = "INSERT INTO course (c_name, des) VALUES (:title, :descrip)";
+     $sql = "INSERT INTO course (c_name, des, sectn) VALUES (:title, :descrip, :sectn)";
      $stmt = $this->db->prepare($sql);
 
      $stmt->bindparam(':title',$title);
      $stmt->bindparam(':descrip',$descrip);
+     $stmt->bindparam(':sectn',$sec);
      
 
      $stmt->execute();
@@ -289,7 +319,26 @@ public function english(){
       return false;
     }
    }
+   public function insertsec($title,$id){
+    try {
+    
 
+     $sql = "INSERT INTO section (name, crs_id) VALUES (:title, :id)";
+     $stmt = $this->db->prepare($sql);
+
+     $stmt->bindparam(':title',$title);
+     $stmt->bindparam(':id',$id);
+     
+
+     $stmt->execute();
+     return true;
+    }
+
+    catch (PDOException $e) {
+      echo $e->getMessage();
+      return false;
+    }
+   }
    public function insertbooks( $title,$descrip,$price,$author,$cat){
     try {
     
