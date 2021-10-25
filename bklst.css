@@ -93,6 +93,7 @@ img{
 .card-text,.card-title,.card-footer{
     
   padding-left: 10px;
+<<<<<<< HEAD
 }
 .addcrt{
   background-color:purple;
@@ -151,4 +152,6 @@ img{
   
   visibility:visible;
   
+=======
+>>>>>>> 3deffded4efa0c1c478d3bb097f4ff0e3475bdc2
 }
