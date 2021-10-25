@@ -17,7 +17,7 @@ require_once 'sendmail.php';
   //  $success = $crud->insert($full,$user,$newpass,$email,$gender,$otp);
   //echo $otp;
   //  if($success) {
-       // sendemail ::sendmail($email,$full,$sub,$otp);
+      //sendemail ::sendmail($email,$full,$sub,$otp);
        //echo '<h1>sccs</h1>';
       // $success = $crud->num();
      // require_once 'index.php';
@@ -37,7 +37,7 @@ if (isset($_POST['rsnd'])) {
   $res=$opt->u_otp($vuser,$newotp);
   $sub="VERIFICATION";
   if($res) {
-      sendemail ::sendmail($email,$full,$sub,$newotp);
+    //  sendemail ::sendmail($email,$full,$sub,$newotp);
      // echo 'update';
   }
   else{

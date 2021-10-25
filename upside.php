@@ -10,13 +10,13 @@ require_once 'db/conn.php';?>
             Upload Your Content
         </div>
         <div class="sdcntnton sdcntnt">
-        <a href="#">Course</a></div>
+        <a href="upload.php">Course</a></div>
         <div class="sdcntnttwo sdcntnt">
-        <a href="#">Book</a></div>
+        <a href="bupload.php">Book</a></div>
         <div class="sdcntntthre sdcntnt">
         <a href="#">Status</a></div>
         <div class="sdcntntthre sdcntnt">
         <a href="#">Update Content</a></div>
         <div class="sdcntntthre sdcntnt">
-        <a href="test.php">Exit</a></div>
+        <a href="home.php">Exit</a></div>
     </div>

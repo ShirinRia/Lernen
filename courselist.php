@@ -22,6 +22,7 @@ $results = $crud->crslst();
         <h2><span>&nbsp;</span>Courses</h2>
     </div>
     <?php while($r = $results->fetch(PDO::FETCH_ASSOC)) { ?>
+        <a href="enroll.php">
       <div class="lstbdy">
       <div class="crsthumb">
           <img src="images (1).png" alt="img" class="thumb">
@@ -35,8 +36,23 @@ $results = $crud->crslst();
            <div class="ovrvw">
                <h5><?php echo $r['des'] ?>
             </div>
+            <div class="addtocrt">
+            <div class="incld">
+                <span>This Course Includes</span>
+                <ul style="list-style-type: circle;">
+                    <li>one</li>
+                    <li>two</li>
+                    <li>three</li>
+                </ul>
+               
+                
+            </div>
+            <a href="cart.php" >
+               <input type="submit" value="ADD TO CART" name="addcrt" class="addcrt"></a>
+           </div>
        </div>
     </div>
+    </a>
     <?php }?>  
 </div>
 </body>
