@@ -8,14 +8,20 @@ if(isset($_POST['save'])){
     $mb= $_POST['mobile'];
     $bd=$_POST['bdate'];
     $cn= $_POST['cntry'];
-    $result=$crud->updtusrdata($n,$em,$mb,$bd,$cn);
+
+    $orig_file = $_FILES["avatar"]["tmp_name"];
+    $ext = pathinfo($_FILES["avatar"]["name"], PATHINFO_EXTENSION);
+    $target_dir = 'uploads/';
+    $destination = "$target_dir$em.$ext";
+    move_uploaded_file($orig_file,$destination);
+    $result=$crud->updtusrdata($n,$em,$mb,$bd,$cn,$destination);
     if($result) {
       
     $_SESSION['name'] = $n;
-
+    $_SESSION['mobile'] = $mb;
     $_SESSION['bdate'] = $bd;
     $_SESSION['cntry'] = $cn;
-    header("Location: test.php");
+    header("Location: home.php");
        
     }
     else{
@@ -49,10 +55,10 @@ if(isset($_POST['save'])){
                     
                 </div>
         </div>
-            <form action="<?php echo htmlentities($_SERVER['PHP_SELF']); ?>" method="post" class="fprfl">
+            <form action="<?php echo htmlentities($_SERVER['PHP_SELF']); ?>" method="post" enctype="multipart/form-data" class="fprfl">
                 <div class="udate" style="padding-top:10px;">
                     <label for="" >Full Name</label><br><br>
-                    <input type="text" name="name" class="text" >
+                    <input type="text" name="name" class="text" value= "<?php echo $_SESSION['name'];?>">
                 </div>
 
                 <div class="udate">
@@ -62,22 +68,22 @@ if(isset($_POST['save'])){
 
                 <div class="udate">
                     <label for="">Mobile No.</label><br><br>
-                    <input type="text" name="mobile" class="text" >
+                    <input type="text" name="mobile" class="text" value= "<?php echo  $_SESSION['mobile']?>">
                 </div>
 
                 <div class="udate">
                     <label for="" >Birth Date</label><br><br>
-                    <input type="text" name="bdate" class="text" >
+                    <input type="text" name="bdate" class="text" value= "<?php echo  $_SESSION['bdate']?>">
                  </div>
 
                 <div class="udate">
                     <label for="">Country</label><br><br>
-                    <input type="text" name="cntry" class="text" >
+                    <input type="text" name="cntry" class="text" value= "<?php echo $_SESSION['cntry'];?>">
                 </div>
 
                 <div class="udate">
                     <label for="">Change Your Photo</label><br><br>
-                    <input type="file" name="photo" class="text" >
+                    <input type="file" name="avatar" class="text" >
                 </div>
                 <div class="svbtn">
                 <input type="submit" name="save" class="p_btn s_btn" value="SAVE"></div>

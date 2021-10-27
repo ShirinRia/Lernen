@@ -13,10 +13,6 @@ $ac = $crud->college();
 $el = $crud->english();    
 ?>
 <!DOCTYPE html>
-<<<<<<< HEAD
-=======
-<!-- Created By CodingNepal -->
->>>>>>> 3deffded4efa0c1c478d3bb097f4ff0e3475bdc2
 <html lang="en" dir="ltr">
    <head>
       <meta charset="utf-8">
@@ -45,7 +41,6 @@ $el = $crud->english();
               <h5 class="card-title"><?php echo $r['bname'] ?></h5>
               <p class="card-text"><?php echo $r['bdes'] ?></p>
             </div>
-<<<<<<< HEAD
             <div class="card-footer">
               <a href="bookpurchase.php">
               <small class="text-muted"> <input type="submit" value="VIEW DETAILS" name=" addcrt" class="adcrt"></small>
@@ -57,9 +52,7 @@ $el = $crud->english();
             <a href="cart.php">
             <input type="submit" value="ADD TO CART" name="addcrt" class="addcrt"></a>
           </div>
-=======
             
->>>>>>> 3deffded4efa0c1c478d3bb097f4ff0e3475bdc2
           </div>
           <?php }?>  
       </div>
@@ -75,7 +68,6 @@ $el = $crud->english();
             <h5 class="card-title"><?php echo $r['bname'] ?></h5>
             <p class="card-text"><?php echo $r['bdes'] ?></p>
           </div>
-<<<<<<< HEAD
           <div class="card-footer">
               <small class="text-muted"> <input type="submit" value="VIEW DETAILS" name=" addcrt" class="adcrt"></small>
             </div>
@@ -84,8 +76,6 @@ $el = $crud->english();
           <div class="addtocrt">
             <input type="submit" value="ADD TO CART" name="addcrt" class="addcrt">
           </div>
-=======
->>>>>>> 3deffded4efa0c1c478d3bb097f4ff0e3475bdc2
         </div>
         
         <?php }?> 
@@ -104,7 +94,6 @@ $el = $crud->english();
             <h5 class="card-title"><?php echo $r['bname'] ?></h5>
             <p class="card-text"><?php echo $r['bdes'] ?></p>
           </div>
-<<<<<<< HEAD
           <div class="card-footer">
               <small class="text-muted"> <input type="submit" value="VIEW DETAILS" name=" addcrt" class="adcrt"></small>
             </div>
@@ -113,8 +102,6 @@ $el = $crud->english();
           <div class="addtocrt">
             <input type="submit" value="ADD TO CART" name="addcrt" class="addcrt">
           </div>
-=======
->>>>>>> 3deffded4efa0c1c478d3bb097f4ff0e3475bdc2
         </div>
         
         <?php }?> 
@@ -135,7 +122,6 @@ $el = $crud->english();
             <h5 class="card-title"><?php echo $r['bname'] ?></h5>
             <p class="card-text"><?php echo $r['bdes'] ?></p>
           </div>
-<<<<<<< HEAD
           <div class="card-footer">
               <small class="text-muted"> <input type="submit" value="VIEW DETAILS" name=" addcrt" class="adcrt"></small>
             </div>
@@ -144,8 +130,6 @@ $el = $crud->english();
           <div class="addtocrt">
             <input type="submit" value="ADD TO CART" name="addcrt" class="addcrt">
           </div>
-=======
->>>>>>> 3deffded4efa0c1c478d3bb097f4ff0e3475bdc2
         </div>
        </a>
         <?php }?> 
@@ -166,7 +150,6 @@ $el = $crud->english();
             <h5 class="card-title"><?php echo $r['bname'] ?></h5>
             <p class="card-text"><?php echo $r['bdes'] ?></p>
           </div>
-<<<<<<< HEAD
           <div class="card-footer">
               <small class="text-muted"> <input type="submit" value="VIEW DETAILS" name=" addcrt" class="adcrt"></small>
             </div>
@@ -175,8 +158,6 @@ $el = $crud->english();
           <div class="addtocrt">
             <input type="submit" value="ADD TO CART" name="addcrt" class="addcrt">
           </div>
-=======
->>>>>>> 3deffded4efa0c1c478d3bb097f4ff0e3475bdc2
         </div>
     </a>
         <?php }?> 
@@ -197,7 +178,6 @@ $el = $crud->english();
             <h5 class="card-title"><?php echo $r['bname'] ?></h5>
             <p class="card-text"><?php echo $r['bdes'] ?></p>
           </div>
-<<<<<<< HEAD
           <div class="card-footer">
               <small class="text-muted"> <input type="submit" value="VIEW DETAILS" name=" addcrt" class="adcrt"></small>
             </div>
@@ -206,8 +186,6 @@ $el = $crud->english();
           <div class="addtocrt">
             <input type="submit" value="ADD TO CART" name="addcrt" class="addcrt">
           </div>
-=======
->>>>>>> 3deffded4efa0c1c478d3bb097f4ff0e3475bdc2
         </div>
     </a>
         <?php }?> 
@@ -226,7 +204,6 @@ $el = $crud->english();
             <h5 class="card-title"><?php echo $r['bname'] ?></h5>
             <p class="card-text"><?php echo $r['bdes'] ?></p>
           </div>
-<<<<<<< HEAD
           <div class="card-footer">
               <small class="text-muted"> <input type="submit" value="VIEW DETAILS" name=" addcrt" class="adcrt"></small>
             </div>
@@ -235,8 +212,6 @@ $el = $crud->english();
           <div class="addtocrt">
             <input type="submit" value="ADD TO CART" name="addcrt" class="addcrt">
           </div>
-=======
->>>>>>> 3deffded4efa0c1c478d3bb097f4ff0e3475bdc2
         </div>
     </a>
         <?php }?> 
@@ -257,7 +232,6 @@ $el = $crud->english();
             <h5 class="card-title"><?php echo $r['bname'] ?></h5>
             <p class="card-text"><?php echo $r['bdes'] ?></p>
           </div>
-<<<<<<< HEAD
           <div class="card-footer">
               <small class="text-muted"> <input type="submit" value="VIEW DETAILS" name=" addcrt" class="adcrt"></small>
             </div>
@@ -266,8 +240,6 @@ $el = $crud->english();
           <div class="addtocrt">
             <input type="submit" value="ADD TO CART" name="addcrt" class="addcrt">
           </div>
-=======
->>>>>>> 3deffded4efa0c1c478d3bb097f4ff0e3475bdc2
         </div>
         </a>
         <?php }?> 
@@ -289,7 +261,6 @@ $el = $crud->english();
             <h5 class="card-title"><?php echo $r['bname'] ?></h5>
             <p class="card-text"><?php echo $r['bdes'] ?></p>
           </div>
-<<<<<<< HEAD
           <div class="card-footer">
               <small class="text-muted"> <input type="submit" value="VIEW DETAILS" name=" addcrt" class="adcrt"></small>
             </div>
@@ -298,8 +269,6 @@ $el = $crud->english();
           <div class="addtocrt">
             <input type="submit" value="ADD TO CART" name="addcrt" class="addcrt">
           </div>
-=======
->>>>>>> 3deffded4efa0c1c478d3bb097f4ff0e3475bdc2
         </div>
     </a>
         <?php }?> 

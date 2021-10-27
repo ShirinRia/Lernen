@@ -2,7 +2,11 @@
 $title ='Homepage';
 require_once 'includes/header_2.php';
 require_once 'db/conn.php';
-$results = $crud->crslst();
+
+
+     $id = $_GET['cat'];
+     $res = $crud->crslst($id);
+
 
 ?> 
 <?php 
@@ -21,11 +25,12 @@ $results = $crud->crslst();
  <div class="lsthead">
         <h2><span>&nbsp;</span>Courses</h2>
     </div>
-    <?php while($r = $results->fetch(PDO::FETCH_ASSOC)) { ?>
+    
+    <?php while($r = $res->fetch(PDO::FETCH_ASSOC)) { ?>
         <a href="enroll.php">
       <div class="lstbdy">
       <div class="crsthumb">
-          <img src="images (1).png" alt="img" class="thumb">
+          <img src="<?php echo empty($r['img_path']) ? "uploads/images (1).png" : $r['img_path'] ; ?>" class="thumb" style="width: 100%; height: 100%" />
        </div>
 
        <div class="crsdetail">
@@ -49,11 +54,12 @@ $results = $crud->crslst();
             </div>
             <a href="cart.php" >
                <input type="submit" value="ADD TO CART" name="addcrt" class="addcrt"></a>
-           </div>
+           </div>  
        </div>
     </div>
-    </a>
-    <?php }?>  
+    </a> 
+    
+    <?php }?>
 </div>
 </body>
 </html>

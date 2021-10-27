@@ -226,9 +226,9 @@ public function english(){
 }
 
 }
-     public function crslst(){
+     public function crslst($cat){
       try{
-        $sql = "SELECT * FROM `course` ";
+        $sql = "SELECT * FROM `course` where category=$cat";
         $result = $this->db->query($sql);
         return $result;
     }catch (PDOException $e) {
@@ -250,8 +250,8 @@ public function english(){
    }
    public function section(){
     try{
-      $sql = "SELECT * FROM `section` where crs_id=34";
-     // $sql = "SELECT sectn FROM `course` a inner join section s on a.c_id = s.crs_id";
+     // $sql = "SELECT * FROM `section` where crs_id=34";
+      $sql = "SELECT * FROM `section` a inner join course s on a.crs_id = s.c_id";
       $stmt = $this->db->prepare($sql);
 
       $result = $this->db->query($sql);
@@ -276,11 +276,11 @@ public function english(){
        }
    }
 
-   public function updtusrdata($n,$em,$mb,$bd,$cn){
+   public function updtusrdata($n,$em,$mb,$bd,$cn,$destination){
     echo 'otp success';
 
    try{ 
-    $sql = "UPDATE `sign` SET `mobile`=:mbl, `fullname`=:nam, `country`=:cntry, `bdate`=:dt WHERE email=:em";
+    $sql = "UPDATE `sign` SET `mobile`=:mbl, `fullname`=:nam, `country`=:cntry, `bdate`=:dt, `img_path`=:img WHERE email=:em";
     $stmt = $this->db->prepare($sql);
     // bind all placeholders to the actual values
     $stmt->bindparam(':nam',$n);
@@ -288,6 +288,8 @@ public function english(){
     $stmt->bindparam(':dt',$bd);
     $stmt->bindparam(':cntry',$cn);
     $stmt->bindparam(':em',$em);
+    
+    $stmt->bindparam(':img',$destination);
     // execute statement
     $stmt->execute();
     return true;
@@ -298,17 +300,18 @@ public function english(){
     }
   }
 
-  public function insertcrs($title,$descrip,$sec){
+  public function insertcrs($title,$descrip,$sec,$destination,$cat){
     try {
     
 
-     $sql = "INSERT INTO course (c_name, des, sectn) VALUES (:title, :descrip, :sectn)";
+     $sql = "INSERT INTO course (c_name,category, des, sectn, img_path	) VALUES (:title, :cat, :descrip, :sectn, :img)";
      $stmt = $this->db->prepare($sql);
 
      $stmt->bindparam(':title',$title);
+     $stmt->bindparam(':cat',$cat);
      $stmt->bindparam(':descrip',$descrip);
      $stmt->bindparam(':sectn',$sec);
-     
+     $stmt->bindparam(':img',$destination);
 
      $stmt->execute();
      return true;
@@ -319,16 +322,16 @@ public function english(){
       return false;
     }
    }
-   public function insertsec($title,$id){
+   public function insertsec($title,$id,$destination){
     try {
     
 
-     $sql = "INSERT INTO section (name, crs_id) VALUES (:title, :id)";
+     $sql = "INSERT INTO section (name, crs_id, video) VALUES (:title, :id, :vdo)";
      $stmt = $this->db->prepare($sql);
 
      $stmt->bindparam(':title',$title);
      $stmt->bindparam(':id',$id);
-     
+     $stmt->bindparam(':vdo',$destination);
 
      $stmt->execute();
      return true;

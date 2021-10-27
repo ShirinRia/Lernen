@@ -38,7 +38,7 @@ require_once 'db/conn.php';
                 <li>two</li>
                 <li>three</li>
             </ul>
-            <a href="#" class="strt">Enroll Now</a>
+            <a href="vdo.php" class="strt">Enroll Now</a>
             
         </div>
     </div>

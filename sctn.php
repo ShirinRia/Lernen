@@ -8,7 +8,13 @@ if(isset($_POST['up'])){
   //  $descrip= $_POST['crsdescrip'];
     $id= $_SESSION['id'];
 
-   $success = $crud->insertsec($title,$id);
+    $orig_file = $_FILES["crsvdo"]["tmp_name"];
+    $ext = pathinfo($_FILES["crsvdo"]["name"], PATHINFO_EXTENSION);
+    $target_dir = 'uploads/';
+    $destination = "$target_dir$title$id.$ext";
+    move_uploaded_file($orig_file,$destination);
+
+   $success = $crud->insertsec($title,$id,$destination);
   
 } 
 
@@ -41,7 +47,7 @@ if(isset($_POST['up'])){
         <a href="home.php">Exit</a></div>
     </div>
     <div class="crsmid">
-        <form class="frmmid" action="<?php echo htmlentities($_SERVER['PHP_SELF']); ?>" method="post">
+        <form class="frmmid" action="<?php echo htmlentities($_SERVER['PHP_SELF']); ?>" method="post" enctype="multipart/form-data">
         <div class="brdr">
         
         <div class="crmid">
@@ -51,7 +57,7 @@ if(isset($_POST['up'])){
             while($x <= $_SESSION['sec']) { ?>
             <div  class="bx">
             <div  class="vdbx">
-                <form action="<?php echo htmlentities($_SERVER['PHP_SELF']); ?>" method="post">
+                <form action="<?php echo htmlentities($_SERVER['PHP_SELF']); ?>" method="post" enctype="multipart/form-data">
                 
                 <input type="text" class="crnm" name="crsnm" placeholder="Section name" >
                 <input type="file" class="crvdo" name="crsvdo" placeholder="Select">
