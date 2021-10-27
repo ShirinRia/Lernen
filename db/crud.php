@@ -263,6 +263,18 @@ public function english(){
   
  }
 
+ public function quiz(){
+  try{
+    $sql = "SELECT * FROM `quiz` where crs_id=63";
+    $result = $this->db->query($sql);
+    return $result;
+}catch (PDOException $e) {
+    echo $e->getMessage();
+    return false;
+}
+
+}
+
      public function delete($usr){
       try{
            $sql = "delete from sign where username = :user";
@@ -332,6 +344,25 @@ public function english(){
      $stmt->bindparam(':title',$title);
      $stmt->bindparam(':id',$id);
      $stmt->bindparam(':vdo',$destination);
+
+     $stmt->execute();
+     return true;
+    }
+
+    catch (PDOException $e) {
+      echo $e->getMessage();
+      return false;
+    }
+   }
+   public function insertqz($q,$id){
+    try {
+    
+
+     $sql = "INSERT INTO quiz (link, crs_id) VALUES (:quiz, :id)";
+     $stmt = $this->db->prepare($sql);
+
+     $stmt->bindparam(':quiz',$q);
+     $stmt->bindparam(':id',$id);
 
      $stmt->execute();
      return true;

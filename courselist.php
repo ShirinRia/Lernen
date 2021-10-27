@@ -6,7 +6,7 @@ require_once 'db/conn.php';
 
      $id = $_GET['cat'];
      $res = $crud->crslst($id);
-
+    
 
 ?> 
 <?php 

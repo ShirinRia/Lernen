@@ -2,6 +2,7 @@
 $title ='Homepage';
 require_once 'db/conn.php';
 
+include_once 'includes/session.php';
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -38,7 +39,7 @@ require_once 'db/conn.php';
                 <li>two</li>
                 <li>three</li>
             </ul>
-            <a href="vdo.php" class="strt">Enroll Now</a>
+            <a href="vdo.php?lnk=<?php echo $_SESSION['qid'];?>" class="strt">Enroll Now</a>
             
         </div>
     </div>

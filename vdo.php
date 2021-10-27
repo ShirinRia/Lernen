@@ -1,7 +1,12 @@
 <?php 
 $title ='Homepage';
 require_once 'db/conn.php';
+include_once 'includes/session.php';
 $best = $crud->section();  
+//$id = "https://forms.gle/6A3nZdKiV9GmyoCK6";
+$quz = $crud->quiz(); 
+//$l= $quz['c_name'];
+//$_SESSION['qzlink'] =$quz['c_name'];
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -70,6 +75,15 @@ $best = $crud->section();
             </div>
           </div>
           <?php }?>  
+          <div class="accordion-item">
+            <h2 class="accordion-header" id="headingTwo">
+            <?php while($r = $quz->fetch(PDO::FETCH_ASSOC)) { ?>
+              <a href="<?php echo $r['link'] ?>" target="_blank" class="accordion-button" style="text-decoration: none; color:black;"><span>Quiz</span></a></h4>
+           </div>
+              <?php }?>
+            </h2>
+            
+          </div>
         </div>
       </div>
      

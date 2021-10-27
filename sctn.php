@@ -17,6 +17,14 @@ if(isset($_POST['up'])){
    $success = $crud->insertsec($title,$id,$destination);
   
 } 
+if(isset($_POST['qup'])){
+    $q= $_POST['quiz'];
+  //  $descrip= $_POST['crsdescrip'];
+    $id= $_SESSION['id'];
+
+   $success = $crud->insertqz($q,$id);
+  
+} 
 
 ?>
 
@@ -69,6 +77,15 @@ if(isset($_POST['up'])){
             $x++; ?>
             
             <?php }?>  
+            <div  class="bx">
+            <div  class="vdbx">
+                <form action="<?php echo htmlentities($_SERVER['PHP_SELF']); ?>" method="post" enctype="multipart/form-data">
+                
+                <input type="link" class="crnm" name="quiz" placeholder="quiz" >
+                <input type="submit" class="btn in" value="Upload" name="qup">
+                </form>
+            </div>
+            </div>
         </div>
         </div>
     </div>
