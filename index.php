@@ -81,6 +81,7 @@ if(isset($_POST['submit'])){
 $result=$login->getuser($duser,$newpass);
 if($result) {
     $_SESSION['user']=$duser;
+    $_SESSION['fname'] = $result['fullname'];
     header("Location: lrnrhome.php");
     //require_once 'homepage.php';
 }

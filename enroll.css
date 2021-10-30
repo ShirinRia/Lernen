@@ -58,6 +58,7 @@ h2{
     display: flex;
     align-items: center;
     justify-content:center;
+    border:none;
 }
 .ovrvw{
     position: absolute;
@@ -79,4 +80,18 @@ h2{
 
     color:white;
     text-decoration: none;
+}
+.rvw{
+    position:absolute;
+    top: 500px;
+    left: 30px;
+    width:66%;
+}
+.vdbx{
+    position: relative;
+    width:95%;
+    left: 20px;
+    border: none;
+    height:130px;
+    overflow:hidden;
 }

@@ -130,7 +130,7 @@ $results = $crud->crd();
                                     <div class="list-item_profile">
                                             
                                         <ul class="sidepad">
-                                            <li><a href="#" class=" m_clr">My Courses</a></li>
+                                            <li><a href="mycourses.php?us=<?php echo $_SESSION['user'];?>" class=" m_clr">My Courses</a></li>
                                             <li><a href="#" class=" m_clr">Cart</a></li>
                                             <li><a href="#" class=" m_clr">Wishlist</a></li>
                                             <li><a href="#" class=" m_clr">Purchase History</a></li>
@@ -139,6 +139,11 @@ $results = $crud->crd();
                                     </div>
                                 </div>
                             </li>
+                            <li class="search-container"> 
+                                <form action="courselist.php" method="post">
+                                <input type="text" placeholder="Search.." name="search" class="src">
+                                <button type="submit" class="srcbtn" name="search"><i class="fa fa-search fg"></i></button>
+                              </form></li>
                         </ul>
                     </nav>
                 </div>

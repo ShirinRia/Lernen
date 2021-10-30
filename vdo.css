@@ -18,6 +18,7 @@
     top: 460px;
     background-color:whitesmoke;
     width: 70.8%;
+   height: 1000px;
 }
 .nav{
     position: absolute;
@@ -30,25 +31,26 @@
 .nav-item{
     
     border: 1px solid gray;
-    width: 33.3%;
+    width: 33.33%;
     justify-content: center;
     align-items: center;
     padding-left: 20px;
     padding-top: 10px;
 }
-.dcntnt{
-   position: absolute;
-    top:50px;
+.navbar-brand{
+    position:relative;
+    top: 0px;
+    border:none;
     background-color:white;
-    width: 100%;
-    border: 1px solid gray;
 }
+
 .container{
     width:29.2%;
     height:100%;
     position: absolute;
     right:0px;
 }
+
 .accordion-item{
     width: 106%;
     padding:0px;

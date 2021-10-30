@@ -613,3 +613,28 @@ h4{
    visibility: visible;
    
 }
+/*search box*/
+.src{
+  height: 40px;
+   margin-top: 8px;
+   font-size: 17px;
+   border: none;
+}
+.search-container {
+   float:center;
+ }
+ .srcbtn{
+   height: 40px;
+   float: right;
+   padding: 0px 10px;
+   margin-top: 14px;
+   margin-right: 16px;
+   background: #ddd;
+   font-size: 17px;
+   border: none;
+   cursor: pointer;
+ }
+ .fg{
+    position: relative;
+    top: -10px;
+ }

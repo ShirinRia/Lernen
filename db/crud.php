@@ -100,6 +100,23 @@
         }
         
        }
+
+       public function enrl($cid){
+        
+        try{
+          $sql = "select * from course where c_id = :id";
+          $stmt = $this->db->prepare($sql);
+          $stmt->bindparam(':id', $cid);
+          $stmt->execute();
+          $result = $stmt->fetch();
+          return $result;
+     }catch (PDOException $e) {
+          echo $e->getMessage();
+          return false;
+      }
+      
+     }
+
        public function getcrsid($title){
         
         try{
@@ -127,6 +144,17 @@
      }
       
      }
+     public function mycrs(){
+      try{
+        $sql = "SELECT * FROM `registration` ";
+        $result = $this->db->query($sql);
+        return $result;
+    }catch (PDOException $e) {
+        echo $e->getMessage();
+        return false;
+   }
+    
+   }
      public function best(){
       try{
         $sql = "SELECT * FROM `books` ";
@@ -248,10 +276,10 @@ public function english(){
    }
     
    }
-   public function section(){
+   public function section($id){
     try{
      // $sql = "SELECT * FROM `section` where crs_id=34";
-      $sql = "SELECT * FROM `section` a inner join course s on a.crs_id = s.c_id";
+      $sql = "SELECT * FROM `section` a inner join course s on a.crs_id = s.c_id where crs_id=$id";
       $stmt = $this->db->prepare($sql);
 
       $result = $this->db->query($sql);
@@ -263,9 +291,42 @@ public function english(){
   
  }
 
- public function quiz(){
+
+public function ecat($ctid){
+        
   try{
-    $sql = "SELECT * FROM `quiz` where crs_id=63";
+    $sql = "select * from crs_cat where cat_id = :id";
+    $stmt = $this->db->prepare($sql);
+    $stmt->bindparam(':id', $ctid);
+    $stmt->execute();
+    $result = $stmt->fetch();
+    return $result;
+}catch (PDOException $e) {
+    echo $e->getMessage();
+    return false;
+}
+
+}
+
+public function revew($id){
+        
+  try{
+    $sql = "select * from review where cid = :id";
+    $stmt = $this->db->prepare($sql);
+    $stmt->bindparam(':id', $id);
+    $stmt->execute();
+    $result = $stmt->fetch();
+    return $result;
+}catch (PDOException $e) {
+    echo $e->getMessage();
+    return false;
+}
+
+}
+
+ public function quiz($id){
+  try{
+    $sql = "SELECT * FROM `quiz` where crs_id=$id";
     $result = $this->db->query($sql);
     return $result;
 }catch (PDOException $e) {
@@ -325,6 +386,65 @@ public function english(){
      $stmt->bindparam(':sectn',$sec);
      $stmt->bindparam(':img',$destination);
 
+     $stmt->execute();
+     return true;
+    }
+
+    catch (PDOException $e) {
+      echo $e->getMessage();
+      return false;
+    }
+   }
+
+   public function insertreg($user,$crsid){
+    try {
+    
+
+     $sql = "INSERT INTO registration (user, c_id) VALUES (:user, :cid)";
+     $stmt = $this->db->prepare($sql);
+
+     $stmt->bindparam(':user',$user);
+     $stmt->bindparam(':cid',$crsid);
+
+     $stmt->execute();
+     return true;
+    }
+
+    catch (PDOException $e) {
+      echo $e->getMessage();
+      return false;
+    }
+   }
+
+   public function insertrvw($user,$crsid,$rvw){
+    try {
+    
+
+     $sql = "INSERT INTO review (user, review, cid) VALUES (:user, :review, :cid)";
+     $stmt = $this->db->prepare($sql);
+
+     $stmt->bindparam(':user',$user);
+     $stmt->bindparam(':cid',$crsid);
+     $stmt->bindparam(':review',$rvw);
+     $stmt->execute();
+     return true;
+    }
+
+    catch (PDOException $e) {
+      echo $e->getMessage();
+      return false;
+    }
+   }
+
+   public function insertqus($user,$qs){
+    try {
+    
+
+     $sql = "INSERT INTO question (user, ques) VALUES (:user, :ques)";
+     $stmt = $this->db->prepare($sql);
+
+     $stmt->bindparam(':user',$user);
+     $stmt->bindparam(':ques',$qs);
      $stmt->execute();
      return true;
     }

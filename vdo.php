@@ -2,11 +2,40 @@
 $title ='Homepage';
 require_once 'db/conn.php';
 include_once 'includes/session.php';
-$best = $crud->section();  
-//$id = "https://forms.gle/6A3nZdKiV9GmyoCK6";
-$quz = $crud->quiz(); 
-//$l= $quz['c_name'];
-//$_SESSION['qzlink'] =$quz['c_name'];
+
+if(isset($_GET['sec'])){
+   $id = $_GET['sec'];
+   $best = $crud->section($id);  
+   
+}
+if(isset($_POST['reg'])){
+  $user=  $_SESSION['user'] ;
+  $crsid=  $_SESSION['sec'];
+  $success = $crud->insertreg($user,$crsid);
+  
+}
+if(isset($_POST['review'])){
+  $user=  $_SESSION['user'] ;
+  $crsid=  $_SESSION['sec'];
+  $rvw= $_POST['rev'];
+  $success = $crud->insertrvw($user,$crsid,$rvw);
+  if($success){
+    $best = $crud->section($crsid); 
+  }
+
+}
+if(isset($_POST['qustn'])){
+  $user=  $_SESSION['user'] ;
+ $cid=$_SESSION['sec'];
+  $qs= $_POST['qus'];
+  $success = $crud->insertqus($user,$qs);
+  if($success){
+    $best = $crud->section($cid); 
+  }
+
+}
+ 
+$quz = $crud->quiz($_SESSION['sec']); 
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -19,7 +48,7 @@ $quz = $crud->quiz();
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-/bQdsTh/da6pkI1MST/rWKFNjaCP5gBSY4sEBT38Q/9RBh9AH40zEOg7Hlq2THRZ" crossorigin="anonymous"></script>
 
     <link rel = "stylesheet" href="vdo.css">
-    
+    <link rel = "stylesheet" href="review.css">
 </head>
 <body>
  <div class="sec1">
@@ -33,28 +62,67 @@ $quz = $crud->quiz();
       <div class="dbar">
         <nav id="navbar-example2" class="navbar navbar-light bg-light px-3">
            
-            <ul class="nav nav-pills ">
+        <ul class="nav nav-pills ">
               <li class="nav-item">
-                <a class="navbar-brand" href="#scrollspyHeading1">Overview</a>
+                <button onclick="togglePanel3()" class="navbar-brand" >Overview</button>
               </li>
               <li class="nav-item">
-                <a class="navbar-brand" href="#scrollspyHeading2">Review</a>
+                <button onclick="togglePanel2()" class="navbar-brand" >Q&A</button>
               </li>
               <li class="nav-item">
-                <a class="navbar-brand" href="#scrollspyHeading2">Q&A</a>
+                <button onclick="togglePanel()" class="navbar-brand" >Review</button>
               </li>
             </ul>
           </nav>
-          <div class="dcntnt">
-            <div data-bs-spy="scroll" data-bs-target="#navbar-example2" data-bs-offset="0" class="scrollspy-example" tabindex="0">
-                <h4 id="scrollspyHeading1">First heading</h4>
-                <p>...</p>
-                <h4 id="scrollspyHeading2">Second heading</h4>
-                <p>...</p>
-                <h4 id="scrollspyHeading3">Third heading</h4>
-                <p>...</p>
-            </div>
+          <div class="rvwbx" id="rvw">
+              <span class="txt maiin">Give Feedback</span>
+              <div class="rating">
+                  <h5 class="txt"><span>Rating</span></h5>
+                  <span>&#11088;</span>
+                  <span>&#11088;</span>
+                  <span>&#11088;</span>
+                  <span>&#11088;</span>
+                  <span>&#11088;</span>
+              </div>
+              <div class="wrtrvw">
+                 <h5 class="txt"><span>Write a Review</span></h5> 
+                 <form action="<?php echo htmlentities($_SERVER['PHP_SELF']); ?>" method="post">
+                  <input type="text" class="irvw" name="rev" placeholder="Write your review here"><br><br>
+                  <input type="submit" class="rbtn" name="review" value="Submit Review"></form>
+              </div>
+       
         </div>
+
+        <div class="rvwx" id="qus">
+        
+      <div class="wrtrvw">
+         <h5 class="txt"><span>Ask Your Question</span></h5> 
+         <form action="<?php echo htmlentities($_SERVER['PHP_SELF']); ?>" method="post">
+          <input type="text" class="irvw" name="qus" placeholder="I didn't understand this part"><br><br>
+          <input type="submit" class="rbtn" name="qustn" value="ASK"></form>
+      </div>
+      
+  </div>
+
+  <div class="ovrvw" id="ovrviw">
+    <span class="txt maiin">About The Course</span><br><br>
+    <span>Students: 1000</span><br><br>
+    <span>Section: 4</span>
+    <div class="rating">
+        <h5 class="txt"><span>Description</span></h5>
+        <span>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Iste amet, voluptates ex odio voluptas, beatae omnis unde esse sunt placeat doloribus nesciunt, eligendi voluptatum quaerat dolores! Cupiditate, porro ullam minus sit asperiores similique veritatis nemo suscipit culpa commodi nobis possimus optio sapiente magnam vitae maxime, error a fugiat ratione, soluta aperiam consequuntur. Itaque, neque numquam. Repudiandae, quo? Maiores a, tenetur animi excepturi perspiciatis maxime sunt sint iure optio, laudantium dignissimos tempore aliquam quo aspernatur eligendi placeat dolorem minima ea quod? Nostrum numquam dolore sequi odio at ullam, ad obcaecati unde rerum, perferendis aliquid natus maxime a maiores explicabo sit fugiat.</span>
+    </div>
+    <div class="wrtrvw">
+       <h5 class="txt"><span>Instructor</span></h5> 
+       <span> <img src="images\images.jpg"></span>
+      <span>Shirin Sultana</span><br>
+       <span>I am a Software Engineer and part time lecturer. 
+
+        With a Master's Degree in Computer Science, I have spent over a decade teaching Web, Software and Database Development Courses. I also have as much industry experience in Web Application Development and Azure Cloud System and Server Administration.
+        
+        I enjoy teaching IT and Development courses and hope to impart the latest in industry standards and knowledge to my students.</span>
+    </div>
+</div>
       </div>
     </div>
     
@@ -86,6 +154,24 @@ $quz = $crud->quiz();
           </div>
         </div>
       </div>
-     
+      <script>
+        function togglePanel() {
+        document.getElementById("rvw").classList.add("visible");
+        document.getElementById("qus").classList.remove("visible");
+        
+        document.getElementById("ovrviw").classList.remove("visible");
+       }
+       function togglePanel2() {
+        document.getElementById("rvw").classList.remove("visible");
+        document.getElementById("qus").classList.add("visible");
+        
+        document.getElementById("ovrviw").classList.remove("visible");
+       }
+       function togglePanel3() {
+        document.getElementById("rvw").classList.remove("visible");
+        document.getElementById("qus").classList.remove("visible");
+        document.getElementById("ovrviw").classList.add("visible");
+       }
+    </script>
 </body>
 </html>

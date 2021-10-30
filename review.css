@@ -1,0 +1,66 @@
+.rvwbx{
+    width:80%;
+    position: relative;
+    top: 80px;
+    left: 100px;
+    height:80%;
+    visibility: hidden;
+}
+.rvwx{
+    width:80%;
+    position: absolute;
+    top: 70px;
+    left: 100px;
+    height:80%;
+    visibility: hidden;
+}
+.ovrvw{
+    width:80%;
+    position: absolute;
+    top: 80px;
+    left: 100px;
+    height:100%;
+    visibility: hidden;
+}
+.irvw{
+    height: 150px;
+    width:95%;
+    
+}
+.rbtn{
+    background-color:black;
+    color: white;
+    border:none;
+    height: 30px;
+    width: 120px;
+    position: relative;
+    left: 550px;
+}
+
+.wrtrvw, .rating,.maiin{
+    position: relative;
+    left: 10px;
+    width:95%;
+}
+.wrtrvw{
+    top: 60px;  
+}
+.rating{
+    border-bottom: 1px solid gray;
+    border-top : 1px solid gray;
+    padding-bottom: 10px;
+    padding-top:0;
+    margin-top: 0;
+    top: 30px;
+}
+.txt{
+    font-weight: 700;
+    font-size: 25px;
+    font-family: Arial, Helvetica, sans-serif;
+}
+.visible{
+    visibility: visible;
+}
+.invisible{
+    visibility: hidden;
+}
