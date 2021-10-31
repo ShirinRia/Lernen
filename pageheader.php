@@ -133,7 +133,7 @@ $results = $crud->crd();
                                             <li><a href="mycourses.php?us=<?php echo $_SESSION['user'];?>" class=" m_clr">My Courses</a></li>
                                             <li><a href="#" class=" m_clr">Cart</a></li>
                                             <li><a href="#" class=" m_clr">Wishlist</a></li>
-                                            <li><a href="#" class=" m_clr">Purchase History</a></li>
+                                            <li><a href="history.php?us=<?php echo $_SESSION['userid'];?>" class=" m_clr">History</a></li>
                                         </ul>
                                     
                                     </div>

@@ -22,17 +22,18 @@
        }
       }
 
-      public function gettchr($user,$pass){
+      public function gettchr($user,$pass,$typ){
         try {
-         $sql = "select * from teach where username = :user AND pass = :pass";
+         $sql = "select * from sign where username = :user  AND type = :typ AND passwor = :passwor" ;
          $stmt = $this->db->prepare($sql);
  
          $stmt->bindparam(':user',$user);
-         $stmt->bindparam(':pass',$pass);
-        
+         $stmt->bindparam(':passwor',$pass);
+         $stmt->bindparam(':typ',$typ);
          $stmt->execute();
          $result=$stmt->fetch();
          return $result;
+         echo $typ;
         } 
         catch (PDOException $e) {
           echo $e->getMessage();

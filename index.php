@@ -14,10 +14,11 @@ if(isset($_POST['sub'])){
     $cnfpass=md5($cpass);
     $email= $_POST['email'];
     $gender= $_POST['gen'];
+    $type="Learner";
     $sub="VERIFICATION";
     $otp=rand(1000,99999);
     if($newpass==$cnfpass){
-    $success = $crud->insert($full,$user,$newpass,$email,$gender,$otp);
+    $success = $crud->insert($full,$user,$newpass,$email,$gender,$otp,$type);
   //echo $otp;
     if($success) {
       // sendemail ::sendmail($email,$full,$sub,$otp);
@@ -50,10 +51,10 @@ else if(isset($_POST['subt'])){
     $gender= $_POST['gen'];
     $sub="VERIFICATION";
     $otp=rand(1000,99999);
+    $type="Teacher";
     if($newpass==$cnfpass){
-    $succ = $crud->inserttcr($full,$user,$newpass,$email,$gender,$otp);
     
-    $success = $crud->insert($full,$user,$newpass,$email,$gender,$otp);
+    $success = $crud->insert($full,$user,$newpass,$email,$gender,$otp,$type);
   //echo $otp;
     if($success) {
       // sendemail ::sendmail($email,$full,$sub,$otp);
@@ -81,22 +82,26 @@ if(isset($_POST['submit'])){
 $result=$login->getuser($duser,$newpass);
 if($result) {
     $_SESSION['user']=$duser;
+    $_SESSION['userid']=$result['user_id'];
     $_SESSION['fname'] = $result['fullname'];
     header("Location: lrnrhome.php");
     //require_once 'homepage.php';
 }
 else{
-   // echo '<div class ="alert alert-danger"Username or Password is Incorrect! Please try again</div>';
-   echo 'failllll';
+    echo '<div class ="alert alert-danger" id= "alert">Username or Password is Incorrect! Please try again</div>';
+   //echo 'failllll';
 }
 }
 if(isset($_POST['tsubmit'])){
     $duser= $_POST['user'];
     $pass=$_POST['pass'];
     $newpass=md5($pass);
-$result=$login->gettchr($duser,$newpass);
+    $typ="Teacher";
+$result=$login->gettchr($duser,$newpass,$typ);
 if($result) {
     $_SESSION['user']=$duser;
+    
+    $_SESSION['tcrid']=$result['user_id'];
     header("Location: home.php");
     //require_once 'homepage.php';
 }

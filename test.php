@@ -51,8 +51,8 @@ $results = $crud->crd();
             <h2 class="box_cntnt usr-num"><?php $crud->num();?></h2>
         </div>
         <div class="Instructor uiblc">
-            <h1 class="box_cntnt usr"> Instructors</h1>
-            <h2 class="box_cntnt usr-num">2000</h2>
+            <h1 class="box_cntnt usr ins"> Instructors</h1>
+            <h2 class="box_cntnt usr-num"><?php $crud->tnum();?></h2>
         </div>
         <div class="lerners uiblc">
             <h1 class="box_cntnt usr"> Learners</h1>
@@ -60,7 +60,7 @@ $results = $crud->crd();
         </div>
         <div class="courses uiblc">
             <h1 class="box_cntnt usr"> Courses</h1>
-            <h2 class="box_cntnt usr-num">2000</h2>
+            <h2 class="box_cntnt usr-num"><?php $crud->cnum();?></h2>
         </div>
     </div>
     <div class="smid">

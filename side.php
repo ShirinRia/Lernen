@@ -6,10 +6,11 @@ require_once 'db/conn.php';?>
             <div class="sidecontent">
             <a href="profile.php">
                 <input type="submit" name="profile" class="p_btn" value="Profile"></a>
-                <input type="submit" name="Courses" class="p_btn" value="My Courses">
+                <a href="mycourses.php?us=<?php echo $_SESSION['user'];?>">
+                <input type="submit" name="Courses" class="p_btn" value="My Courses"></a>
                 <a href="update.php">
                 <input type="submit" name="Update" class="p_btn" value="Profile Update">
-                <a href="dashboard.php">
+                <a href="dashboard.php?us=<?php echo $_SESSION['userid'];?>">
                 <input type="submit" name="Dashboard" class="p_btn" value="Dashboard"></a>
                 <a href="close.php">
                 <input type="submit" name="close" class="p_btn" value="Close Account"></a>

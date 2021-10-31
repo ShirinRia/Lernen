@@ -3,6 +3,9 @@ $title ='Homepage';
 require_once 'db/conn.php';
 include_once 'includes/session.php';
 
+$vid="videolink";
+$_SESSION['ln']=$vid;
+$vd="videostory";
 if(isset($_GET['sec'])){
    $id = $_GET['sec'];
    $best = $crud->section($id);  
@@ -11,9 +14,16 @@ if(isset($_GET['sec'])){
 if(isset($_POST['reg'])){
   $user=  $_SESSION['user'] ;
   $crsid=  $_SESSION['sec'];
-  $success = $crud->insertreg($user,$crsid);
-  
+  $corsname= $_SESSION['crsname'] ;
+  $teacrname=$_SESSION['tcrname'];
+  $uid=$_SESSION['userid'];
+  $success = $crud->insertreg($user,$crsid,$corsname,$teacrname,$uid);
+  if(!$success){
+    echo '<div class ="alert alert-danger" id= "alert">Already Enrolled</div>';
+   //echo 'failllll';
 }
+}
+
 if(isset($_POST['review'])){
   $user=  $_SESSION['user'] ;
   $crsid=  $_SESSION['sec'];
@@ -44,17 +54,41 @@ $quz = $crud->quiz($_SESSION['sec']);
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js" integrity="sha512-+NqPlbbtM1QqiK8ZAo4Yrj2c4lNQoGv8P79DPtKzj++l5jnN39rHA/xsqn8zE9l0uSoxaCdrOgFs6yjyfbBxSg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/magnific-popup.js/1.1.0/jquery.magnific-popup.js" integrity="sha512-C1zvdb9R55RAkl6xCLTPt+Wmcz6s+ccOvcr6G57lbm8M2fbgn2SUjUJbQ13fEyjuLViwe97uJvwa1EUf4F1Akw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-F3w7mX95PdgyTmZZMECAngseQB83DfGTowi0iMjiWaeVhAn4FJkqJByhZMI3AhiU" crossorigin="anonymous">
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-/bQdsTh/da6pkI1MST/rWKFNjaCP5gBSY4sEBT38Q/9RBh9AH40zEOg7Hlq2THRZ" crossorigin="anonymous"></script>
 
     <link rel = "stylesheet" href="vdo.css">
     <link rel = "stylesheet" href="review.css">
+    <style>
+
+      .mfp-hide{
+          
+          display: none;
+      }
+      .mfp-close,.mfp-preloader{
+         display: none;
+      }
+      .vdocntnt{
+          width: 10%;
+          height: 40px;
+      }
+  </style>
 </head>
 <body>
  <div class="sec1">
-  <div class="vdo_cntnr">
+  <div class="vdo_cntnr mfp-hide" id="<?php echo $vd ?>">
         <video class="vdo"  height="240" width="1320" controls>
-            <source src="" type="video/mp4">
+            <source src="test.mp4" type="video/mp4">
+            Your browser does not support the video tag.
+          </video>
+          
+      </div>
+      <div class="vdo_cntnr mfp-hide" id="videostory">
+        <video class="vdo"  height="240" width="1320" controls>
+            <source src="test.mp4" type="video/mp4">
             Your browser does not support the video tag.
           </video>
           
@@ -132,9 +166,9 @@ $quz = $crud->quiz($_SESSION['sec']);
           
           <div class="accordion-item">
             <h2 class="accordion-header" id="headingTwo">
-              <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+              <a href= "#<?php echo $vd ?>" id=<?php echo $_SESSION['ln'] ?> class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
               <?php echo $r['name'] ?>
-              </button>
+             </a>
             </h2>
             <div id="collapseTwo" class="accordion-collapse collapse" aria-labelledby="headingTwo" data-bs-parent="#accordionExample">
               <div class="accordion-body">
@@ -172,6 +206,15 @@ $quz = $crud->quiz($_SESSION['sec']);
         document.getElementById("qus").classList.remove("visible");
         document.getElementById("ovrviw").classList.add("visible");
        }
+    </script>
+    
+    <script src="alert_copy.js" type="text/javascript"></script>
+    <script>
+        $('#<?php echo $_SESSION['ln'] ?>').magnificPopup({
+            type: 'inline',
+            midclick: true
+        })
+       
     </script>
 </body>
 </html>

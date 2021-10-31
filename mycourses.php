@@ -3,7 +3,8 @@ $title ='Homepage';
 
 include_once 'includes/session.php';
 require_once 'db/conn.php';
-$results = $crud->mycrs();
+$uid=$_SESSION['userid'];
+$results = $crud->mycrs($uid);
 ?> 
 <!DOCTYPE html>
 <html lang="en">
@@ -49,8 +50,8 @@ $results = $crud->mycrs();
               <div class="crd crdth">
                 <img src="images\img1.jpg" class="card-img-top" alt="...">
                 <div class="card-body">
-                  <h5 class="card-title"><?php echo $r['c_id'] ?></h5>
-                  <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
+                  <h5 class="card-title"><?php echo $r['cors_name'] ?></h5>
+                  <p class="card-text">Create&nbsp;by&nbsp;<b><?php echo $r['tcr_name'] ?></b></p>
                 </div>
                </div>
               </div>

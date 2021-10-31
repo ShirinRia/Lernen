@@ -10,7 +10,7 @@
 .vdo{
     width:955px; 
     height:460px;
-    position: absolute;
+    position: relative;
     top: 0;
 }
 .dbar{
@@ -59,4 +59,12 @@
     top:0px;
     left:-12px;
 
+}
+.danger{
+    z-index: 10000;
+    visibility:hidden; 
+    width:50%;
+}
+.alert-danger, .alert{
+    width:50%;
 }

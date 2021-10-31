@@ -15,14 +15,14 @@ $results = $crud->crd();
               <p class="card-text"><?php echo $r['des'] ?></p>
             </div>
             <div class="card-footer">
-              <small class="text-muted">Teacher</small>
+              <small class="text-muted"><?php echo $r['tname'] ?></small>
             </div>
           </div>
           <?php }?>  
       </div>
       <script>
          $(".slider").owlCarousel({
-           loop: true,
+           loop: false,
            autoplay: true,
            autoplayTimeout: 2000, //2000ms = 2s;
            autoplayHoverPause: true,

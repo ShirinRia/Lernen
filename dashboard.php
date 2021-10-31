@@ -2,6 +2,7 @@
 $title ='Homepage';
 require_once 'includes/header_2.php';
 require_once 'db/conn.php';
+
 ?> 
 <?php 
                 
@@ -27,7 +28,7 @@ require_once 'db/conn.php';
             <div class="c_dash">
                 <div class="total dash">
                     <label for="">Total Course</label><br><br>
-                    <input type="text" name="profile" class="text" >
+                    <input type="text" name="profile" class="text" value="<?php $crud->total_course($_SESSION['user']);?>">
                 </div>
 
                 <div class="completed dash">
