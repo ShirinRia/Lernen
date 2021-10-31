@@ -140,8 +140,8 @@ $results = $crud->crd();
                                 </div>
                             </li>
                             <li class="search-container"> 
-                                <form action="courselist.php" method="post">
-                                <input type="text" placeholder="Search.." name="search" class="src">
+                                <form action="searchlist_copy.php" method="post">
+                                <input type="text" placeholder="Search.." name="serch" class="src">
                                 <button type="submit" class="srcbtn" name="search"><i class="fa fa-search fg"></i></button>
                               </form></li>
                         </ul>

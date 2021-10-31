@@ -3,7 +3,6 @@ $title ='Index';
 require_once 'includes/header.php';
 require_once 'db/conn.php';
 require_once 'sendmail.php';
-//require_once 'sendmail.php';
 //$user= $_POST['user'];
  //if(isset($_POST['submit'])){
   //  $full= $_POST['full'];

@@ -156,6 +156,20 @@
         }
         
        }
+       public function search($data){
+        
+        try{
+          $sql = "SELECT * FROM `course` WHERE c_name=:data";
+          $result = $this->db->prepare($sql);
+          $executerrecord=$result->execute(array(":data"=>$data));
+          return $executerrecord;
+       
+     }catch (PDOException $e) {
+          echo $e->getMessage();
+          return false;
+      }
+      
+     }
 
        public function enrl($cid){
         

@@ -529,12 +529,12 @@ margin:0;
 /*courselist page*/
 
 .crslist{
-   position: absolute;
+   position: relative;
    left:90px;
    width: 1200px;
    border-top-left-radius:10px;
    border-top-right-radius:10px;  
-   top: 100px;
+   top: 50px;
    height: 100%;
 }
 .lsthead,.lstbdy{
