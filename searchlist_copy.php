@@ -33,7 +33,7 @@ require_once 'includes/header_2.php';
        // $noresults = false;
 
         // Display the search result
-       echo '  <div class="crslist"><div class="lstbdy">
+       echo '  <div class="crslist"> <a href="enroll.php?cat='. $thread_id. '"><div class="lstbdy">
        <div class="crsthumb">
           <img src="'. $imgg. '" class="thumb" style="width: 100%; height: 100%" />
        </div>

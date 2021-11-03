@@ -8,6 +8,7 @@ $results = $crud->crd();
        
       
       <?php while($r = $results->fetch(PDO::FETCH_ASSOC)) { ?>
+        <a href="enroll.php?cat=<?php echo $r['c_id']?>"> 
           <div class="card">
             <img src="images\img1.jpg" class="card-img-top" alt="...">
             <div class="card-body">
@@ -17,7 +18,7 @@ $results = $crud->crd();
             <div class="card-footer">
               <small class="text-muted"><?php echo $r['tname'] ?></small>
             </div>
-          </div>
+          </div></a>
           <?php }?>  
       </div>
       <script>

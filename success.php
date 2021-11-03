@@ -36,7 +36,7 @@ if (isset($_POST['rsnd'])) {
   $res=$opt->u_otp($vuser,$newotp);
   $sub="VERIFICATION";
   if($res) {
-    //  sendemail ::sendmail($email,$full,$sub,$newotp);
+    sendemail ::sendmail($email,$full,$sub,$newotp);
      // echo 'update';
   }
   else{

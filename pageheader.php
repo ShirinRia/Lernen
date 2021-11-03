@@ -2,32 +2,44 @@
 $title ='Homepage';
 require_once 'includes/header_2.php';
 require_once 'db/conn.php';
-$catgry=13;
+
 $cat1=1;
 $cat2=2;
-$cat3=3;
 $cat4=4;
 $cat5=5;
 $cat6=6;
 $cat7=7;
 $cat8=8;
-$cat9=9;
 $cat10=10;
 $cat11=11;
 $cat12=12;
-$_SESSION['cat'] = $catgry;
+$cat13=13;
+$cat14=14;
+$cat15=15;
+$cat16=16;
+$cat17=17;
+$cat18=18;
+$cat19=19;
+$cat20=20;
+//$_SESSION['cat'] = $catgry;
 $_SESSION['cat1'] = $cat1;
 $_SESSION['cat2'] = $cat2;
-$_SESSION['cat3'] = $cat3;
 $_SESSION['cat4'] = $cat4;
 $_SESSION['cat5'] = $cat5;
 $_SESSION['cat6'] = $cat6;
 $_SESSION['cat7'] = $cat7;
 $_SESSION['cat8'] = $cat8;
-$_SESSION['cat9'] = $cat9;
 $_SESSION['cat10'] = $cat10;
 $_SESSION['cat11'] = $cat11;
 $_SESSION['cat12'] = $cat12;
+$_SESSION['cat13'] = $cat13;
+$_SESSION['cat14'] = $cat14;
+$_SESSION['cat15'] = $cat15;
+$_SESSION['cat16'] = $cat16;
+$_SESSION['cat17'] = $cat17;
+$_SESSION['cat18'] = $cat18;
+$_SESSION['cat19'] = $cat19;
+$_SESSION['cat20'] = $cat20;
 $results = $crud->crd();
 ?>  
 
@@ -58,8 +70,8 @@ $results = $crud->crd();
                                         
                                           <ul>
                                                <li><a href="courselist.php?cat=<?php echo $_SESSION['cat2'];?>" class=" m_clr">Design</a></li>
-                                               <li><a href="#" class=" m_clr">IT & Networking</a></li>
-                                               <li><a href="#" class=" m_clr">Technology</a></li>
+                                               <li><a href="courselist.php?cat=<?php echo $_SESSION['cat17'];?>" class=" m_clr">IT & Networking</a></li>
+                                               <li><a href="courselist.php?cat=<?php echo $_SESSION['cat20'];?>" class=" m_clr">Technology</a></li>
                                           
                                           </ul>
                                         
@@ -78,7 +90,7 @@ $results = $crud->crd();
                                             
                                             <ul>
                                                 <li><a href="courselist.php?cat=<?php echo $_SESSION['cat1'];?>" class=" m_clr">Development</a></li>
-                                                <li><a href="#" class=" m_clr">Fashion & Lifestyle</a></li>
+                                                <li><a href="courselist.php?cat=<?php echo $_SESSION['cat19'];?>" class=" m_clr">Fashion & Lifestyle</a></li>
                                                 <li><a href="courselist.php?cat=<?php echo $_SESSION['cat4'];?>" class=" m_clr">MS Office</a></li>
                                             </ul>
                                         
@@ -95,9 +107,9 @@ $results = $crud->crd();
                                 <div class="list-item">
                                            
                                            <ul>
-                                               <li><a href="#" class=" m_clr">Digital Marketing</a></li>
-                                               <li><a href="#" class=" m_clr">Health & Fitness</a></li>
-                                               <li><a href="#" class=" m_clr">Entrepreneurship</a></li>
+                                               <li><a href="courselist.php?cat=<?php echo $_SESSION['cat16'];?>" class=" m_clr">Digital Marketing</a></li>
+                                               <li><a href="courselist.php?cat=<?php echo $_SESSION['cat14'];?>" class=" m_clr">Health & Fitness</a></li>
+                                               <li><a href="courselist.php?cat=<?php echo $_SESSION['cat18'];?>" class=" m_clr">Entrepreneurship</a></li>
                                            </ul>
                                        
                                    </div>
@@ -105,8 +117,8 @@ $results = $crud->crd();
                                             
                                         <ul >
                                             <li><a href="courselist.php?cat=<?php echo $_SESSION['cat8'];?>" class=" m_clr">GK</a></li>
-                                            <li><a href="#" class=" m_clr">Programming</a></li>
-                                            <li><a href="#" class=" m_clr">Islam Shikkha</a></li>
+                                            <li><a href="courselist.php?cat=<?php echo $_SESSION['cat13'];?>" class=" m_clr">Programming</a></li>
+                                            <li><a href="courselist.php?cat=<?php echo $_SESSION['cat15'];?>" class=" m_clr">Islam Shikkha</a></li>
                                         </ul>
                                     
                                 </div>
@@ -131,8 +143,7 @@ $results = $crud->crd();
                                             
                                         <ul class="sidepad">
                                             <li><a href="mycourses.php?us=<?php echo $_SESSION['user'];?>" class=" m_clr">My Courses</a></li>
-                                            <li><a href="#" class=" m_clr">Cart</a></li>
-                                            <li><a href="#" class=" m_clr">Wishlist</a></li>
+                                            
                                             <li><a href="history.php?us=<?php echo $_SESSION['userid'];?>" class=" m_clr">History</a></li>
                                         </ul>
                                     

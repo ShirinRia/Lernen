@@ -86,7 +86,26 @@
        public function tnum(){
         try {
     
-        $sql = "select * from teach ";
+        $sql = "select * from sign where type= 'Teacher' ";
+        $stmt = $this->db->prepare($sql);
+       
+        $stmt->execute();
+        $reslt = $stmt->rowCount();
+        echo  $reslt;
+ 
+         return true;
+        }
+        
+       
+        catch (PDOException $e) {
+          echo $e->getMessage();
+          return false;
+        }
+       }
+       public function lnum(){
+        try {
+    
+        $sql = "select * from sign where type= 'Learner' ";
         $stmt = $this->db->prepare($sql);
        
         $stmt->execute();
@@ -214,6 +233,17 @@
      }
       
      }
+     public function high(){
+      try{
+        $sql = "SELECT * FROM registration,course where registration.c_id=course.c_id GROUP BY registration.c_id HAVING COUNT(registration.c_id)>0;";
+        $result = $this->db->query($sql);
+        return $result;
+    }catch (PDOException $e) {
+        echo $e->getMessage();
+        return false;
+   }
+    
+   }
      public function status($tid){
       try{
         $sql = "select * from course where tid=$tid";
@@ -272,6 +302,17 @@
    }
     
    }
+   public function myarchv($uid){
+    try{
+      $sql = "SELECT * FROM archive,course where usr_id=$uid AND cid=c_id";
+      $result = $this->db->query($sql);
+      return $result;
+  }catch (PDOException $e) {
+      echo $e->getMessage();
+      return false;
+ }
+  
+ }
      public function best(){
       try{
         $sql = "SELECT * FROM `books` ";
@@ -452,6 +493,28 @@ public function revew($id){
 }
 
 }
+public function questn($id){
+  try{
+    $sql = "SELECT * FROM `question` where cid=$id";
+    $result = $this->db->query($sql);
+    return $result;
+}catch (PDOException $e) {
+    echo $e->getMessage();
+    return false;
+}
+
+}
+public function qustn($id){
+  try{
+    $sql = "SELECT id FROM `question` where cid=$id";
+    $result = $this->db->query($sql);
+    return $result;
+}catch (PDOException $e) {
+    echo $e->getMessage();
+    return false;
+}
+
+}
 public function hstry($id){
   try{
     $sql = "SELECT * FROM `registration` where usrid=$id";
@@ -476,9 +539,22 @@ public function hstry($id){
            return false;
        }
    }
+   public function mydlt($id,$usr){
+    try{
+         $sql = "delete from registration where user = :user AND c_id=:id";
+         $stmt = $this->db->prepare($sql);
+         $stmt->bindparam(':user', $usr);
+         $stmt->bindparam(':id', $id);
+         $stmt->execute();
+         return true;
+     }catch (PDOException $e) {
+         echo $e->getMessage();
+         return false;
+     }
+ }
 
    public function updtusrdata($n,$em,$mb,$bd,$cn,$destination){
-    echo 'otp success';
+    //echo 'otp success';
 
    try{ 
     $sql = "UPDATE `sign` SET `mobile`=:mbl, `fullname`=:nam, `country`=:cntry, `bdate`=:dt, `img_path`=:img WHERE email=:em";
@@ -500,7 +576,25 @@ public function hstry($id){
       return false;
     }
   }
+  public function insertans($id,$ans,$cid){
+   // echo 'otp success';
 
+   try{ 
+    $sql = "UPDATE `question` SET `ans`=:ans WHERE id=:aid AND cid=:crid";
+    $stmt = $this->db->prepare($sql);
+    // bind all placeholders to the actual values
+    $stmt->bindparam(':ans',$ans);
+    $stmt->bindparam(':aid',$id);
+    $stmt->bindparam(':crid',$cid);
+    // execute statement
+    $stmt->execute();
+    return true;
+    }
+    catch (PDOException $e) {
+      echo $e->getMessage();
+      return false;
+    }
+  }
   public function insertcrs($title,$descrip,$sec,$destination,$cat){
     try {
     
@@ -523,8 +617,28 @@ public function hstry($id){
       return false;
     }
    }
+   public function archive($id,$user,$usid,$tchr){
+    try {
+    
 
-   public function insertreg($user,$crsid,$corsname,$teacrname,$uid){
+     $sql = "INSERT INTO archive (cid,user_nm,usr_id,tchr	) VALUES (:cid, :usr, :usrid, :tcr)";
+     $stmt = $this->db->prepare($sql);
+
+     $stmt->bindparam(':cid',$id);
+     $stmt->bindparam(':usr',$user);
+     $stmt->bindparam(':usrid',$usid);
+     $stmt->bindparam(':tcr',$tchr);
+     $stmt->execute();
+     return true;
+    }
+
+    catch (PDOException $e) {
+      echo $e->getMessage();
+      return false;
+    }
+   }
+
+   public function insertreg($user,$crsid,$corsname,$teacrname,$uid,$tcr){
     try {
     
       $sql = "select * from registration where  user = :us AND c_id = :crsid";
@@ -535,7 +649,7 @@ public function hstry($id){
         $reslt = $stmt->rowCount();
         if($reslt==0)
       {
-     $sql = "INSERT INTO registration (user, c_id, cors_name, tcr_name, usrid) VALUES (:user, :cid, :cors, :tcr, :usid)";
+     $sql = "INSERT INTO registration (user, c_id, cors_name, tcr_name, usrid,tcr_id) VALUES (:user, :cid, :cors, :tcr, :usid,:tid)";
      $stmt = $this->db->prepare($sql);
 
      $stmt->bindparam(':user',$user);
@@ -543,6 +657,7 @@ public function hstry($id){
      $stmt->bindparam(':cors',$corsname);
      $stmt->bindparam(':tcr',$teacrname);
      $stmt->bindparam(':usid',$uid);
+     $stmt->bindparam(':tid',$tcr);
      $stmt->execute();
      return true;
     }
@@ -573,15 +688,17 @@ public function hstry($id){
     }
    }
 
-   public function insertqus($user,$qs){
+   public function insertqus($user,$qs,$cid){
     try {
     
 
-     $sql = "INSERT INTO question (user, ques) VALUES (:user, :ques)";
+     $sql = "INSERT INTO question (user, ques, cid) VALUES (:user, :ques, :cid)";
      $stmt = $this->db->prepare($sql);
 
      $stmt->bindparam(':user',$user);
      $stmt->bindparam(':ques',$qs);
+     
+     $stmt->bindparam(':cid',$cid);
      $stmt->execute();
      return true;
     }

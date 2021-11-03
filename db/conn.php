@@ -1,6 +1,6 @@
 <?php
     $host='localhost';
-    $db='lernen';
+    $db='learnen_two';
     $user='root';
     $pass='';
     $charset='utf8mb4';
@@ -21,6 +21,8 @@
     require_once 'crud.php';
     $crud = new crud($pdo);
     require_once 'opt.php';
+    require_once 'quiz.php';
+    $quiz = new quiz($pdo);
     $opt = new opt($pdo);
     // //<?php if($_SERVER['REQUEST_METHOD']=='POST') echo $_['username'];
 ?>

@@ -28,7 +28,6 @@ $hstry = $crud->hstry($uid);
            
             <th scope="col">Title</th>
             <th scope="col">Date</th>
-            <th scope="col">Status</th>
           </tr>
         </thead>
         <tbody>

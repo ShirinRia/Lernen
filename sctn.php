@@ -78,13 +78,14 @@ if(isset($_POST['qup'])){
             
             <?php }?>  
             <div  class="bx">
-            <div  class="vdbx">
+         <!--   <div  class="vdbx">
                 <form action="<?php echo htmlentities($_SERVER['PHP_SELF']); ?>" method="post" enctype="multipart/form-data">
                 
                 <input type="link" class="crnm" name="quiz" placeholder="quiz" >
                 <input type="submit" class="btn in" value="Upload" name="qup">
                 </form>
-            </div>
+            </div>-->
+            <?php require_once 'btn.php'; ?>
             </div>
         </div>
         </div>

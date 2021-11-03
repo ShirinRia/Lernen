@@ -12,6 +12,7 @@ if(!isset($_GET['cat'])){
      $_SESSION['sec'] = $id;
      $_SESSION['crsname'] = $result['c_name'];
      $_SESSION['tcrname'] = $result['tname'];
+     $_SESSION['tcrid'] = $result['tid'];
      $_SESSION['caname'] = $result['category'];
      $ctid=$_SESSION['caname'];
      $_SESSION['crsdes'] = $result['des'];
@@ -55,11 +56,9 @@ if(!isset($_GET['cat'])){
             
         </div>
         <div class="incld">
-            <span>This Course Includes</span>
+            <span>What you will learn from this course?</span>
             <ul>
-                <li>one</li>
-                <li>two</li>
-                <li>three</li>
+                <li>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Ut quasi possimus eveniet voluptates optio facilis ea quo ipsam repellendus rerum?</li>
             </ul>
             
             <form action="vdo.php?sec=<?php echo $_SESSION['sec'];?>" method="post">
@@ -86,8 +85,9 @@ if(!isset($_GET['cat'])){
         </div>
         
     </div>
-    
+    <br><br><br><br>
     
     </div>
+    <br><br><br><br>
 </body>
 </html>

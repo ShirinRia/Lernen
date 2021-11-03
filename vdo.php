@@ -2,22 +2,25 @@
 $title ='Homepage';
 require_once 'db/conn.php';
 include_once 'includes/session.php';
-
+$er=2;
+$e="visible";
 $vid="videolink";
 $_SESSION['ln']=$vid;
 $vd="videostory";
 if(isset($_GET['sec'])){
    $id = $_GET['sec'];
+   $_SESSION['sec']=$id;
    $best = $crud->section($id);  
    
 }
 if(isset($_POST['reg'])){
   $user=  $_SESSION['user'] ;
+  $tcr=  $_SESSION['tcrid'] ;
   $crsid=  $_SESSION['sec'];
   $corsname= $_SESSION['crsname'] ;
   $teacrname=$_SESSION['tcrname'];
   $uid=$_SESSION['userid'];
-  $success = $crud->insertreg($user,$crsid,$corsname,$teacrname,$uid);
+  $success = $crud->insertreg($user,$crsid,$corsname,$teacrname,$uid,$tcr);
   if(!$success){
     echo '<div class ="alert alert-danger" id= "alert">Already Enrolled</div>';
    //echo 'failllll';
@@ -38,14 +41,28 @@ if(isset($_POST['qustn'])){
   $user=  $_SESSION['user'] ;
  $cid=$_SESSION['sec'];
   $qs= $_POST['qus'];
-  $success = $crud->insertqus($user,$qs);
+  $success = $crud->insertqus($user,$qs,$cid);
   if($success){
     $best = $crud->section($cid); 
   }
 
 }
- 
-$quz = $crud->quiz($_SESSION['sec']); 
+if(isset($_POST['answer'])){
+  $user=  $_SESSION['user'] ;
+  $cid=$_SESSION['sec'];
+  $id= $_POST['tstis'];
+ // print_r($id);
+  //$id=20;
+  $ans= $_POST['ansr'];
+  $success = $crud->insertans($id,$ans,$cid);
+  if($success){
+    $best = $crud->section($cid); 
+  }
+
+}
+$qutn = $crud->qustn($_SESSION['sec']); 
+$qustn = $crud->questn($_SESSION['sec']); 
+//$quz = $crud->quiz($_SESSION['sec']); 
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -86,13 +103,7 @@ $quz = $crud->quiz($_SESSION['sec']);
           </video>
           
       </div>
-      <div class="vdo_cntnr mfp-hide" id="videostory">
-        <video class="vdo"  height="240" width="1320" controls>
-            <source src="test.mp4" type="video/mp4">
-            Your browser does not support the video tag.
-          </video>
-          
-      </div>
+     
       <div class="dbar">
         <nav id="navbar-example2" class="navbar navbar-light bg-light px-3">
            
@@ -135,6 +146,34 @@ $quz = $crud->quiz($_SESSION['sec']);
           <input type="text" class="irvw" name="qus" placeholder="I didn't understand this part"><br><br>
           <input type="submit" class="rbtn" name="qustn" value="ASK"></form>
       </div>
+      <div class="askd">
+        <h2> <span class="bordr">Already Asked</span></h2>
+         
+       
+     <?php while($r = $qustn->fetch(PDO::FETCH_ASSOC)) { ?>
+      <div class="bx">
+      <div  class="vdbx">
+         <h3 class="txtcntnt"><?php echo $r['user'] ?></h3>
+         <h5 class="txtcntnt"><b>QUESTION&nbsp;:&nbsp;&nbsp;</b><?php echo $r['ques'] ?></h5>
+        <h5 class="txtcntnt"><b>ANSWER&nbsp;:&nbsp;&nbsp;</b><?php echo $r['ans'] ?></h5>
+      </div>
+      <form action="<?php echo htmlentities($_SERVER['PHP_SELF']); ?>"  method="post">
+      <div class="rply" id="<?php echo $r['id'] ?>">
+      </div>
+    
+      <div class="posi rplybx" id="ans">
+      <input type="text"  class="btn" name="ansr" placeholder="Write Your Answer"><br>
+      <input type="text"  class="no" name="tstis" value="<?php echo $r['id'] ?>">
+        
+        
+        <input type="Submit"  class="btn posia"  name="answer" placeholder="Answer">
+           
+      </div>
+    </form>
+  </div>
+  
+  <?php }?>  
+     </div>
       
   </div>
 
@@ -166,23 +205,19 @@ $quz = $crud->quiz($_SESSION['sec']);
           
           <div class="accordion-item">
             <h2 class="accordion-header" id="headingTwo">
-              <a href= "#<?php echo $vd ?>" id=<?php echo $_SESSION['ln'] ?> class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+              <a href= "#<?php echo $vd ?>" id=<?php echo $_SESSION['ln'] ?> class="accordion-button" >
               <?php echo $r['name'] ?>
              </a>
             </h2>
-            <div id="collapseTwo" class="accordion-collapse collapse" aria-labelledby="headingTwo" data-bs-parent="#accordionExample">
-              <div class="accordion-body">
-                <strong>This is the second item's accordion body.</strong> It is hidden by default, until the collapse plugin adds the appropriate classes that we use to style each element. These classes control the overall appearance, as well as the showing and hiding via CSS transitions. You can modify any of this with custom CSS or overriding our default variables. It's also worth noting that just about any HTML can go within the <code>.accordion-body</code>, though the transition does limit overflow.
-              </div>
-            </div>
+            
           </div>
           <?php }?>  
           <div class="accordion-item">
             <h2 class="accordion-header" id="headingTwo">
-            <?php while($r = $quz->fetch(PDO::FETCH_ASSOC)) { ?>
-              <a href="<?php echo $r['link'] ?>" target="_blank" class="accordion-button" style="text-decoration: none; color:black;"><span>Quiz</span></a></h4>
+           
+              <a href="main.php?sec=<?php echo $_SESSION['sec'];?>" target="_blank" class="accordion-button" style="text-decoration: none; color:black;"><span>Quiz</span></a></h4>
            </div>
-              <?php }?>
+              
             </h2>
             
           </div>
@@ -206,8 +241,11 @@ $quz = $crud->quiz($_SESSION['sec']);
         document.getElementById("qus").classList.remove("visible");
         document.getElementById("ovrviw").classList.add("visible");
        }
+      
     </script>
     
+    
+              
     <script src="alert_copy.js" type="text/javascript"></script>
     <script>
         $('#<?php echo $_SESSION['ln'] ?>').magnificPopup({

@@ -41,20 +41,7 @@ require_once 'db/conn.php';
            <div class="ovrvw">
                <h5><?php echo $r['des'] ?>
             </div>
-            <div class="addtocrt">
-            <div class="incld">
-                <span>This Course Includes</span>
-                <ul style="list-style-type: circle;">
-                    <li>one</li>
-                    <li>two</li>
-                    <li>three</li>
-                </ul>
-               
-                
-            </div>
-            <a href="cart.php" >
-               <input type="submit" value="ADD TO CART" name="addcrt" class="addcrt"></a>
-           </div>  
+            
        </div>
     </div>
     </a> 

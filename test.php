@@ -56,7 +56,7 @@ $results = $crud->crd();
         </div>
         <div class="lerners uiblc">
             <h1 class="box_cntnt usr"> Learners</h1>
-            <h2 class="box_cntnt usr-num">2000</h2>
+            <h2 class="box_cntnt usr-num"><?php $crud->lnum();?></h2>
         </div>
         <div class="courses uiblc">
             <h1 class="box_cntnt usr"> Courses</h1>
@@ -72,55 +72,17 @@ $results = $crud->crd();
                 
                 include 'chk.php';
                 ?> 
+    </div><br><br><br><br>
+     <!--Highly enrolled-->
+    <div class="newlylaunched">
+            <h1 class="newcrs newly">HIGHEST ENROLLING COURSES</h1>
+            
+            <?php 
+                
+                include 'high.php';
+                ?> 
     </div>
-        <!--Highly enrolled-->
-        <div class="newlylaunched">
-            <h1 class="newcrs">HIGHEST ENROLLING COURSES</h1>
-           
-            <div class="card-group">
-                <div class="crd">
-                  <img src="images\img1.jpg" class="card-img-top" alt="...">
-                  <div class="card-body">
-                    <h5 class="card-title">Card title</h5>
-                    <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
-                  </div>
-                  <div class="card-footer">
-                    <small class="text-muted">Last updated 3 mins ago</small>
-                  </div>
-                </div>
-                <div class="crd">
-                    <img src="images\img1.jpg" class="card-img-top" alt="...">
-                    <div class="card-body">
-                      <h5 class="card-title">Card title</h5>
-                      <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
-                    </div>
-                    <div class="card-footer">
-                      <small class="text-muted">Last updated 3 mins ago</small>
-                    </div>
-                  </div>
-               
-                  <div class="crd">
-                    <img src="images\img1.jpg" class="card-img-top" alt="...">
-                    <div class="card-body">
-                      <h5 class="card-title">Card title</h5>
-                      <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
-                    </div>
-                    <div class="card-footer">
-                      <small class="text-muted">Last updated 3 mins ago</small>
-                    </div>
-                  </div>
-                  <div class="crd">
-                    <img src="images\img1.jpg" class="card-img-top" alt="...">
-                    <div class="card-body">
-                      <h5 class="card-title">Card title</h5>
-                      <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
-                    </div>
-                    <div class="card-footer">
-                      <small class="text-muted">Last updated 3 mins ago</small>
-                    </div>
-                  </div>
-        </div>
-    </div>
+      
 </div>
     <footer class="footer">
         <div class="about">

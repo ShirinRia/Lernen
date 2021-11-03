@@ -23,7 +23,7 @@ body{
 
  }
 .crd{
-    padding-bottom: 20px;
+  
 }
  .my_mainmenu{
     position:relative;
@@ -63,4 +63,11 @@ body{
 }
 .testng{
     height: 450px;
+}
+.archv{
+    border:none;
+    background:none;
+    outline:none;
+    color:purple;
+    text-decoration: underline;
 }

@@ -18,7 +18,7 @@
     top: 460px;
     background-color:whitesmoke;
     width: 70.8%;
-   height: 1000px;
+   height: 2000px;
 }
 .nav{
     position: absolute;
@@ -61,10 +61,43 @@
 
 }
 .danger{
+    position:absolute;
     z-index: 10000;
     visibility:hidden; 
     width:50%;
+
 }
 .alert-danger, .alert{
+    position:absolute;
     width:50%;
 }
+.pos{
+    position:relative;
+    left:600px;
+    top: -100px;
+    background-color:purple;
+    color:white;
+}
+.posi{
+   position:relative;
+    left:20px;
+    top: -10px;
+    border:1px solid gray;
+    width:70%;
+    color:black;
+    
+}
+
+.posia{
+    position:relative;
+    left:360px;
+    top: 0px;
+    border:1px solid gray;
+    width:20%;
+    color:white;
+    background-color:black;
+}
+.no{
+    display:none;
+}
+

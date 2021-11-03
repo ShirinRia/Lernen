@@ -21,7 +21,7 @@ if(isset($_POST['sub'])){
     $success = $crud->insert($full,$user,$newpass,$email,$gender,$otp,$type);
   //echo $otp;
     if($success) {
-      // sendemail ::sendmail($email,$full,$sub,$otp);
+      sendemail ::sendmail($email,$full,$sub,$otp);
        //echo '<h1>sccs</h1>';
       // $success = $crud->num();
     //  header("Location: homepage.php");
@@ -57,7 +57,7 @@ else if(isset($_POST['subt'])){
     $success = $crud->insert($full,$user,$newpass,$email,$gender,$otp,$type);
   //echo $otp;
     if($success) {
-      // sendemail ::sendmail($email,$full,$sub,$otp);
+      sendemail ::sendmail($email,$full,$sub,$otp);
        //echo '<h1>sccs</h1>';
       // $success = $crud->num();
     //  header("Location: homepage.php");

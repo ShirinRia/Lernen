@@ -64,3 +64,16 @@
 .invisible{
     visibility: hidden;
 }
+.askd{
+    position:relative;
+    top: 150px;
+}
+.txtcntnt{
+    padding: 20px;
+    font-size: 16px;
+}
+.bx{
+   
+    border-bottom: 1px solid gray;
+    border-top: 1px solid gray;
+}
