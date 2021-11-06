@@ -2,6 +2,7 @@
 $title ='Homepage';
 require_once 'db/conn.php';
 include_once 'includes/session.php';
+
 $er=2;
 $e="visible";
 $vid="videolink";
@@ -11,7 +12,7 @@ if(isset($_GET['sec'])){
    $id = $_GET['sec'];
    $_SESSION['sec']=$id;
    $best = $crud->section($id);  
-   
+   $vdo = $crud->vdo($id); 
 }
 if(isset($_POST['reg'])){
   $user=  $_SESSION['user'] ;
@@ -71,14 +72,19 @@ $qustn = $crud->questn($_SESSION['sec']);
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js" integrity="sha512-+NqPlbbtM1QqiK8ZAo4Yrj2c4lNQoGv8P79DPtKzj++l5jnN39rHA/xsqn8zE9l0uSoxaCdrOgFs6yjyfbBxSg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/magnific-popup.js/1.1.0/jquery.magnific-popup.js" integrity="sha512-C1zvdb9R55RAkl6xCLTPt+Wmcz6s+ccOvcr6G57lbm8M2fbgn2SUjUJbQ13fEyjuLViwe97uJvwa1EUf4F1Akw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-    
+    <link rel = "stylesheet" href="css\jquery.bxslider.css">
+<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+    <script type="text/javascript" src="js\jquery.bxslider.js"></script>
+
+  
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-F3w7mX95PdgyTmZZMECAngseQB83DfGTowi0iMjiWaeVhAn4FJkqJByhZMI3AhiU" crossorigin="anonymous">
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-/bQdsTh/da6pkI1MST/rWKFNjaCP5gBSY4sEBT38Q/9RBh9AH40zEOg7Hlq2THRZ" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-/bQdsTh/da6pkI1MST/rWKFNjaCP5gBSY4sEBT38Q/9RBh9AH40zEOg7Hlq2THRZ" crossorigin="anonymous"></script>
 
     <link rel = "stylesheet" href="vdo.css">
     <link rel = "stylesheet" href="review.css">
+   
+  
+ 
     <style>
 
       .mfp-hide{
@@ -92,17 +98,32 @@ $qustn = $crud->questn($_SESSION['sec']);
           width: 10%;
           height: 40px;
       }
+      .vs{
+        visibility: hidden;
+        
+      }
+    .vdosld{
+      visibility: hidden;
+}
   </style>
+    
 </head>
 <body>
  <div class="sec1">
-  <div class="vdo_cntnr mfp-hide" id="<?php echo $vd ?>">
-        <video class="vdo"  height="240" width="1320" controls>
+  <div class="vdo_cntnr vdosld" id="vdo">
+  <video class="vdo"  height="240" width="1320" controls>
             <source src="test.mp4" type="video/mp4">
             Your browser does not support the video tag.
           </video>
-          
       </div>
+      <div class="vdo_cntnr vs">
+      <div class="slider" id="ppt">
+      <?php while($r = $vdo->fetch(PDO::FETCH_ASSOC)) { ?>
+  <div><img src="<?php echo ($r['ansr']) ?>" width="100%" height="450px"></div>
+  <?php }?> 
+
+
+      </div></div>
      
       <div class="dbar">
         <nav id="navbar-example2" class="navbar navbar-light bg-light px-3">
@@ -205,18 +226,26 @@ $qustn = $crud->questn($_SESSION['sec']);
           
           <div class="accordion-item">
             <h2 class="accordion-header" id="headingTwo">
-              <a href= "#<?php echo $vd ?>" id=<?php echo $_SESSION['ln'] ?> class="accordion-button" >
-              <?php echo $r['name'] ?>
-             </a>
+            <button onclick="togglePanelvdo()"  class="accordion-button"type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+            <?php echo $r['name'] ?></button>
+             
             </h2>
             
           </div>
           <?php }?>  
           <div class="accordion-item">
             <h2 class="accordion-header" id="headingTwo">
+            <button onclick="togglePanelppt()"  class="accordion-button"type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+            Slide</button>
+               
+              
+            </div>
+          <div class="accordion-item">
+            <h2 class="accordion-header" id="headingTwo">
            
-              <a href="main.php?sec=<?php echo $_SESSION['sec'];?>" target="_blank" class="accordion-button" style="text-decoration: none; color:black;"><span>Quiz</span></a></h4>
-           </div>
+            <a href="main.php?sec=<?php echo $_SESSION['sec'];?>" target="_blank" class="accordion-button" style="text-decoration: none; color:black;"><span>Quiz</span></a></h4>
+           
+            </div>
               
             </h2>
             
@@ -241,18 +270,39 @@ $qustn = $crud->questn($_SESSION['sec']);
         document.getElementById("qus").classList.remove("visible");
         document.getElementById("ovrviw").classList.add("visible");
        }
+       function togglePanelppt() {
+        document.getElementById("ppt").classList.add("visible");
+        
+        document.getElementById("vdo").classList.remove("visible");
+       }
+       function togglePanelvdo() {
+        document.getElementById("vdo").classList.add("visible");
+        
+        document.getElementById("ppt").classList.remove("visible");
+       }
       
     </script>
     
     
               
-    <script src="alert_copy.js" type="text/javascript"></script>
+    
     <script>
         $('#<?php echo $_SESSION['ln'] ?>').magnificPopup({
             type: 'inline',
             midclick: true
         })
-       
+        $('#pptlnk').magnificPopup({
+            type: 'inline',
+            midclick: true
+        })
     </script>
+    <script>
+  $(document).ready(function(){
+    $('.slider').bxSlider({
+      pager: false
+    });
+  });
+</script>
+    <script src="alert_copy.js" type="text/javascript"></script>
 </body>
 </html>

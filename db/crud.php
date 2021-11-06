@@ -5,27 +5,21 @@
             $this->db = $conn;
       }
       
-      public function insert($full,$user,$pass,$email,$gender,$otp,$type){
+      public function insert($email,$otp){
        try {
-        $sql = "select * from sign where  username = :user OR email = :email";
+        $sql = "select * from sign where   email = :email";
         $stmt = $this->db->prepare($sql);
-        $stmt->bindparam(':user',$user);
         $stmt->bindparam(':email',$email);
         $stmt->execute();
         $reslt = $stmt->rowCount();
        if($reslt==0)
       {
 
-        $sql = "INSERT INTO sign (fullname, username, passwor, email, gender,OTP,type) VALUES (:full, :user, :pass, :email, :gender,:otp,:type)";
+        $sql = "INSERT INTO sign (email,OTP) VALUES (:email, :otp)";
         $stmt = $this->db->prepare($sql);
 
-        $stmt->bindparam(':full',$full);
-        $stmt->bindparam(':user',$user);
-        $stmt->bindparam(':pass',$pass);
         $stmt->bindparam(':email',$email);
-        $stmt->bindparam(':gender',$gender);
         $stmt->bindparam(':otp',$otp);
-        $stmt->bindparam(':type',$type);
         $stmt->execute();
         return true;
        }
@@ -36,6 +30,29 @@
          return false;
        }
       }
+      public function insertt($full,$user,$pass,$gender,$type,$em){
+        try {
+        
+ 
+          $sql = "UPDATE `sign` SET `username`=:user, `fullname`=:full, `passwor`=:pass, `gender`=:gender, `type`=:type WHERE email=:em";
+    
+         $stmt = $this->db->prepare($sql);
+ 
+         $stmt->bindparam(':full',$full);
+         $stmt->bindparam(':user',$user);
+         $stmt->bindparam(':pass',$pass);
+         $stmt->bindparam(':gender',$gender);
+         $stmt->bindparam(':type',$type);
+         $stmt->bindparam(':em',$em);
+         $stmt->execute();
+         return true;
+
+       }
+        catch (PDOException $e) {
+          echo $e->getMessage();
+          return false;
+        }
+       }
       public function inserttcr($full,$user,$pass,$email,$gender,$otp){
         try {
          $sql = "select * from sign where  username = :user OR email = :email";
@@ -175,6 +192,21 @@
         }
         
        }
+       public function bkdata($id){
+        
+        try{
+          $sql = "select * from books where bid = :bid";
+          $stmt = $this->db->prepare($sql);
+          $stmt->bindparam(':bid', $id);
+          $stmt->execute();
+          $result = $stmt->fetch();
+          return $result;
+     }catch (PDOException $e) {
+          echo $e->getMessage();
+          return false;
+      }
+      
+     }
        public function search($data){
         
         try{
@@ -313,6 +345,17 @@
  }
   
  }
+ public function vdo($id){
+  try{
+    $sql = "SELECT * FROM qz_ans where cid=$id";
+    $result = $this->db->query($sql);
+    return $result;
+}catch (PDOException $e) {
+    echo $e->getMessage();
+    return false;
+}
+
+}
      public function best(){
       try{
         $sql = "SELECT * FROM `books` ";
@@ -728,6 +771,24 @@ public function hstry($id){
       return false;
     }
    }
+   public function insertsld($destination,$cid){
+    try {
+    
+
+     $sql = "INSERT INTO qz_ans (ansr,cid) VALUES (:destination,:cid)";
+     $stmt = $this->db->prepare($sql);
+
+     $stmt->bindparam(':destination',$destination);
+     $stmt->bindparam(':cid',$cid);
+     $stmt->execute();
+     return true;
+    }
+
+    catch (PDOException $e) {
+      echo $e->getMessage();
+      return false;
+    }
+   }
    public function insertqz($q,$id){
     try {
     
@@ -747,18 +808,22 @@ public function hstry($id){
       return false;
     }
    }
-   public function insertbooks( $title,$descrip,$price,$author,$cat){
+   public function insertbooks( $title,$author,$cat,$pdf,$pub,$ed,$lang,$destination){
     try {
     
 
-     $sql = "INSERT INTO books (bname,bdes,bprice,aname,bcat) VALUES (:title, :descrip, :price, :author, :cat)";
+     $sql = "INSERT INTO books (bname,aname,bcat,pdf,publshr,edtn,lang,img_path) VALUES (:title, :author, :cat, :pdf, :pub, :ed, :lang, :destination)";
      $stmt = $this->db->prepare($sql);
 
      $stmt->bindparam(':title',$title);
      $stmt->bindparam(':cat',$cat);
-     $stmt->bindparam(':price',$price);
-     $stmt->bindparam(':descrip',$descrip);
      $stmt->bindparam(':author',$author);
+     
+     $stmt->bindparam(':pdf',$pdf);
+     $stmt->bindparam(':pub',$pub);
+     $stmt->bindparam(':ed',$ed);
+     $stmt->bindparam(':destination',$destination);
+     $stmt->bindparam(':lang',$lang);
      $stmt->execute();
      return true;
     }

@@ -21,6 +21,22 @@
          return false;
        }
       }
+      public function getem($em){
+        try {
+         $sql = "select * from sign where email = :email";
+         $stmt = $this->db->prepare($sql);
+ 
+         $stmt->bindparam(':email',$em);
+        
+         $stmt->execute();
+         $result=$stmt->fetch();
+         return $result;
+        } 
+        catch (PDOException $e) {
+          echo $e->getMessage();
+          return false;
+        }
+       }
 
       public function gettchr($user,$pass,$typ){
         try {

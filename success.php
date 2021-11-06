@@ -45,20 +45,32 @@ if (isset($_POST['rsnd'])) {
   }
 
 }
-else if(isset($_POST['sotp'])){
+if(isset($_POST['sotp'])){
    
+  $email= $_POST['remail'];
   $vuser= $_POST['ouser'];
   $o=$_POST['otp'];
  
-  $result=$opt->otp($vuser,$o);
+  $result=$opt->otp($email,$o);
   if($result) {
  // echo '<h2>MATCH<h2>';
   //require_once 'index.php';
+  $user=$_SESSION['user']  ;
+  $full= $_SESSION['full'] ;
+  $email =$_SESSION['email'] ;
+   $type= $_SESSION['tp'];
+   $gender= $_SESSION['gn'];
+   $newpass= $_SESSION['pass'];
+  $success = $crud->insertt($full,$user,$newpass,$gender,$type,$email);
+  if($success) {
+   
+  }
   header("Location: home.php");
-}
-else{
- echo 'Not Match';
-}
+     
+  }
+  else{
+    echo '<div class="alert alert-danger" id= "alert">OTP doesnot match</div>';
+  }
 }
 ?>
 <div class="otp_containr" id="otp_pop">

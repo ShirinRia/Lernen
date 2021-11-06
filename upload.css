@@ -158,4 +158,11 @@ a{
     width:90%;
     border:1px solid lightgray;
 }
-
+.low{
+    display:flex;
+    justify-content:space-evenly;
+    left: 0px;
+}
+.spc{
+    height: 15px;
+}

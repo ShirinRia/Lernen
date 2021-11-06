@@ -1,0 +1,18 @@
+.slidbx{
+    width:80%;
+    background-color:#f8f9fa;
+    height:180px;
+    position:relative;
+    left: 140px;
+    top: 140px;
+    padding: 20px;
+    border-radius: 10px;
+}
+.btn{
+    background-color:#dee2e6;
+    color:black;
+    border: none;
+}
+.form-control{
+height: 36px;
+}

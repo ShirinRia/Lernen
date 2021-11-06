@@ -21,7 +21,7 @@ class sendemail{
                     ],
                     'Subject' => "$subject",
                     'TextPart' => "Verification",
-                    'HTMLPart' => "<h3>Dear Learner, Verify Your Account.<br> Your OTP: $otp</h3>"
+                    'HTMLPart' => "<h3>Verify Your Account.<br> Your OTP: $otp</h3>"
                    
                 ]
             ]

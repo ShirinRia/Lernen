@@ -6,13 +6,13 @@
           $this->db = $conn;
          
     }
-      public function otp($user,$otp){
+      public function otp($email,$otp){
        
        try {
-        $sql = "select * from sign where username = :user AND OTP= :otp";
+        $sql = "select * from sign where email = :email AND OTP= :otp";
         $stmt = $this->db->prepare($sql);
 
-        $stmt->bindparam(':user',$user);
+        $stmt->bindparam(':email',$email);
         $stmt->bindparam(':otp',$otp);
        
         $stmt->execute();
@@ -24,14 +24,14 @@
          return false;
        }
       }
-      public function u_otp($user,$otp){
+      public function u_otp($email,$otp){
         echo 'otp success';
 
        try{ 
-        $sql = "UPDATE `sign` SET `OTP`=:otp WHERE username=:user ";
+        $sql = "UPDATE `sign` SET `OTP`=:otp WHERE email=:email ";
         $stmt = $this->db->prepare($sql);
         // bind all placeholders to the actual values
-        $stmt->bindparam(':user',$user);
+        $stmt->bindparam(':email',$email);
         $stmt->bindparam(':otp',$otp);
         // execute statement
         $stmt->execute();

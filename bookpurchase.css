@@ -65,3 +65,19 @@
     padding-left: 30px;
 }
 body { background-color: whitesmoke; }
+.tbl{
+    position:absolute;
+    width:1080px;
+    left: 150px;
+    top: 550px;
+
+}
+.table-bordered{
+    border:1px solid darkgray;
+}
+.spcfctn{
+   display :flex;
+   justify-content:center;
+   border:1px solid green;
+   color:green;
+}

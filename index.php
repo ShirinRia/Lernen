@@ -18,7 +18,8 @@ if(isset($_POST['sub'])){
     $sub="VERIFICATION";
     $otp=rand(1000,99999);
     if($newpass==$cnfpass){
-    $success = $crud->insert($full,$user,$newpass,$email,$gender,$otp,$type);
+   // $success = $crud->insert($full,$user,$newpass,$email,$gender,$otp,$type);
+    $success = $crud->insert($email,$otp);
   //echo $otp;
     if($success) {
       sendemail ::sendmail($email,$full,$sub,$otp);
@@ -28,6 +29,9 @@ if(isset($_POST['sub'])){
     $_SESSION['user'] = $user;
     $_SESSION['full'] = $full;
     $_SESSION['email'] = $email;
+    $_SESSION['tp'] = $type;
+    $_SESSION['gn'] = $gender;
+    $_SESSION['pass'] = $newpass;
     header("Location: lrnrsccs.php");
        
     }
@@ -54,16 +58,20 @@ else if(isset($_POST['subt'])){
     $type="Teacher";
     if($newpass==$cnfpass){
     
-    $success = $crud->insert($full,$user,$newpass,$email,$gender,$otp,$type);
+        $success = $crud->insert($email,$otp);
   //echo $otp;
     if($success) {
-      sendemail ::sendmail($email,$full,$sub,$otp);
-       //echo '<h1>sccs</h1>';
-      // $success = $crud->num();
-    //  header("Location: homepage.php");
-    $_SESSION['user'] = $user;
-    $_SESSION['full'] = $full;
-    $_SESSION['email'] = $email;
+        sendemail ::sendmail($email,$full,$sub,$otp);
+        //echo '<h1>sccs</h1>';
+       // $success = $crud->num();
+     //  header("Location: homepage.php");
+     $_SESSION['user'] = $user;
+     $_SESSION['full'] = $full;
+     $_SESSION['email'] = $email;
+     $_SESSION['tp'] = $type;
+     $_SESSION['gn'] = $gender;
+     $_SESSION['pass'] = $newpass;
+     //header("Location: lrnrsccs.php");
     header("Location: success.php");
        
     }
@@ -88,8 +96,15 @@ if($result) {
     //require_once 'homepage.php';
 }
 else{
+    $res=$login->getem($_SESSION['email']);
+    if($res) {
+      //  echo '<div class ="alert alert-danger" id= "alert">Please verify your account</div>';
+        header("Location: success.php");
+    }
+    else
     echo '<div class ="alert alert-danger" id= "alert">Username or Password is Incorrect! Please try again</div>';
-   //echo 'failllll';
+   
+    //echo 'failllll';
 }
 }
 if(isset($_POST['tsubmit'])){
