@@ -12,6 +12,7 @@ if(isset($_GET['sec'])){
    $id = $_GET['sec'];
    $_SESSION['sec']=$id;
    $best = $crud->section($id);  
+   $fvdo = $crud->section($id); 
    $vdo = $crud->vdo($id); 
 }
 if(isset($_POST['reg'])){
@@ -34,7 +35,7 @@ if(isset($_POST['review'])){
   $rvw= $_POST['rev'];
   $success = $crud->insertrvw($user,$crsid,$rvw);
   if($success){
-    $best = $crud->section($crsid); 
+    header("Location: vdo.php?sec=$crsid");
   }
 
 }
@@ -44,7 +45,7 @@ if(isset($_POST['qustn'])){
   $qs= $_POST['qus'];
   $success = $crud->insertqus($user,$qs,$cid);
   if($success){
-    $best = $crud->section($cid); 
+    header("Location: vdo.php?sec=$cid");
   }
 
 }
@@ -57,13 +58,33 @@ if(isset($_POST['answer'])){
   $ans= $_POST['ansr'];
   $success = $crud->insertans($id,$ans,$cid);
   if($success){
-    $best = $crud->section($cid); 
+    header("Location: vdo.php?sec=$cid");
   }
-
+ 
 }
 $qutn = $crud->qustn($_SESSION['sec']); 
 $qustn = $crud->questn($_SESSION['sec']); 
 //$quz = $crud->quiz($_SESSION['sec']); 
+
+if(isset($_POST['qstatus'])){
+  $vd= $_POST['vstatus'];
+  $slde= $_POST['vstatus'];
+  $cid=$_SESSION['sec'];
+  $user=  $_SESSION['user'] ;
+  if($vd=="done" && $slde=="done"){
+     
+      
+      
+      $status = $crud->updtstts($user,$cid);
+      header("Location: vdo.php?sec=$cid");
+      
+  }
+    else{
+      header("Location: vdo.php?sec=$cid");
+    }
+   
+  }
+ 
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -86,7 +107,17 @@ $qustn = $crud->questn($_SESSION['sec']);
   
  
     <style>
-
+       .spce{
+        padding-left: 10px;
+      }
+      .tst{
+        color: white;
+        background-color:white;
+        height: 13px;
+        width: 13px;
+       border-radius: 3px;
+        border: 1px solid gray;
+      }
       .mfp-hide{
           
           display: none;
@@ -110,11 +141,13 @@ $qustn = $crud->questn($_SESSION['sec']);
 </head>
 <body>
  <div class="sec1">
-  <div class="vdo_cntnr vdosld" id="vdo">
+  <div class="vdo_cntnr " id="vdo">
+  <?php while($r = $fvdo->fetch(PDO::FETCH_ASSOC)) { ?>
   <video class="vdo"  height="240" width="1320" controls>
-            <source src="test.mp4" type="video/mp4">
+            <source src="<?php echo ($r['video']) ?>" type="video/mp4">
             Your browser does not support the video tag.
           </video>
+          <?php }?> 
       </div>
       <div class="vdo_cntnr vs">
       <div class="slider" id="ppt">
@@ -142,14 +175,14 @@ $qustn = $crud->questn($_SESSION['sec']);
           </nav>
           <div class="rvwbx" id="rvw">
               <span class="txt maiin">Give Feedback</span>
-              <div class="rating">
+             <!-- <div class="rating">
                   <h5 class="txt"><span>Rating</span></h5>
                   <span>&#11088;</span>
                   <span>&#11088;</span>
                   <span>&#11088;</span>
                   <span>&#11088;</span>
                   <span>&#11088;</span>
-              </div>
+              </div>-->
               <div class="wrtrvw">
                  <h5 class="txt"><span>Write a Review</span></h5> 
                  <form action="<?php echo htmlentities($_SERVER['PHP_SELF']); ?>" method="post">
@@ -219,15 +252,15 @@ $qustn = $crud->questn($_SESSION['sec']);
 </div>
       </div>
     </div>
-    
+    <form action="<?php echo htmlentities($_SERVER['PHP_SELF']); ?>" method="post">
       <div class="container">
         <div class="accordion" id="accordionExample">
       <?php while($r = $best->fetch(PDO::FETCH_ASSOC)) { ?>
           
           <div class="accordion-item">
             <h2 class="accordion-header" id="headingTwo">
-            <button onclick="togglePanelvdo()"  class="accordion-button"type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
-            <?php echo $r['name'] ?></button>
+            <button onclick="togglePanelvdo()"   class="accordion-button"type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+            <input type="checkbox" id="stts"  name="vstatus" value="done"><span  class="spce"><?php echo $r['name'] ?></span></button>
              
             </h2>
             
@@ -236,14 +269,14 @@ $qustn = $crud->questn($_SESSION['sec']);
           <div class="accordion-item">
             <h2 class="accordion-header" id="headingTwo">
             <button onclick="togglePanelppt()"  class="accordion-button"type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
-            Slide</button>
+            <input type="checkbox" id="stts"  name="sstatus" value="done"><span  class="spce">Slide</span></button>
                
               
             </div>
           <div class="accordion-item">
             <h2 class="accordion-header" id="headingTwo">
            
-            <a href="main.php?sec=<?php echo $_SESSION['sec'];?>" target="_blank" class="accordion-button" style="text-decoration: none; color:black;"><span>Quiz</span></a></h4>
+            <a href="main.php?sec=<?php echo $_SESSION['sec'];?>" target="_blank" class="accordion-button" style="text-decoration: none; color:black;"><input type="submit" id="stts"  class="tst" name="qstatus" value="done"><span  class="spce">Quiz</span></a></h4>
            
             </div>
               
@@ -251,33 +284,32 @@ $qustn = $crud->questn($_SESSION['sec']);
             
           </div>
         </div>
-      </div>
+    </form>
       <script>
         function togglePanel() {
         document.getElementById("rvw").classList.add("visible");
         document.getElementById("qus").classList.remove("visible");
         
-        document.getElementById("ovrviw").classList.remove("visible");
+        document.getElementById("ovrviw").classList.add("invisible");
        }
        function togglePanel2() {
         document.getElementById("rvw").classList.remove("visible");
         document.getElementById("qus").classList.add("visible");
         
-        document.getElementById("ovrviw").classList.remove("visible");
+        document.getElementById("ovrviw").classList.add("invisible");
        }
        function togglePanel3() {
         document.getElementById("rvw").classList.remove("visible");
         document.getElementById("qus").classList.remove("visible");
-        document.getElementById("ovrviw").classList.add("visible");
+        document.getElementById("ovrviw").classList.remove("invisible");
        }
        function togglePanelppt() {
         document.getElementById("ppt").classList.add("visible");
         
-        document.getElementById("vdo").classList.remove("visible");
+        document.getElementById("vdo").classList.add("vdosld");
        }
        function togglePanelvdo() {
-        document.getElementById("vdo").classList.add("visible");
-        
+        document.getElementById("vdo").classList.remove("vdosld");
         document.getElementById("ppt").classList.remove("visible");
        }
       

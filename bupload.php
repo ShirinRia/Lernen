@@ -49,7 +49,7 @@ if(isset($_POST['upload'])){
         <form action="<?php echo htmlentities($_SERVER['PHP_SELF']); ?>" method="post" enctype="multipart/form-data">
         <div class="brdr">
         <div class="crupper">
-        <input type="text" class="name form-select spc" name="bkname" placeholder="Enter Your Book Name">
+        <input type="text" class="name custom-file-input" name="bkname" placeholder="Enter Your Book Name">
         <select class="form-select cat " name="catgry" >
             <option selected>Select Category</option>
             <?php while($r = $results->fetch(PDO::FETCH_ASSOC)) { ?>
@@ -58,28 +58,29 @@ if(isset($_POST['upload'])){
           
            <?php }?>  
           </select>
-          <input type="text" class="aname form-select spc" name="auname" placeholder="Enter Author Name">
+          <input type="text" class="aname custom-file-input" name="auname" placeholder="Enter Author Name"><br><br>
           
         </div>
         <div class="crupper low">
-            <input type="text" class="aname form-select spc" name="pubname" placeholder="Enter Publisher Name">
-               <input type="text" class="aname form-select spc" name="edition" placeholder="Edition, e.g: 10th edition">
-               <input type="text" class="aname form-select spc" name="lang" placeholder="Language">
+            <input type="text" class="aname custom-file-input" name="pubname" placeholder="Enter Publisher Name">
+               <input type="text" class="aname  custom-file-input" name="edition" placeholder="Edition, e.g: 10th edition">
+               <input type="text" class="aname  custom-file-input" name="lang" placeholder="Language">
             
             </div>
         
-        <div class="crmid">
+        <div class="crmid bmid">
             
-            <div  class="vdbx">
-                <img src="images (2).png" alt="img" height="100" width="150" class="img">
-                <input type="file" class="crvdo" name="avatar" placeholder="Select">
-            </div>
+           
+          
+            <label for="img">Upload Book's image</label>
+                <input type="file" id="img" class="crvdo mdbx" name="avatar" placeholder="Select">
             
             
-            <div  class="crsde crsdes">
-                <img src="download (1).png" alt="img" height="100" width="150" class="img">
-                <input type="file" class="crvdo" name="pdf" placeholder="Select" required>
-            </div>
+            
+          
+                <label for="pdf">Upload PDF</label>
+                <input type="file" id="pdf"class="crvdo crpdf mdbx" name="pdf" placeholder="Select" required>
+               
             
         </div>
     </div>

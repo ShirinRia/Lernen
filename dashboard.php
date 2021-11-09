@@ -28,17 +28,17 @@ require_once 'db/conn.php';
             <div class="c_dash">
                 <div class="total dash">
                     <label for="">Total Course</label><br><br>
-                    <input type="text" name="profile" class="text" value="<?php $crud->total_course($_SESSION['user']);?>">
+                    <input type="text" name="profile" class="text" value="<?php $crud->total_course($_SESSION['user']);?>" style="text-align:center;">
                 </div>
 
                 <div class="completed dash">
                     <label for="">Completed Course</label><br><br>
-                    <input type="text" name="Courses" class="text" >
+                    <input   type="text" name="Courses" class="text" value="<?php $crud->completed_course($_SESSION['user']);?> " style="text-align:center;">
                 </div>
 
                 <div class="in_progress dash">
                     <label for="">In progress</label><br><br>
-                    <input type="text" name="Update" class="text" >
+                    <input type="text" name="Update" class="text" value="<?php $crud->in_progress_course($_SESSION['user']);?>" style="text-align:center;">
                 </div>
             </div>
     </div>

@@ -10,7 +10,8 @@ else{
    $id = $_GET['arc'];
    $result = $crud->archive($id,$_SESSION['user'],$_SESSION['userid'],$_SESSION['tcrname']);
   if($result){
-    $dlt = $crud->mydlt($id,$_SESSION['user']);
+   // $_SESSION['did'] = $result['cid'];
+    $dlt = $crud->mydlt($id,$_SESSION['userid']);
     header("Location:mycourses.php");
    
   }

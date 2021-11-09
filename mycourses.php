@@ -7,6 +7,7 @@ $uid=$_SESSION['userid'];
 $results = $crud->mycrs($uid);
 
 $archv = $crud->myarchv($uid);
+
 ?> 
 <!DOCTYPE html>
 <html lang="en">
@@ -69,12 +70,12 @@ $archv = $crud->myarchv($uid);
             
     </div>
 </div>
-<div class="newlylaunched archived" id="archvd">
+<div class="newlylaunched archived invisible" id="archvd">
     <div class="card-group">
     <?php while($r = $archv->fetch(PDO::FETCH_ASSOC)) { ?>
               <div class="testng">
               <div class="crd crdth">
-                <img src="<?php echo empty($r['img_path']) ? "uploads/images (1).png" : $r['img_path'] ; ?>" class="card-img-top" alt="...">
+                <img src="<?php echo ($r['img_path'])?>" class="card-img-top" alt="...">
                 <div class="card-body">
                   <h5 class="card-title"><?php echo $r['c_name'] ?></h5>
                   <p class="card-text">Create&nbsp;by&nbsp;<b><?php echo $r['tchr'] ?></b></p>
@@ -90,13 +91,13 @@ $archv = $crud->myarchv($uid);
 </div>
 <script>
     function togglePanel() {
-    document.getElementById("archvd").classList.add("visible");
-    document.getElementById("all").classList.remove("visible");
+    document.getElementById("archvd").classList.remove("invisible");
+    document.getElementById("all").classList.add("invisible");
     
    }
    function togglePanel2() {
-    document.getElementById("all").classList.add("visible");
-    document.getElementById("archvd").classList.remove("visible");
+    document.getElementById("all").classList.remove("invisible");
+    document.getElementById("archvd").classList.add("invisible");
    }
    
 </script>

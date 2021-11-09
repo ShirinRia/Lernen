@@ -41,7 +41,7 @@ if(!isset($_GET['cat'])){
         <h2><?php echo $_SESSION['crsname']  ?></h2>
         <div class="scnd">
         <span class="catgry"><?php echo $_SESSION['catname']?></span>
-        <span>&#11088;</span>
+      <!--  <span>&#11088;</span>-->
         <span>1000 Students</span>
         
     </div>
@@ -80,7 +80,7 @@ if(!isset($_GET['cat'])){
         <div class="bx">
         <div  class="vdbx">
            <h4><?php echo $_SESSION['us'];?></h4>
-           <span>&#11088;</span>
+         <!--  <span>&#11088;</span>-->
           <h5><?php echo $_SESSION['rv'];?></h5>
         </div>
         

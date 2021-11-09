@@ -17,7 +17,9 @@
 
 
 <!--<a href="main.php" class="button">Take Quiz</a>-->
-<a href="add.php" target="_blank" class="button">Add questions</a>
+<a href="add.php" target="_blank" class="button">Add Basic level questions</a>
+<a href="add.php" target="_blank" class="button">Add Medium level questions</a>
+<a href="add.php" target="_blank" class="button">Add High level questions</a>
 </div>
 	</main>
 

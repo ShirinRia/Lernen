@@ -1,6 +1,7 @@
 <?php 
 $title ='Homepage';
 require_once 'db/conn.php';
+include_once 'includes/session.php';
 if(!isset($_GET['bookid'])){
   echo 'not found';
    
@@ -34,7 +35,11 @@ else{
 <body>
 <?php 
 
-include 'lrnrpagehdr.php'; 
+$tp = $_SESSION['type'];
+if($tp=="Learner"){
+include 'lrnrpagehdr.php';}
+else
+include 'pageheader.php';
  
 ?>
     <div class="prchscntnt shadow-sm p-3 mb-5 bg-body rounded">

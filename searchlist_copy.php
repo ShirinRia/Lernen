@@ -9,12 +9,12 @@ require_once 'includes/header_2.php';
 
    if(isset($_POST['search'])){
     $host='localhost';
-    $db='lernen';
+    $db='learnen_two';
     $user='root';
     $pass='';
     $charset='utf8mb4';
 
-    $conn =new mysqli ( "localhost","root",'',"lernen");
+    $conn =new mysqli ( "localhost","root",'',"learnen_two");
     $data= $_POST['serch'];
   $sql = "select * from course where match (c_name, des) against ('$data')"; 
    // $sql = "SELECT * FROM `course` WHERE c_name=:data";

@@ -91,9 +91,9 @@ $results = $crud->crd();
                 earning opportunities. “Lernen” is an online teaching platform, where instructors can create and upload their 
                 knowledge. They also can upload their books PDF & make money online. It is an E-Learning Platform to learn anything 
                 from anywhere from the best teachers. It has created earning opportunities for millions of instructors!</p>
-        </div>
+               </div>
         <div class="contact">
-            <h2>Contact Us</h2>
+       <h2>Contact Us</h2>
             <p>+8801xxxxxxxxx, +8801xxxxxxxxx, +8801xxxxxxxxx</p>
         </div>
         <div class="vl"></div>

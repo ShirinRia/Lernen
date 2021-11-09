@@ -8,10 +8,7 @@ a{
 	text-decoration: none;
 }
 
-header{
-	border-bottom: 3px #f4f4f4 solid;
-	background: 4c7578;
-}
+
 
 footer{
 	border-top: 3px #f4f4f4f4 solid;
@@ -19,11 +16,9 @@ footer{
 	padding-top: 5px;
 }
 main{
-	padding-bottom: 20px;
+	padding-bottom: 10px;
 }
 
-
-}
 label{
 	display: inline-block;
 	width: 180px;

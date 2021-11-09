@@ -53,6 +53,26 @@
           return false;
         }
        }
+       public function updtstts($user,$cid){
+        try {
+        
+ 
+          $sql = "UPDATE `registration` SET `status`='done' WHERE user=:user AND c_id=:cid";
+    
+         $stmt = $this->db->prepare($sql);
+         $stmt->bindparam(':user',$user);
+         $stmt->bindparam(':cid',$cid);
+    
+         $stmt->execute();
+         return true;
+
+       }
+        catch (PDOException $e) {
+          echo $e->getMessage();
+          return false;
+        }
+       }
+       
       public function inserttcr($full,$user,$pass,$email,$gender,$otp){
         try {
          $sql = "select * from sign where  username = :user OR email = :email";
@@ -161,6 +181,44 @@
         try {
     
         $sql = "select * from registration where user = :user";
+        $stmt = $this->db->prepare($sql);
+        $stmt->bindparam(':user',$user);
+        $stmt->execute();
+        $reslt = $stmt->rowCount();
+        echo  $reslt;
+ 
+         return true;
+        }
+        
+       
+        catch (PDOException $e) {
+          echo $e->getMessage();
+          return false;
+        }
+       }
+       public function completed_course($user){
+        try {
+    
+        $sql = "select * from registration where user = :user AND status='done'";
+        $stmt = $this->db->prepare($sql);
+        $stmt->bindparam(':user',$user);
+        $stmt->execute();
+        $reslt = $stmt->rowCount();
+        echo  $reslt;
+ 
+         return true;
+        }
+        
+       
+        catch (PDOException $e) {
+          echo $e->getMessage();
+          return false;
+        }
+       }
+       public function in_progress_course($user){
+        try {
+    
+        $sql = "select * from registration where user = :user AND status='In progress'";
         $stmt = $this->db->prepare($sql);
         $stmt->bindparam(':user',$user);
         $stmt->execute();
@@ -325,7 +383,8 @@
    }
      public function mycrs($uid){
       try{
-        $sql = "SELECT * FROM `registration` where usrid=$uid";
+      $sql = "SELECT * FROM registration,course where usrid=$uid AND registration.c_id=course.c_id";
+      // $sql = "SELECT * FROM registration where usrid=$uid";
         $result = $this->db->query($sql);
         return $result;
     }catch (PDOException $e) {
@@ -347,7 +406,7 @@
  }
  public function vdo($id){
   try{
-    $sql = "SELECT * FROM qz_ans where cid=$id";
+    $sql = "SELECT * FROM slide where cid=$id";
     $result = $this->db->query($sql);
     return $result;
 }catch (PDOException $e) {
@@ -466,6 +525,18 @@ public function english(){
    }
     
    }
+   
+   public function allcrslst(){
+    try{
+      $sql = "SELECT * FROM `course` ";
+      $result = $this->db->query($sql);
+      return $result;
+  }catch (PDOException $e) {
+      echo $e->getMessage();
+      return false;
+ }
+  
+ }
      public function catgry(){
       try{
         $sql = "SELECT * FROM `crs_cat` ";
@@ -582,12 +653,13 @@ public function hstry($id){
            return false;
        }
    }
-   public function mydlt($id,$usr){
+   public function mydlt($id,$uid){
     try{
-         $sql = "delete from registration where user = :user AND c_id=:id";
+      //SELECT * FROM archive,course where usr_id=$uid AND cid=c_id
+         $sql = "delete from registration where c_id = :cid AND usrid=:id";
          $stmt = $this->db->prepare($sql);
-         $stmt->bindparam(':user', $usr);
-         $stmt->bindparam(':id', $id);
+         $stmt->bindparam(':id', $uid);
+         $stmt->bindparam(':cid', $id);
          $stmt->execute();
          return true;
      }catch (PDOException $e) {
@@ -638,18 +710,19 @@ public function hstry($id){
       return false;
     }
   }
-  public function insertcrs($title,$descrip,$sec,$destination,$cat){
+  public function insertcrs($title,$descrip,$destination,$cat,$tname,$tid){
     try {
     
 
-     $sql = "INSERT INTO course (c_name,category, des, sectn, img_path	) VALUES (:title, :cat, :descrip, :sectn, :img)";
+     $sql = "INSERT INTO course (c_name,category, des,  img_path,tid, tname	) VALUES (:title, :cat, :descrip,  :img,:tid, :tname)";
      $stmt = $this->db->prepare($sql);
 
      $stmt->bindparam(':title',$title);
      $stmt->bindparam(':cat',$cat);
      $stmt->bindparam(':descrip',$descrip);
-     $stmt->bindparam(':sectn',$sec);
      $stmt->bindparam(':img',$destination);
+     $stmt->bindparam(':tid',$tid);
+     $stmt->bindparam(':tname',$tname);
 
      $stmt->execute();
      return true;
@@ -775,7 +848,7 @@ public function hstry($id){
     try {
     
 
-     $sql = "INSERT INTO qz_ans (ansr,cid) VALUES (:destination,:cid)";
+     $sql = "INSERT INTO slide (ansr,cid) VALUES (:destination,:cid)";
      $stmt = $this->db->prepare($sql);
 
      $stmt->bindparam(':destination',$destination);
@@ -833,5 +906,63 @@ public function hstry($id){
       return false;
     }
    }
+   public function ques($cid){
+    try{
+      $sql = "SELECT * FROM questions where questions.crs_id=$cid ";
+      $result = $this->db->query($sql);
+      return $result;
+  }catch (PDOException $e) {
+      echo $e->getMessage();
+      return false;
+ }
+  
+ }
+ public function crct($cid,$numbr){
+        
+  try{
+    $sql = "SELECT * FROM options WHERE options.crs_id=:cid AND question_number=:numbr AND is_correct=1;";
+    $stmt = $this->db->prepare($sql);
+    $stmt->bindparam(':numbr', $numbr);
+    
+    $stmt->bindparam(':cid', $cid);
+    $stmt->execute();
+    $result = $stmt->fetch();
+    return $result;
+}catch (PDOException $e) {
+    echo $e->getMessage();
+    return false;
+}
+
+}
+public function usransr($numbr){
+        
+  try{
+    $sql = "SELECT * FROM summry,options WHERE q_num=:numbr AND question_number=q_num AND ansr=id;";
+    $stmt = $this->db->prepare($sql);
+    $stmt->bindparam(':numbr', $numbr);
+    $stmt->execute();
+    $result = $stmt->fetch();
+    return $result;
+}catch (PDOException $e) {
+    echo $e->getMessage();
+    return false;
+}
+
+}
+public function usrdlt(){
+        
+  try{
+    $sql = "DELETE FROM `summry`";
+    $stmt = $this->db->prepare($sql);
+   
+    $stmt->execute();
+    $result = $stmt->fetch();
+    return $result;
+}catch (PDOException $e) {
+    echo $e->getMessage();
+    return false;
+}
+
+}
   }
 ?>

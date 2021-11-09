@@ -2,7 +2,7 @@
 $title ='Homepage';
 require_once 'db/conn.php';
 include_once 'includes/session.php';
-$uid=$_SESSION['userid'];
+$uid = $_GET['us'];
 $hstry = $crud->hstry($uid); 
 ?>
 <!DOCTYPE html>

@@ -6,9 +6,11 @@ $results = $crud->catgry();
 if(isset($_POST['upload'])){
     $title= $_POST['crsname'];
     $descrip= $_POST['crsdescrip'];
-    $sec= $_POST['crssec'];
+    //$sec= $_POST['crssec'];
     $cat=$_POST['catgry'];
     $_SESSION['catid'] = $cat;
+   $tname= $_SESSION['tcrname'];
+    $tid=$_SESSION['userid'];
    // $orig_file = $_FILES["avatar"]["tmp_name"];
    // $target_dir = 'uploads/';
    // $destination =$target_dir . basename($_FILES["avatar"]["name"]);
@@ -19,7 +21,7 @@ if(isset($_POST['upload'])){
         $destination = "$target_dir$title.$ext";
         move_uploaded_file($orig_file,$destination);
     //exit();
-    $success = $crud->insertcrs( $title,$descrip,$sec,$destination,$cat);
+    $success = $crud->insertcrs( $title,$descrip,$destination,$cat,$tname,$tid);
 
     if($success) {
      //  sendemail ::sendmail($email,$full,$sub,$otp);
@@ -58,18 +60,19 @@ if(isset($_POST['upload'])){
            
             <?php }?>  
           </select>
-          <input type="text" class="name form-select" name="crssec" placeholder="How much section?">
+         
         </div>
         
         <div class="crmid">
             
            
-            <div  class="crsde crsdes">
-                <img src="images (2).png" alt="img" height="100" width="150" class="img">
+           
+               <span class="crthtxt">Select Your Course thumbnail</span>
                <!-- <input type="file" class="crvdo" name="crsthmb" placeholder="Select">-->
                 <input type="file" accept="image/*" class="custom-file-input crvdo" id="avatar" name="avatar" >
-            </div>
-            <textarea  class="crsdes" name="crsdescrip" rows="1" cols="30"></textarea>
+           
+            <input type="text" class="irvw" name="crsdescrip" placeholder="Write something about your course">
+           
         </div>
     </div>
     

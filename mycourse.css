@@ -58,7 +58,7 @@ body{
  .visible{
     visibility: visible;
 }
-.newlylaunched{
+.invisible{
     visibility: hidden;
 }
 .testng{

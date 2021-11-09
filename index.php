@@ -92,7 +92,9 @@ if($result) {
     $_SESSION['user']=$duser;
     $_SESSION['userid']=$result['user_id'];
     $_SESSION['fname'] = $result['fullname'];
-    header("Location: lrnrhome.php");
+    $_SESSION['type']=$result['type'];
+    $typ=$_SESSION['type'];
+    header("Location: home.php");
     //require_once 'homepage.php';
 }
 else{
@@ -109,14 +111,17 @@ else{
 }
 if(isset($_POST['tsubmit'])){
     $duser= $_POST['user'];
+   
     $pass=$_POST['pass'];
     $newpass=md5($pass);
     $typ="Teacher";
 $result=$login->gettchr($duser,$newpass,$typ);
 if($result) {
     $_SESSION['user']=$duser;
-    
-    $_SESSION['tcrid']=$result['user_id'];
+    $_SESSION['tcrname']=$result['fullname'];
+    $_SESSION['userid']=$result['user_id'];
+    $_SESSION['type']=$result['type'];
+    $typ=$_SESSION['type'];
     header("Location: home.php");
     //require_once 'homepage.php';
 }

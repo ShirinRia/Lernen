@@ -57,10 +57,10 @@ $results = $crud->crd();
                     <nav class="menu">
                         <ul class="mainmenu">
                             <li>
-                                <a href="#" class="anchor" >Home</a>
+                                <a href="home.php" class="anchor" >Home</a>
                             </li>
                             <li class="children">
-                                <a href="courselist.php" class="anchor">
+                                <a href="allcourselst.php" class="anchor">
                                     Courses
                                 </a>
                                 <div class="submenu crsmega mega-menu-column-2">

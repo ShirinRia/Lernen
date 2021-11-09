@@ -4,7 +4,7 @@ $title ='Homepage';
 include_once 'includes/session.php';
 require_once 'db/conn.php';
 
-$results = $crud->status($_SESSION['tcrid']);
+$results = $crud->status($_SESSION['userid']);
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -15,10 +15,27 @@ $results = $crud->status($_SESSION['tcrid']);
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+    
     <link rel="stylesheet" href="css\signin.css" />
     <link rel="stylesheet" href="status.css" />  
 </head>
 <body>
+
+<div class="crsside">
+        <div class="hdr">
+            Upload Your Content
+        </div>
+        <div class="sdcntnton sdcntnt">
+        <a href="upload.php">Course</a></div>
+        <div class="sdcntnttwo sdcntnt">
+        <a href="bupload.php">Book</a></div>
+        <div class="sdcntntthre sdcntnt">
+        <a href="status.php">Status</a></div>
+        <div class="sdcntntthre sdcntnt">
+        <a href="#">Update Content</a></div>
+        <div class="sdcntntthre sdcntnt">
+        <a href="home.php">Exit</a></div>
+    </div>
     <div class="crsmid">
        <div class="sttsbar">
            

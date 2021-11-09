@@ -1,7 +1,11 @@
 <?php 
 $title ='Homepage';
 require_once 'db/conn.php';
-include 'lrnrpagehdr.php';
+$tp = $_SESSION['type'];
+if($tp=="Learner"){
+include 'lrnrpagehdr.php';}
+else
+include 'pageheader.php';
 $best = $crud->best();  
 $dev= $crud->devlpmnt();  
 $gk = $crud->genknw();  

@@ -3,19 +3,19 @@
 	session_start(); 
 	//Set Question Number
 	$number = $_GET['n'];
-
+	$cid=$_SESSION['qid'];
 	//Query for the Question
-	$query = "SELECT * FROM questions WHERE question_number = $number AND crs_id=1";
+	$query = "SELECT * FROM questions WHERE question_number = $number AND crs_id=$cid";
 
 	// Get the question
 	$result = mysqli_query($connection,$query);
 	$question = mysqli_fetch_assoc($result); 
 
 	//Get Choices
-	$query = "SELECT * FROM options WHERE question_number = $number AND crs_id=1";
+	$query = "SELECT * FROM options WHERE question_number = $number AND crs_id=$cid";
 	$choices = mysqli_query($connection,$query);
 	// Get Total questions
-	$query = "SELECT * FROM questions WHERE crs_id=1";
+	$query = "SELECT * FROM questions WHERE crs_id=$cid";
 	$total_questions = mysqli_num_rows(mysqli_query($connection,$query));
  	
 	

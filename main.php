@@ -3,7 +3,7 @@
 include 'db.php';
 $crid = $_GET['sec'];
 $_SESSION['qid']=$crid;
-$query = "SELECT * FROM questions WHERE crs_id= 4";
+$query = "SELECT * FROM questions WHERE crs_id= $crid";
 $total_questions = mysqli_num_rows(mysqli_query($connection,$query));
 
 

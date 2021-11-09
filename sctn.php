@@ -38,17 +38,17 @@ if(isset($_POST['qup'])){
     <title>Document</title>
     <link rel="stylesheet" href="css\signin.css" />
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
-    <link rel="stylesheet" href="slide.css" />
-   
+    
     <link rel="stylesheet" href="sec.css" />
+   
     <style>
         .menu{
 	width:400px;
-	height: 400px;
+	height: 200px;
 	margin: 20px auto;
 }
         .button {
-  background-color: #4CAF50; /* Green */
+  background-color: #4CAF50; 
   border: none;
   color: white;
   padding: 15px 32px;
@@ -58,6 +58,14 @@ if(isset($_POST['qup'])){
   font-size: 16px;
 	width: 70%;
 	margin: 20px 20px;
+}
+.btn{
+    background-color: #4CAF50;
+    color: white;
+    position: relative;
+    
+    left: 255px;
+    top: -48px;
 }
     </style>
 </head>
@@ -83,23 +91,20 @@ if(isset($_POST['qup'])){
         
         <div class="crmid">
             <div class="vdo">
-            <?php 
-            $x = 1;
-            while($x <= $_SESSION['sec']) { ?>
+            
+           
             <div  class="bx">
             <div  class="vdbx">
                 <form action="<?php echo htmlentities($_SERVER['PHP_SELF']); ?>" method="post" enctype="multipart/form-data">
                 
-                <input type="text" class="crnm form-control" name="crsnm" placeholder="Section name" ><br><br><br>
+                <input type="text" class="crnm form-control" name="crsnm" placeholder="Video Title" ><br><br><br>
                 <input type="file" class="crvdo form-control" name="crsvdo" placeholder="Select">
                 <input type="submit" class="in btn btn-outline-secondary" value="Upload" name="up">
                 </form>
             </div>
             </div>
-            <?php 
-            $x++; ?>
             
-            <?php }?>  <br>
+           <br>
             <div  class="bx">
             <div class = "menu">
         <a href="slide.php" target="_blank" class="button">Add Slide</a>
@@ -109,7 +114,9 @@ if(isset($_POST['qup'])){
             <div  class="bx">
        
             <div class = "menu">
-        <a href="add.php" target="_blank" class="button">Add questions</a>
+            <a href="add.php" target="_blank" class="button">Add Basic level questions</a>
+            <a href="add.php" target="_blank" class="button">Add Medium level questions</a>
+            <a href="add.php" target="_blank" class="button">Add High level questions</a><br><br><br><br>
 </div>
             </div>
             
@@ -119,5 +126,6 @@ if(isset($_POST['qup'])){
     
 </form>
     </div>
+    
 </body>
 </html>
