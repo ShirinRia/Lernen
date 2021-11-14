@@ -22,8 +22,9 @@ if(isset($_POST['upload'])){
    $pdf_size=$_FILES['pdf']['size'];
    $pdf_tmp_loc=$_FILES['pdf']['tmp_name'];
    $pdf_store='uploads/'.$pdf;
+   $_SESSION['pdf']=$pdf_size/1048576;
    move_uploaded_file($pdf_tmp_loc,$pdf_store);
-   $success = $crud->insertbooks( $title,$author,$cat,$pdf,$pub,$ed,$lang, $destination);
+   $success = $crud->insertbooks( $title,$author,$cat,$pdf,$pub,$ed,$lang, $destination,$_SESSION['pdf']);
   
 
     if($success) {

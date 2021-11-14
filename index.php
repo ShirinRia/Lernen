@@ -121,7 +121,7 @@ if(isset($_POST['tsubmit'])){
     $pass=$_POST['pass'];
     $newpass=md5($pass);
     $typ="Teacher";
-$result=$login->gettchr($duser,$newpass,$typ);
+$result=$login->getuser($duser,$newpass);
 if($result) {
     $_SESSION['user']=$duser;
     $_SESSION['tcrname']=$result['fullname'];
@@ -161,8 +161,8 @@ else{
                 <input type="text" class="field" name = "user" placeholder="username" >
                 <input type="password" class="field" name="pass" placeholder="password" >
                <!-- <h6><u>Sign in as</u></h6>-->
-                <input type="submit" name="tsubmit" class="btn in" value=" Teacher" style="top:245px;">
-                <input type="submit" name="submit" class="btn in lrn" value=" Learner" style="top:245px;">
+               <!-- <input type="submit" name="tsubmit" class="btn in" value=" Teacher" style="top:245px;">-->
+                <input type="submit" name="submit" class="btn in lrn" value=" Log In" style="top:245px; left: 980px;">
                 <a href="forgot .php" style="text-decoration: none; position:relative; top: 7px;padding-bottom: 5px;">Forgotten Password?</a>
            
                 <hr>

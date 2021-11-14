@@ -15,7 +15,7 @@ else{
    $_SESSION['ed'] = $result['edtn'];
    $_SESSION['lng'] = $result['lang'];
    $_SESSION['img'] = $result['pdf'];
-   $_SESSION['imgpath'] = $result['img_path'];
+   $_SESSION['size'] = $result['size'];
   // $_SESSION['author'] = $result['aname'];
    
 }  
@@ -32,7 +32,7 @@ else{
     <link rel="stylesheet" href="bookpurchase.css">
 
 </head>
-<body>
+<body style="background-color: whitesmoke;">
 <?php 
 
 $tp = $_SESSION['type'];
@@ -51,7 +51,7 @@ include 'pageheader.php';
             
            <h6 class = "aname">  By <?php echo  $_SESSION['author'] ;  ?></h6><br>
             
-            <h6 class = "prc"> 673,279 Downloads</h6>
+            <h6 class = "prc"> <?php echo $_SESSION['size'] ;  ?>&nbsp; MB</h6>
             <a href="uploads/<?php echo ( $_SESSION['img'])?>" class="by" download><span class ="bttn">Download</span></a>
             
             <a href="uploads/<?php echo ( $_SESSION['img'])?>" class="by crt" target="_blank"><span class ="bttn">Read</span></a>

@@ -929,11 +929,11 @@ public function hstry($id){
       return false;
     }
    }
-   public function insertbooks( $title,$author,$cat,$pdf,$pub,$ed,$lang,$destination){
+   public function insertbooks( $title,$author,$cat,$pdf,$pub,$ed,$lang,$destination,$size){
     try {
     
 
-     $sql = "INSERT INTO books (bname,aname,bcat,pdf,publshr,edtn,lang,img_path) VALUES (:title, :author, :cat, :pdf, :pub, :ed, :lang, :destination)";
+     $sql = "INSERT INTO books (bname,aname,bcat,pdf,publshr,edtn,lang,img_path,size) VALUES (:title, :author, :cat, :pdf, :pub, :ed, :lang, :destination, :size)";
      
      $stmt = $this->db->prepare($sql);
 
@@ -946,6 +946,7 @@ public function hstry($id){
      $stmt->bindparam(':ed',$ed);
      $stmt->bindparam(':destination',$destination);
      $stmt->bindparam(':lang',$lang);
+     $stmt->bindparam(':size',$size);
      $stmt->execute();
      return true;
     }
@@ -1304,14 +1305,15 @@ public function deletecrsstr($id){
        return false;
    }
 }
-public function insertdwnld(){
+public function insertdwnld($n,$bid){
   try {
   
 
-    $sql = "UPDATE `books` SET  `download`=2 WHERE bid=9";
-
+    $sql = "UPDATE `books` SET  `download`=:n WHERE bid=:bid";
+    
    $stmt = $this->db->prepare($sql);
-
+   $stmt->bindparam(':n', $n);
+   $stmt->bindparam(':bid', $bid);
    $stmt->execute();
    return true;
 
@@ -1321,6 +1323,24 @@ public function insertdwnld(){
     return false;
   }
  }
+
+
+ public function getnum($num){
+        
+  try{
+    $sql = "select * from books where bid = :num";
+    $stmt = $this->db->prepare($sql);
+    $stmt->bindparam(':num', $num);
+    $stmt->execute();
+    $result = $stmt->fetch();
+    return $result;
+}catch (PDOException $e) {
+    echo $e->getMessage();
+    return false;
+}
+
+}
+
 
   }
 ?>

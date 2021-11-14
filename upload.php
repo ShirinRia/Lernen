@@ -49,7 +49,30 @@ if(isset($_POST['upload'])){
 }
 ?> 
     <?php require_once 'upside.php'; ?>
+    <script src='https://cdn.tiny.cloud/1/fkrd0r3n731w7mfc23kaaldls1z1msifaezn9lr1bufammwb/tinymce/5/tinymce.min.js' referrerpolicy="origin"></script>
+  <script>
+  tinymce.init({
+    selector: '#mytextarea'
 
+  });
+  </script>
+   <script>
+    tinymce.init({
+      selector: '#mytxtarea'
+      
+    });
+    </script>
+    <script>
+        tinymce.init({
+          selector: '#mtxtarea'
+          
+        });
+        </script>
+  <style>
+      .tox-statusbar__text-container{
+          visibility: hidden;
+      }
+  </style>
     <div class="crsmid">
         <form action="<?php echo htmlentities($_SERVER['PHP_SELF']); ?>" method="post" enctype="multipart/form-data">
         <div class="brdr">
@@ -75,11 +98,24 @@ if(isset($_POST['upload'])){
                <!-- <input type="file" class="crvdo" name="crsthmb" placeholder="Select">-->
                 <input type="file" accept="image/*" class="custom-file-input crvdo" id="avatar" name="avatar" >
                 <span class="crthtxt ovr"><b>Write Course Overview</b></span>
-            <input type="text" class="irvw" name="overview" placeholder="Write an overview of your course">
+            <!--<input type="text" class="irvw" name="overview" placeholder="Write an overview of your course">-->
+           
+            <div class="irvw">
+            <textarea id="mytxtarea" name="overview" ></textarea>
+        </div>
             <span class="crthtxt updes"><b>Write Course desciption</b></span>
-            <input type="text" class="irvw updestxt" name="crsdescrip">
+          
+            <div class="irvw updestxt">
+            <textarea id="mytextarea" name="crsdescrip" ></textarea>
+        </div>
+            <!--<input type="text" class="irvw updestxt" name="crsdescrip">-->
+            
             <span class="crthtxt lrn"><b>What will students learn from your course</b></span>
-            <input type="text" class="irvw uplrn" name="learn">
+       <!--<input type="text" class="irvw uplrn" name="learn">-->
+           
+            <div class="irvw uplrn">
+            <textarea id="mtxtarea" name="learn" ></textarea>
+        </div>
            
         </div>
     </div>
@@ -87,5 +123,6 @@ if(isset($_POST['upload'])){
     <input type="submit" class="btn in" value="Next" name="upload">
 </form>
     </div>
+    
 </body>
 </html>

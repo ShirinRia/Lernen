@@ -16,7 +16,7 @@ $dsgn= $crud->design();
 $as = $crud->school();  
 $ac = $crud->college();  
 $el = $crud->english(); 
- 
+ $n=0;
 
 ?>
 <!DOCTYPE html>
@@ -37,7 +37,7 @@ $el = $crud->english();
    <body>
   
     <div class="bkhdr">
-      <span> Best&nbsp;&nbsp;Sell</span>
+      <span> Programming</span>
     </div>
   
       <div class="slider owl-carousel">
@@ -80,9 +80,17 @@ $el = $crud->english();
           
          <div class="bk"></div>
          <a href="uploads/<?php echo ($r['pdf'])?>" download><div class="addtocrt">
-            <input type="submit" value="Download" name="addcrt" class="addcrt">
-          </div></a>
+            <input type="submit" value="Download" name="addcrt" class="addcrt" style="left: -20px;">
+           
+          </div>
 
+        
+        </a>
+      <!--  <?php 
+         // $result = $crud->getnum($r['bid']);
+         // $_SESSION['dnum'] = $result['download'];
+         // $n=$_SESSION['dnum'];
+         // $res=$crud->insertdwnld($n+1,$r['bid']);?>-->
 </div>
         
         <?php }?> 
@@ -243,7 +251,11 @@ $el = $crud->english();
          <div class="bk"></div>
          <a href="uploads/<?php echo ($r['pdf'])?>" download><div class="addtocrt">
             <input type="submit" value="Download" name="downld" class="addcrt">
-          </div></a>
+          </div>
+        
+        
+          </a>
+         
 
 </div>
       
@@ -252,7 +264,7 @@ $el = $crud->english();
 
 
 <div class="bkhdr acsghl">
-    <span>English&nbsp;&nbsp;Learning</span>
+    <span>Photography</span>
   </div>
   <div class="slider owl-carousel">
      

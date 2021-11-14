@@ -35,7 +35,7 @@ a{
 .crsmid{
     position:absolute;
     width:79%;
-    height:1200px;
+    height:1300px;
     top:0;
     background-color:whitesmoke;
     left: 280px;
@@ -96,7 +96,7 @@ a{
 .brdr{
     border: 2px solid black;
     border-radius:10px;
-    height:1150px;
+    height:1250px;
     position:absolute;
     width:87%;
     top:20px;
@@ -129,7 +129,7 @@ a{
 .in{
     position: absolute;
     left: 400px;
-    top: 1050px;
+    top: 1200px;
 }
 .aname{
     position: relative;
@@ -202,17 +202,17 @@ a{
 }
 .updes{
     position:absolute;
-    top: 400px;
+    top: 450px;
 }
 .updestxt{
-    top: 450px;
+    top: 500px;
     left: 0px;
 }
 .lrn{
-    top: 650px;
+    top: 750px;
     left: 0px; 
 }
 .uplrn{
-    top: 700px;
+    top: 800px;
     left: 0px;
 }
