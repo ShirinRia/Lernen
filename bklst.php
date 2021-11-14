@@ -1,6 +1,7 @@
 <?php 
 $title ='Homepage';
 require_once 'db/conn.php';
+include_once 'includes/session.php';
 $tp = $_SESSION['type'];
 if($tp=="Learner"){
 include 'lrnrpagehdr.php';}
@@ -14,7 +15,9 @@ $ib = $crud->islamic();
 $dsgn= $crud->design();  
 $as = $crud->school();  
 $ac = $crud->college();  
-$el = $crud->english();    
+$el = $crud->english(); 
+ 
+
 ?>
 <!DOCTYPE html>
 <html lang="en" dir="ltr">
@@ -39,138 +42,6 @@ $el = $crud->english();
   
       <div class="slider owl-carousel">
       <?php while($r = $best->fetch(PDO::FETCH_ASSOC)) { ?>
-          <div class="card">
-            <img src="images\Bannr (1).jpg" class="card-img-top" alt="...">
-            <div class="card-body">
-              <h5 class="card-title"><?php echo $r['bname'] ?></h5>
-               <p class="card-text"><?php echo $r['aname'] ?></p>
-            </div>
-            <div class="card-footer">
-              <a href="bookpurchase.php">
-              <small class="text-muted"> <input type="submit" value="VIEW DETAILS" name=" addcrt" class="adcrt"></small>
-      </a>
-            </div>
-          
-          <div class="bk"></div>
-          <a href="uploads/<?php echo ($r['pdf'])?>" download><div class="addtocrt">
-            <input type="submit" value="Download" name="addcrt" class="addcrt">
-          </div></a>
-            
-          </div>
-          <?php }?>  
-      </div>
-    
-      <div class="bkhdr acsghl">
-        <span>Development</span>
-      </div>
-      <div class="slider owl-carousel">
-      <?php while($r = $dev->fetch(PDO::FETCH_ASSOC)) { ?>
-        <div class="card">
-          <img src="images\Bannr (1).jpg" class="card-img-top" alt="...">
-          <div class="card-body">
-            <h5 class="card-title"><?php echo $r['bname'] ?></h5>
-             <p class="card-text"><?php echo $r['aname'] ?></p>
-          </div>
-          <div class="card-footer">
-              <small class="text-muted"> <input type="submit" value="VIEW DETAILS" name=" addcrt" class="adcrt"></small>
-            </div>
-          
-          <div class="bk"></div>
-          <a href="uploads/<?php echo ($r['pdf'])?>" download><div class="addtocrt">
-            <input type="submit" value="Download" name="addcrt" class="addcrt">
-          </div></a>
-        </div>
-        
-        <?php }?> 
-    
-</div>
-
-<div class="bkhdr acsghl">
-    <span>General&nbsp;&nbsp;Knowledge</span>
-  </div>
-  <div class="slider owl-carousel">
-     
-  <?php while($r = $gk ->fetch(PDO::FETCH_ASSOC)) { ?>
-        <div class="card">
-          <img src="images\Bannr (1).jpg" class="card-img-top" alt="...">
-          <div class="card-body">
-            <h5 class="card-title"><?php echo $r['bname'] ?></h5>
-            <p class="card-text"><?php echo $r['aname'] ?></p>
-          </div>
-          <div class="card-footer">
-              <small class="text-muted"> <input type="submit" value="VIEW DETAILS" name=" addcrt" class="adcrt"></small>
-            </div>
-          
-         <div class="bk"></div>
-         <a href="uploads/<?php echo ($r['pdf'])?>" download><div class="addtocrt">
-            <input type="submit" value="Download" name="addcrt" class="addcrt">
-          </div></a>
-        
-        <?php }?> 
-    
-</div>
-</div>
-
-<div class="bkhdr acsghl">
-    <span> IELTS</span>
-  </div>
-  <div class="slider owl-carousel">
-     
-     <?php while($r = $ielts ->fetch(PDO::FETCH_ASSOC)) { ?>
-           <div class="card">
-             <img src="images\Bannr (1).jpg" class="card-img-top" alt="...">
-             <div class="card-body">
-               <h5 class="card-title"><?php echo $r['bname'] ?></h5>
-               <p class="card-text"><?php echo $r['aname'] ?></p>
-             </div>
-             <div class="card-footer">
-                 <small class="text-muted"> <input type="submit" value="VIEW DETAILS" name=" addcrt" class="adcrt"></small>
-               </div>
-             
-            <div class="bk"></div>
-            <a href="uploads/<?php echo ($r['pdf'])?>" download><div class="addtocrt">
-               <input type="submit" value="Download" name="addcrt" class="addcrt">
-             </div></a>
-           
-           <?php }?> 
-       
-   </div>
-   </div>
-
-
-<div class="bkhdr acsghl">
-    <span>Islamic&nbsp;&nbsp;Books</span>
-  </div>
-  <div class="slider owl-carousel">
-     
-  <?php while($r = $ib ->fetch(PDO::FETCH_ASSOC)) { ?>
-        <div class="card">
-          <img src="images\Bannr (1).jpg" class="card-img-top" alt="...">
-          <div class="card-body">
-            <h5 class="card-title"><?php echo $r['bname'] ?></h5>
-            <p class="card-text"><?php echo $r['aname'] ?></p>
-          </div>
-          <div class="card-footer">
-              <small class="text-muted"> <input type="submit" value="VIEW DETAILS" name=" addcrt" class="adcrt"></small>
-            </div>
-          
-         <div class="bk"></div>
-         <a href="uploads/<?php echo ($r['pdf'])?>" download><div class="addtocrt">
-            <input type="submit" value="Download" name="addcrt" class="addcrt">
-          </div></a>
-        
-        <?php }?> 
-    
-</div>
-</div>
-
-
-<div class="bkhdr acsghl">
-    <span>Design</span>
-  </div>
-  <div class="slider owl-carousel">
-     
-  <?php while($r = $dsgn ->fetch(PDO::FETCH_ASSOC)) { ?>
         <div class="card">
           <img src="<?php echo empty($r['img_path']) ? "uploads/images (1).png" : $r['img_path'] ; ?>" class="card-img-top" alt="...">
           <div class="card-body">
@@ -186,10 +57,142 @@ $el = $crud->english();
          <a href="uploads/<?php echo ($r['pdf'])?>" download><div class="addtocrt">
             <input type="submit" value="Download" name="addcrt" class="addcrt">
           </div></a>
+
+</div>
+          <?php }?>  
+      </div>
+    
+      <div class="bkhdr acsghl">
+        <span>Development</span>
+      </div>
+      <div class="slider owl-carousel">
+      <?php while($r = $dev->fetch(PDO::FETCH_ASSOC)) { ?>
+        <div class="card">
+          <img src="<?php echo empty($r['img_path']) ? "uploads/images (1).png" : $r['img_path'] ; ?>" class="card-img-top" alt="...">
+          <div class="card-body">
+            <h5 class="card-title"><?php echo $r['bname'] ?></h5>
+            <p class="card-text">By <?php echo $r['aname'] ?></p>
+          </div>
+          <a href="bookpurchase.php?bookid=<?php echo $r['bid'];?>">
+          <div class="card-footer">
+              <small class="text-muted"> <input type="submit" value="VIEW DETAILS" name=" addcrt" class="adcrt"></small>
+            </div></a>
+          
+         <div class="bk"></div>
+         <a href="uploads/<?php echo ($r['pdf'])?>" download><div class="addtocrt">
+            <input type="submit" value="Download" name="addcrt" class="addcrt">
+          </div></a>
+
+</div>
         
         <?php }?> 
     
 </div>
+
+<div class="bkhdr acsghl">
+    <span>General&nbsp;&nbsp;Knowledge</span>
+  </div>
+  <div class="slider owl-carousel">
+     
+  <?php while($r = $gk ->fetch(PDO::FETCH_ASSOC)) { ?>
+    <div class="card">
+          <img src="<?php echo empty($r['img_path']) ? "uploads/images (1).png" : $r['img_path'] ; ?>" class="card-img-top" alt="...">
+          <div class="card-body">
+            <h5 class="card-title"><?php echo $r['bname'] ?></h5>
+            <p class="card-text">By <?php echo $r['aname'] ?></p>
+          </div>
+          <a href="bookpurchase.php?bookid=<?php echo $r['bid'];?>">
+          <div class="card-footer">
+              <small class="text-muted"> <input type="submit" value="VIEW DETAILS" name=" addcrt" class="adcrt"></small>
+            </div></a>
+          
+         <div class="bk"></div>
+         <a href="uploads/<?php echo ($r['pdf'])?>" download><div class="addtocrt">
+            <input type="submit" value="Download" name="downld" class="addcrt">
+          </div></a>
+
+</div>
+<?php }?> 
+</div>
+
+<div class="bkhdr acsghl">
+    <span> IELTS</span>
+  </div>
+  <div class="slider owl-carousel">
+     
+     <?php while($r = $ielts ->fetch(PDO::FETCH_ASSOC)) { ?>
+      <div class="card">
+          <img src="<?php echo empty($r['img_path']) ? "uploads/images (1).png" : $r['img_path'] ; ?>" class="card-img-top" alt="...">
+          <div class="card-body">
+            <h5 class="card-title"><?php echo $r['bname'] ?></h5>
+            <p class="card-text">By <?php echo $r['aname'] ?></p>
+          </div>
+          <a href="bookpurchase.php?bookid=<?php echo $r['bid'];?>">
+          <div class="card-footer">
+              <small class="text-muted"> <input type="submit" value="VIEW DETAILS" name=" addcrt" class="adcrt"></small>
+            </div></a>
+          
+         <div class="bk"></div>
+         <a href="uploads/<?php echo ($r['pdf'])?>" download><div class="addtocrt">
+            <input type="submit" value="Download" name="addcrt" class="addcrt">
+          </div></a>
+
+</div>
+<?php }?> 
+   </div>
+
+
+<div class="bkhdr acsghl">
+    <span>Islamic&nbsp;&nbsp;Books</span>
+  </div>
+  <div class="slider owl-carousel">
+     
+  <?php while($r = $ib ->fetch(PDO::FETCH_ASSOC)) { ?>
+    <div class="card">
+          <img src="<?php echo empty($r['img_path']) ? "uploads/images (1).png" : $r['img_path'] ; ?>" class="card-img-top" alt="...">
+          <div class="card-body">
+            <h5 class="card-title"><?php echo $r['bname'] ?></h5>
+            <p class="card-text">By <?php echo $r['aname'] ?></p>
+          </div>
+          <a href="bookpurchase.php?bookid=<?php echo $r['bid'];?>">
+          <div class="card-footer">
+              <small class="text-muted"> <input type="submit" value="VIEW DETAILS" name=" addcrt" class="adcrt"></small>
+            </div></a>
+          
+         <div class="bk"></div>
+         <a href="uploads/<?php echo ($r['pdf'])?>" download><div class="addtocrt">
+            <input type="submit" value="Download" name="addcrt" class="addcrt">
+          </div></a>
+
+</div>
+<?php }?> 
+</div>
+
+
+<div class="bkhdr acsghl">
+    <span>Design</span>
+  </div>
+  <div class="slider owl-carousel">
+     
+  <?php while($r = $dsgn ->fetch(PDO::FETCH_ASSOC)) { ?>
+    <div class="card">
+          <img src="<?php echo empty($r['img_path']) ? "uploads/images (1).png" : $r['img_path'] ; ?>" class="card-img-top" alt="...">
+          <div class="card-body">
+            <h5 class="card-title"><?php echo $r['bname'] ?></h5>
+            <p class="card-text">By <?php echo $r['aname'] ?></p>
+          </div>
+          <a href="bookpurchase.php?bookid=<?php echo $r['bid'];?>">
+          <div class="card-footer">
+              <small class="text-muted"> <input type="submit" value="VIEW DETAILS" name=" addcrt" class="adcrt"></small>
+            </div></a>
+          
+         <div class="bk"></div>
+         <a href="uploads/<?php echo ($r['pdf'])?>" download><div class="addtocrt">
+            <input type="submit" value="Download" name="addcrt" class="addcrt">
+          </div></a>
+
+</div>
+<?php }?> 
 </div>
 
 <div class="bkhdr acsghl">
@@ -198,24 +201,24 @@ $el = $crud->english();
   <div class="slider owl-carousel">
      
      <?php while($r = $as ->fetch(PDO::FETCH_ASSOC)) { ?>
-           <div class="card">
-             <img src="images\Bannr (1).jpg" class="card-img-top" alt="...">
-             <div class="card-body">
-               <h5 class="card-title"><?php echo $r['bname'] ?></h5>
-               <p class="card-text"><?php echo $r['aname'] ?></p>
-             </div>
-             <div class="card-footer">
-                 <small class="text-muted"> <input type="submit" value="VIEW DETAILS" name=" addcrt" class="adcrt"></small>
-               </div>
-             
-            <div class="bk"></div>
-            <a href="uploads/<?php echo ($r['pdf'])?>" download><div class="addtocrt">
-               <input type="submit" value="Download" name="addcrt" class="addcrt">
-             </div></a>
-           
-           <?php }?> 
-       
-   </div>
+      <div class="card">
+          <img src="<?php echo empty($r['img_path']) ? "uploads/images (1).png" : $r['img_path'] ; ?>" class="card-img-top" alt="...">
+          <div class="card-body">
+            <h5 class="card-title"><?php echo $r['bname'] ?></h5>
+            <p class="card-text">By <?php echo $r['aname'] ?></p>
+          </div>
+          <a href="bookpurchase.php?bookid=<?php echo $r['bid'];?>">
+          <div class="card-footer">
+              <small class="text-muted"> <input type="submit" value="VIEW DETAILS" name=" addcrt" class="adcrt"></small>
+            </div></a>
+          
+         <div class="bk"></div>
+         <a href="uploads/<?php echo ($r['pdf'])?>" download><div class="addtocrt">
+            <input type="submit" value="Download" name="addcrt" class="addcrt">
+          </div></a>
+
+</div>
+<?php }?> 
    </div>
 
 
@@ -225,24 +228,26 @@ $el = $crud->english();
   <div class="slider owl-carousel">
      
      <?php while($r = $ac ->fetch(PDO::FETCH_ASSOC)) { ?>
-           <div class="card">
-             <img src="images\Bannr (1).jpg" class="card-img-top" alt="...">
-             <div class="card-body">
-               <h5 class="card-title"><?php echo $r['bname'] ?></h5>
-               <p class="card-text"><?php echo $r['aname'] ?></p>
-             </div>
-             <div class="card-footer">
-                 <small class="text-muted"> <input type="submit" value="VIEW DETAILS" name=" addcrt" class="adcrt"></small>
-               </div>
-             
-            <div class="bk"></div>
-            <a href="uploads/<?php echo ($r['pdf'])?>" download><div class="addtocrt">
-               <input type="submit" value="Download" name="addcrt" class="addcrt">
-             </div></a>
-           
-           <?php }?> 
-       
-   </div>
+     
+      <div class="card">
+          <img src="<?php echo empty($r['img_path']) ? "uploads/images (1).png" : $r['img_path'] ; ?>" class="card-img-top" alt="...">
+          <div class="card-body">
+            <h5 class="card-title"><?php echo $r['bname'] ?></h5>
+            <p class="card-text">By <?php echo $r['aname'] ?></p>
+          </div>
+          <a href="bookpurchase.php?bookid=<?php echo $r['bid'];?>">
+          <div class="card-footer">
+              <small class="text-muted"> <input type="submit" value="VIEW DETAILS" name=" addcrt" class="adcrt"></small>
+            </div></a>
+          
+         <div class="bk"></div>
+         <a href="uploads/<?php echo ($r['pdf'])?>" download><div class="addtocrt">
+            <input type="submit" value="Download" name="downld" class="addcrt">
+          </div></a>
+
+</div>
+      
+<?php }?> 
    </div>
 
 
@@ -252,24 +257,24 @@ $el = $crud->english();
   <div class="slider owl-carousel">
      
   <?php while($r = $el ->fetch(PDO::FETCH_ASSOC)) { ?>
-        <div class="card">
-          <img src="images\Bannr (1).jpg" class="card-img-top" alt="...">
+    <div class="card">
+          <img src="<?php echo empty($r['img_path']) ? "uploads/images (1).png" : $r['img_path'] ; ?>" class="card-img-top" alt="...">
           <div class="card-body">
             <h5 class="card-title"><?php echo $r['bname'] ?></h5>
-            <p class="card-text"><?php echo $r['aname'] ?></p>
+            <p class="card-text">By <?php echo $r['aname'] ?></p>
           </div>
+          <a href="bookpurchase.php?bookid=<?php echo $r['bid'];?>">
           <div class="card-footer">
               <small class="text-muted"> <input type="submit" value="VIEW DETAILS" name=" addcrt" class="adcrt"></small>
-            </div>
+            </div></a>
           
          <div class="bk"></div>
          <a href="uploads/<?php echo ($r['pdf'])?>" download><div class="addtocrt">
             <input type="submit" value="Download" name="addcrt" class="addcrt">
           </div></a>
-        
-        <?php }?> 
-    
+
 </div>
+<?php }?> 
 </div>
 
       <script>

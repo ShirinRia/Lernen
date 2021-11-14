@@ -32,8 +32,6 @@ $results = $crud->status($_SESSION['userid']);
         <div class="sdcntntthre sdcntnt">
         <a href="status.php">Status</a></div>
         <div class="sdcntntthre sdcntnt">
-        <a href="#">Update Content</a></div>
-        <div class="sdcntntthre sdcntnt">
         <a href="home.php">Exit</a></div>
     </div>
     <div class="crsmid">
@@ -41,7 +39,7 @@ $results = $crud->status($_SESSION['userid']);
            
            <div class="enrll">
             <a href="#">Total Enrollment</a>
-            <h4 class="ennum"><?php $crud->ttlstdntnum($_SESSION['tcrid']);?></h4>
+            <h4 class="ennum"><?php $crud->ttlstdntnum($_SESSION['userid']);?></h4>
            </div>
            
        </div>
@@ -53,16 +51,25 @@ $results = $crud->status($_SESSION['userid']);
                 <th scope="col">Title</th>
                 <th scope="col">Created Date</th>
                 <th scope="col">Total Students</th>
+                <th scope="col"></th>
               </tr>
             </thead>
             <tbody>
             <?php while($r = $results->fetch(PDO::FETCH_ASSOC)) { ?>
+              <form action="chng.php?courseid=<?php echo $r['c_id']?>" method="post">
               <tr>
                 <td><?php echo $r['c_id'] ?></td>
                 <td><?php echo $r['c_name'] ?></td>
                 <td><?php echo $r['Date'] ?></td>
                 <td><?php $crud->stdntnum($r['c_id']);?></td>
+                <td align="center">
+                  
+                        <input type=submit class="btn btn-secondary" name="cdelete" value="Delete">
+                        <?php $_SESSION['cid']= $r['c_id'] ?>
+                        <a href="view.php?courseid=<?php echo $_SESSION['cid']?>" target="_blank"class="btn btn-primary"> View</a>
+                    </td>
               </tr>
+              </form>
               <?php }?> 
              
             </tbody>

@@ -43,14 +43,14 @@ require_once 'db/conn.php';
             <h4><span><?php echo $r['c_name'] ?></span></h4>
            </div>
            <div class="ovrvw">
-               <h5><?php echo $r['des'] ?>
+               <h5><?php echo $r['des'] ?></h5>
             </div>
             
        </div>
     </div>
     </a> 
     
-    <?php }?>
+    <?php }?><br><br>
 </div>
 </body>
 </html>

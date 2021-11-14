@@ -14,14 +14,17 @@ if(!isset($_GET['cat'])){
      $_SESSION['tcrname'] = $result['tname'];
      $_SESSION['tcrid'] = $result['tid'];
      $_SESSION['caname'] = $result['category'];
+     $_SESSION['descrptn'] = $result['cdes'];
+     $_SESSION['rtng'] = $result['rating'];
+     $_SESSION['learn'] = $result['learn'];
      $ctid=$_SESSION['caname'];
      $_SESSION['crsdes'] = $result['des'];
      $_SESSION['img'] = $result['img_path'];
      $ctgry = $crud-> ecat($ctid); 
      $_SESSION['catname'] = $ctgry['Category'];
      $rvw = $crud-> revew($id); 
-     $_SESSION['us'] = $rvw['user'];
-     $_SESSION['rv'] = $rvw['review'];
+    // $_SESSION['us'] = $rvw['user'];
+    // $_SESSION['rv'] = $rvw['review'];
  }
  
 
@@ -41,8 +44,8 @@ if(!isset($_GET['cat'])){
         <h2><?php echo $_SESSION['crsname']  ?></h2>
         <div class="scnd">
         <span class="catgry"><?php echo $_SESSION['catname']?></span>
-      <!--  <span>&#11088;</span>-->
-        <span>1000 Students</span>
+     <span><?php echo round($_SESSION['rtng'],2)?>&#11088;</span>
+        <span style="position: relative; top: 3px;"><?php $crud->snum($_SESSION['sec']);?> &nbsp;&nbsp;Students</span>
         
     </div>
         <p class="thrd">Created &nbsp; By&nbsp;  <span class="authr"><u><?php echo $_SESSION['tcrname']?></u></span></p>
@@ -58,10 +61,10 @@ if(!isset($_GET['cat'])){
         <div class="incld">
             <span>What you will learn from this course?</span>
             <ul>
-                <li>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Ut quasi possimus eveniet voluptates optio facilis ea quo ipsam repellendus rerum?</li>
+                <li><?php echo $_SESSION['learn']?></li>
             </ul>
             
-            <form action="vdo.php?sec=<?php echo $_SESSION['sec'];?>" method="post">
+            <form action="vdo.php?sec=<?php echo $_SESSION['sec'];?>&tcr=<?php echo $_SESSION['tcrname'];?>" method="post">
             
                 <button type="submit" name="reg" class="strt">
             
@@ -76,15 +79,16 @@ if(!isset($_GET['cat'])){
     </div>
     <div class="rvw">
        <h2> <span>Reviews</span></h2>
-        
+       <?php while($r = $rvw->fetch(PDO::FETCH_ASSOC)) { ?>
         <div class="bx">
         <div  class="vdbx">
-           <h4><?php echo $_SESSION['us'];?></h4>
+           <h4><?php echo ($r['user']) ?></h4>
          <!--  <span>&#11088;</span>-->
-          <h5><?php echo $_SESSION['rv'];?></h5>
+          <h5><?php echo ($r['review']) ?></h5>
         </div>
         
     </div>
+    <?php }?> 
     <br><br><br><br>
     
     </div>

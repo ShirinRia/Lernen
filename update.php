@@ -8,13 +8,13 @@ if(isset($_POST['save'])){
     $mb= $_POST['mobile'];
     $bd=$_POST['bdate'];
     $cn= $_POST['cntry'];
-
+    $ides= $_POST['ides'];
     $orig_file = $_FILES["avatar"]["tmp_name"];
     $ext = pathinfo($_FILES["avatar"]["name"], PATHINFO_EXTENSION);
     $target_dir = 'uploads/';
     $destination = "$target_dir$em.$ext";
     move_uploaded_file($orig_file,$destination);
-    $result=$crud->updtusrdata($n,$em,$mb,$bd,$cn,$destination);
+    $result=$crud->updtusrdata($n,$em,$mb,$bd,$cn,$destination,$ides);
     if($result) {
       
     $_SESSION['name'] = $n;
@@ -73,7 +73,7 @@ if(isset($_POST['save'])){
 
                 <div class="udate">
                     <label for="" >Birth Date</label><br><br>
-                    <input type="text" name="bdate" class="text" value= "<?php echo  $_SESSION['bdate']?>">
+                    <input type="date" name="bdate" class="text" value= "<?php echo  $_SESSION['bdate']?>">
                  </div>
 
                 <div class="udate">
@@ -85,9 +85,13 @@ if(isset($_POST['save'])){
                     <label for="">Change Your Photo</label><br><br>
                     <input type="file" name="avatar" class="text" >
                 </div>
+                <div class="udate">
+                    <label for="">Write Something about yourself</label><br><br>
+                    <input type="text" name="ides" class="text" >
+                </div>
                 <div class="svbtn">
                 <input type="submit" name="save" class="p_btn s_btn" value="SAVE"></div>
-            </form>
+            </form><br><br><br>
         </div>
     </div>
 </body>

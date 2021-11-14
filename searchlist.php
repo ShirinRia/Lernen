@@ -23,7 +23,7 @@ require_once 'db/conn.php';
       foreach($result as $row){
           $cname=$row['c_name'];
           $tname=$row['tname'];
-          $des=$row['des'];
+          $des=$row['ovrview'];
       }
   }
    

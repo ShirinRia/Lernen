@@ -96,7 +96,7 @@ a{
    background-color: white;
 }
 .anchor{
-   color: white;
+   color: white!important;
    
 }
 .m_clr{
@@ -236,7 +236,7 @@ a{
 
 /*profile*/
 .full,.sidebar,.midle{
-   height: 870px;
+   height: 1170px;
 }
 
 .full{

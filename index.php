@@ -17,9 +17,11 @@ if(isset($_POST['sub'])){
     $type="Learner";
     $sub="VERIFICATION";
     $otp=rand(1000,99999);
+    
+    $notp=md5($otp);
     if($newpass==$cnfpass){
    // $success = $crud->insert($full,$user,$newpass,$email,$gender,$otp,$type);
-    $success = $crud->insert($email,$otp);
+    $success = $crud->insert($email,$notp,$user);
   //echo $otp;
     if($success) {
       sendemail ::sendmail($email,$full,$sub,$otp);
@@ -55,10 +57,12 @@ else if(isset($_POST['subt'])){
     $gender= $_POST['gen'];
     $sub="VERIFICATION";
     $otp=rand(1000,99999);
+    
+    $notp=md5($otp);
     $type="Teacher";
     if($newpass==$cnfpass){
     
-        $success = $crud->insert($email,$otp);
+        $success = $crud->insert($email,$notp,$user);
   //echo $otp;
     if($success) {
         sendemail ::sendmail($email,$full,$sub,$otp);
@@ -92,16 +96,18 @@ if($result) {
     $_SESSION['user']=$duser;
     $_SESSION['userid']=$result['user_id'];
     $_SESSION['fname'] = $result['fullname'];
+    
     $_SESSION['type']=$result['type'];
     $typ=$_SESSION['type'];
     header("Location: home.php");
     //require_once 'homepage.php';
 }
 else{
-    $res=$login->getem($_SESSION['email']);
+   // $res=$login->getem($_SESSION['email']);
+    $res=$login->getem($duser);
     if($res) {
       //  echo '<div class ="alert alert-danger" id= "alert">Please verify your account</div>';
-        header("Location: success.php");
+        header("Location: lrnrsccs.php");
     }
     else
     echo '<div class ="alert alert-danger" id= "alert">Username or Password is Incorrect! Please try again</div>';
@@ -126,9 +132,17 @@ if($result) {
     //require_once 'homepage.php';
 }
 else{
-   // echo '<div class ="alert alert-danger"Username or Password is Incorrect! Please try again</div>';
-   echo 'failllll';
+    $res=$login->getem($duser);
+    if($res) {
+      //  echo '<div class ="alert alert-danger" id= "alert">Please verify your account</div>';
+        header("Location: success.php");
+    }
+    else
+    echo '<div class ="alert alert-danger" id= "alert">Username or Password is Incorrect! Please try again</div>';
+   
+    //echo 'failllll';
 }
+
 }
 ?>
 
@@ -146,11 +160,13 @@ else{
                 <div class="lf">
                 <input type="text" class="field" name = "user" placeholder="username" >
                 <input type="password" class="field" name="pass" placeholder="password" >
-                <h6><u>Sign in as</u></h6>
-                <input type="submit" name="tsubmit" class="btn in" value=" Teacher">
-                <input type="submit" name="submit" class="btn in lrn" value=" Learner">
-               <hr>
-            
+               <!-- <h6><u>Sign in as</u></h6>-->
+                <input type="submit" name="tsubmit" class="btn in" value=" Teacher" style="top:245px;">
+                <input type="submit" name="submit" class="btn in lrn" value=" Learner" style="top:245px;">
+                <a href="forgot .php" style="text-decoration: none; position:relative; top: 7px;padding-bottom: 5px;">Forgotten Password?</a>
+           
+                <hr>
+               
             </div>
             
             </form>

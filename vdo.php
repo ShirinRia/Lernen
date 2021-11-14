@@ -3,17 +3,19 @@ $title ='Homepage';
 require_once 'db/conn.php';
 include_once 'includes/session.php';
 
-$er=2;
-$e="visible";
-$vid="videolink";
-$_SESSION['ln']=$vid;
-$vd="videostory";
+$tcrname = $_GET['tcr'];
+$_SESSION['tcr']=$tcrname;
 if(isset($_GET['sec'])){
    $id = $_GET['sec'];
    $_SESSION['sec']=$id;
    $best = $crud->section($id);  
    $fvdo = $crud->section($id); 
-   $vdo = $crud->vdo($id); 
+   $vdo = $crud->vdo($id);
+   $descrip = $crud->descrption($id); 
+   if($descrip){
+    $_SESSION['cdes'] = $descrip['cdes'];
+
+   }
 }
 if(isset($_POST['reg'])){
   $user=  $_SESSION['user'] ;
@@ -30,12 +32,14 @@ if(isset($_POST['reg'])){
 }
 
 if(isset($_POST['review'])){
+  
   $user=  $_SESSION['user'] ;
   $crsid=  $_SESSION['sec'];
+  $tcrname=  $_SESSION['tcrname'];
   $rvw= $_POST['rev'];
   $success = $crud->insertrvw($user,$crsid,$rvw);
   if($success){
-    header("Location: vdo.php?sec=$crsid");
+    header("Location: vdo.php?sec=$crsid&tcr=$tcrname");
   }
 
 }
@@ -62,16 +66,20 @@ if(isset($_POST['answer'])){
   }
  
 }
+$ides = $crud->ides(2); 
+
 $qutn = $crud->qustn($_SESSION['sec']); 
 $qustn = $crud->questn($_SESSION['sec']); 
 //$quz = $crud->quiz($_SESSION['sec']); 
 
 if(isset($_POST['qstatus'])){
+  $qb= $_POST['qbstatus'];
+  $qm= $_POST['qmstatus'];
   $vd= $_POST['vstatus'];
   $slde= $_POST['vstatus'];
   $cid=$_SESSION['sec'];
   $user=  $_SESSION['user'] ;
-  if($vd=="done" && $slde=="done"){
+  if($vd=="done" && $slde=="done" && $qb=="done" && $qm=="done"){
      
       
       
@@ -93,9 +101,15 @@ if(isset($_POST['qstatus'])){
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    <link rel="stylesheet" 
+    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" 
+    integrity="sha512-1ycn6IcaQQ40/MKBW2W4Rhis/DbILU74C1vSrLJxCq57o941Ym01SwNsOMqvEBFlcgUa6xLiPY/NS5R+E6ztJQ==" 
+    crossorigin="anonymous" referrerpolicy="no-referrer" />
+   
     <link rel = "stylesheet" href="css\jquery.bxslider.css">
-<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
-    <script type="text/javascript" src="js\jquery.bxslider.js"></script>
+    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+    
+  <script type="text/javascript" src="js\jquery.bxslider.js"></script>
 
   
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-F3w7mX95PdgyTmZZMECAngseQB83DfGTowi0iMjiWaeVhAn4FJkqJByhZMI3AhiU" crossorigin="anonymous">
@@ -156,7 +170,8 @@ if(isset($_POST['qstatus'])){
   <?php }?> 
 
 
-      </div></div>
+      </div>
+    </div>
      
       <div class="dbar">
         <nav id="navbar-example2" class="navbar navbar-light bg-light px-3">
@@ -174,15 +189,12 @@ if(isset($_POST['qstatus'])){
             </ul>
           </nav>
           <div class="rvwbx" id="rvw">
-              <span class="txt maiin">Give Feedback</span>
-             <!-- <div class="rating">
-                  <h5 class="txt"><span>Rating</span></h5>
-                  <span>&#11088;</span>
-                  <span>&#11088;</span>
-                  <span>&#11088;</span>
-                  <span>&#11088;</span>
-                  <span>&#11088;</span>
-              </div>-->
+              <span class="txt maiin">Give Feedback</span><br><br>
+             <div class="rating">
+             <br><br> <h5 class="txt"><span>Rating</span></h5><br><br>
+                  
+                  <?php include 'star.php'; ?><br><br>
+              </div>
               <div class="wrtrvw">
                  <h5 class="txt"><span>Write a Review</span></h5> 
                  <form action="<?php echo htmlentities($_SERVER['PHP_SELF']); ?>" method="post">
@@ -233,21 +245,17 @@ if(isset($_POST['qstatus'])){
 
   <div class="ovrvw" id="ovrviw">
     <span class="txt maiin">About The Course</span><br><br>
-    <span>Students: 1000</span><br><br>
-    <span>Section: 4</span>
+    <span>Students: <?php $crud->snum($_SESSION['sec']);?></span><br><br>
+    <!--<span>Section: 4</span>-->
     <div class="rating">
         <h5 class="txt"><span>Description</span></h5>
-        <span>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Iste amet, voluptates ex odio voluptas, beatae omnis unde esse sunt placeat doloribus nesciunt, eligendi voluptatum quaerat dolores! Cupiditate, porro ullam minus sit asperiores similique veritatis nemo suscipit culpa commodi nobis possimus optio sapiente magnam vitae maxime, error a fugiat ratione, soluta aperiam consequuntur. Itaque, neque numquam. Repudiandae, quo? Maiores a, tenetur animi excepturi perspiciatis maxime sunt sint iure optio, laudantium dignissimos tempore aliquam quo aspernatur eligendi placeat dolorem minima ea quod? Nostrum numquam dolore sequi odio at ullam, ad obcaecati unde rerum, perferendis aliquid natus maxime a maiores explicabo sit fugiat.</span>
+        <span><?php echo $_SESSION['cdes']?></span>
     </div>
     <div class="wrtrvw">
        <h5 class="txt"><span>Instructor</span></h5> 
-       <span> <img src="images\images.jpg"></span>
-      <span>Shirin Sultana</span><br>
-       <span>I am a Software Engineer and part time lecturer. 
-
-        With a Master's Degree in Computer Science, I have spent over a decade teaching Web, Software and Database Development Courses. I also have as much industry experience in Web Application Development and Azure Cloud System and Server Administration.
-        
-        I enjoy teaching IT and Development courses and hope to impart the latest in industry standards and knowledge to my students.</span>
+       <span> <img src="images\images.jpg" height="80px" width="100px" style="border-radius: 50px;"></span>
+      <span>&nbsp;&nbsp;&nbsp;&nbsp;<?php echo $tcrname ?></span><br><br><br>
+       <span><?php echo $ides['ides'] ?></span>
     </div>
 </div>
       </div>
@@ -276,11 +284,13 @@ if(isset($_POST['qstatus'])){
           <div class="accordion-item">
             <h2 class="accordion-header" id="headingTwo">
            
-            <a href="main.php?sec=<?php echo $_SESSION['sec'];?>" target="_blank" class="accordion-button" style="text-decoration: none; color:black;"><input type="submit" id="stts"  class="tst" name="qstatus" value="done"><span  class="spce">Quiz</span></a></h4>
-           
+            <a href="main.php?sec=<?php echo $_SESSION['sec'];?>&b=Basic" target="_blank" class="accordion-button" style="text-decoration: none; color:black;"><input type="checkbox" id="stts"  class="tst" name="qbstatus" value="done"><span  class="spce">Quiz&nbsp;(Basic Level)</span></a>
+            <a href="main.php?sec=<?php echo $_SESSION['sec'];?>&b=Medium" target="_blank" class="accordion-button" style="text-decoration: none; color:black;"><input type="checkbox" id="stts"  class="tst" name="qmstatus" value="done"><span  class="spce">Quiz&nbsp;(Medium Level)</span></a>
+            <a href="main.php?sec=<?php echo $_SESSION['sec'];?>&b=High" target="_blank" class="accordion-button" style="text-decoration: none; color:black;"><input type="submit" id="stts"  class="tst" name="qstatus" value="done"><span  class="spce">Quiz&nbsp;(High Level)</span></a>
+            </h2>
             </div>
               
-            </h2>
+            
             
           </div>
         </div>
@@ -314,20 +324,7 @@ if(isset($_POST['qstatus'])){
        }
       
     </script>
-    
-    
-              
-    
-    <script>
-        $('#<?php echo $_SESSION['ln'] ?>').magnificPopup({
-            type: 'inline',
-            midclick: true
-        })
-        $('#pptlnk').magnificPopup({
-            type: 'inline',
-            midclick: true
-        })
-    </script>
+   
     <script>
   $(document).ready(function(){
     $('.slider').bxSlider({
@@ -335,6 +332,8 @@ if(isset($_POST['qstatus'])){
     });
   });
 </script>
+
+ 
     <script src="alert_copy.js" type="text/javascript"></script>
 </body>
 </html>

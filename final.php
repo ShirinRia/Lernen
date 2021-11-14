@@ -2,16 +2,16 @@
 
 session_start();
 require_once 'db/conn.php';
-
+$level = $_GET['b'];
 $cid=$_SESSION['qid'];
-$res = $crud->ques($cid);
+$res = $crud->ques($cid,$level);
 //$ans = $crud->crct();
 //$_SESSION['ansr'] = $ans['coption'];
 ?>
 
 <html>
 <head>
-	<title>PHP Quizer</title>
+	<title>Quizer</title>
 	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
 	<link rel="stylesheet" type="text/css" href="css/style.css">
 </head>
@@ -19,7 +19,6 @@ $res = $crud->ques($cid);
 
 	<header>
 		<div class="container">
-			<p>PHP Quizer</p>
 		</div>
 	</header>
 
@@ -40,7 +39,7 @@ $res = $crud->ques($cid);
       <td><?php echo $r['question_text'] ?></td>
 	  <?php $usans = $crud->usransr($r['question_number']);?>
       <td>Your Answer :<?php echo $usans['coption'];  ?><br>
-	  <?php $ans = $crud->crct($cid,$r['question_number']);?>
+	  <?php $ans = $crud->crct($cid,$r['question_number'],$level);?>
 	Correct Answer: <?php echo $ans['coption'];  ?></td>
     </tr>
 	   

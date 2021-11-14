@@ -5,7 +5,7 @@
             $this->db = $conn;
       }
       
-      public function insert($email,$otp){
+      public function insert($email,$otp,$user){
        try {
         $sql = "select * from sign where   email = :email";
         $stmt = $this->db->prepare($sql);
@@ -15,11 +15,12 @@
        if($reslt==0)
       {
 
-        $sql = "INSERT INTO sign (email,OTP) VALUES (:email, :otp)";
+        $sql = "INSERT INTO sign (email,OTP,username) VALUES (:email, :otp, :user)";
         $stmt = $this->db->prepare($sql);
 
         $stmt->bindparam(':email',$email);
         $stmt->bindparam(':otp',$otp);
+        $stmt->bindparam(':user',$user);
         $stmt->execute();
         return true;
        }
@@ -30,11 +31,11 @@
          return false;
        }
       }
-      public function insertt($full,$user,$pass,$gender,$type,$em){
+      public function insertt($full,$user,$pass,$gender,$type,$em,$mn){
         try {
         
  
-          $sql = "UPDATE `sign` SET `username`=:user, `fullname`=:full, `passwor`=:pass, `gender`=:gender, `type`=:type WHERE email=:em";
+          $sql = "UPDATE `sign` SET `username`=:user, `fullname`=:full, `passwor`=:pass, `gender`=:gender, `type`=:type, `otpmtch`=:mn WHERE email=:em";
     
          $stmt = $this->db->prepare($sql);
  
@@ -44,6 +45,7 @@
          $stmt->bindparam(':gender',$gender);
          $stmt->bindparam(':type',$type);
          $stmt->bindparam(':em',$em);
+         $stmt->bindparam(':mn',$mn);
          $stmt->execute();
          return true;
 
@@ -170,8 +172,24 @@
  
          return true;
         }
-        
+        catch (PDOException $e) {
+          echo $e->getMessage();
+          return false;
+        }
+       }
+       public function snum($cid){
+        try {
+    
+        $sql = "select * from registration where c_id=:cid";
+        $stmt = $this->db->prepare($sql);
        
+        $stmt->bindparam(':cid',$cid);
+        $stmt->execute();
+        $reslt = $stmt->rowCount();
+        echo  $reslt;
+ 
+         return true;
+        }
         catch (PDOException $e) {
           echo $e->getMessage();
           return false;
@@ -295,7 +313,21 @@
       }
       
      }
-
+     public function descrption($id){
+        
+      try{
+        $sql = "select * from course where c_id = :id";
+        $stmt = $this->db->prepare($sql);
+        $stmt->bindparam(':id', $id);
+        $stmt->execute();
+        $result = $stmt->fetch();
+        return $result;
+   }catch (PDOException $e) {
+        echo $e->getMessage();
+        return false;
+    }
+    
+   }
        public function getcrsid($title){
         
         try{
@@ -417,7 +449,7 @@
 }
      public function best(){
       try{
-        $sql = "SELECT * FROM `books` ";
+        $sql = "SELECT * FROM `books`WHERE bcat='Academic(College)' ";
         $result = $this->db->query($sql);
         return $result;
     }catch (PDOException $e) {
@@ -428,7 +460,7 @@
    }
    public function devlpmnt(){
     try{
-      $sql = "SELECT * FROM `books` ";
+      $sql = "SELECT * FROM `books`WHERE bcat='Development' ";
       $result = $this->db->query($sql);
       return $result;
   }catch (PDOException $e) {
@@ -439,7 +471,7 @@
  }
  public function genknw(){
   try{
-    $sql = "SELECT * FROM `books` ";
+    $sql = "SELECT * FROM `books`WHERE bcat='GK' ";
     $result = $this->db->query($sql);
     return $result;
 }catch (PDOException $e) {
@@ -450,7 +482,7 @@
 }
 public function ilts(){
   try{
-    $sql = "SELECT * FROM `books` ";
+    $sql = "SELECT * FROM `books`WHERE bcat='IELTS' ";
     $result = $this->db->query($sql);
     return $result;
 }catch (PDOException $e) {
@@ -461,7 +493,7 @@ public function ilts(){
 }
 public function islamic(){
   try{
-    $sql = "SELECT * FROM `books` ";
+    $sql = "SELECT * FROM `books`WHERE bcat='Islam Shikkha' ";
     $result = $this->db->query($sql);
     return $result;
 }catch (PDOException $e) {
@@ -472,7 +504,7 @@ public function islamic(){
 }
 public function design(){
   try{
-    $sql = "SELECT * FROM `books` ";
+    $sql = "SELECT * FROM `books`WHERE bcat='Design' ";
     $result = $this->db->query($sql);
     return $result;
 }catch (PDOException $e) {
@@ -483,7 +515,7 @@ public function design(){
 }
 public function school(){
   try{
-    $sql = "SELECT * FROM `books` ";
+    $sql = "SELECT * FROM `books`WHERE bcat='Academic(School)' ";
     $result = $this->db->query($sql);
     return $result;
 }catch (PDOException $e) {
@@ -494,7 +526,7 @@ public function school(){
 }
 public function college(){
   try{
-    $sql = "SELECT * FROM `books` ";
+    $sql = "SELECT * FROM `books`WHERE bcat='Academic(College)'";
     $result = $this->db->query($sql);
     return $result;
 }catch (PDOException $e) {
@@ -505,7 +537,7 @@ public function college(){
 }
 public function english(){
   try{
-    $sql = "SELECT * FROM `books` ";
+    $sql = "SELECT * FROM `books`WHERE bcat='Academic(College)' ";
     $result = $this->db->query($sql);
     return $result;
 }catch (PDOException $e) {
@@ -579,15 +611,10 @@ public function ecat($ctid){
 }
 
 }
-
 public function revew($id){
-        
   try{
-    $sql = "select * from review where cid = :id";
-    $stmt = $this->db->prepare($sql);
-    $stmt->bindparam(':id', $id);
-    $stmt->execute();
-    $result = $stmt->fetch();
+    $sql = "select * from review where cid = $id";
+    $result = $this->db->query($sql);
     return $result;
 }catch (PDOException $e) {
     echo $e->getMessage();
@@ -595,6 +622,7 @@ public function revew($id){
 }
 
 }
+
 
  public function quiz($id){
   try{
@@ -668,11 +696,11 @@ public function hstry($id){
      }
  }
 
-   public function updtusrdata($n,$em,$mb,$bd,$cn,$destination){
+   public function updtusrdata($n,$em,$mb,$bd,$cn,$destination,$ides){
     //echo 'otp success';
 
    try{ 
-    $sql = "UPDATE `sign` SET `mobile`=:mbl, `fullname`=:nam, `country`=:cntry, `bdate`=:dt, `img_path`=:img WHERE email=:em";
+    $sql = "UPDATE `sign` SET `mobile`=:mbl, `fullname`=:nam, `country`=:cntry, `bdate`=:dt, `img_path`=:img, `ides`=:ides WHERE email=:em";
     $stmt = $this->db->prepare($sql);
     // bind all placeholders to the actual values
     $stmt->bindparam(':nam',$n);
@@ -680,7 +708,7 @@ public function hstry($id){
     $stmt->bindparam(':dt',$bd);
     $stmt->bindparam(':cntry',$cn);
     $stmt->bindparam(':em',$em);
-    
+    $stmt->bindparam(':ides',$ides);
     $stmt->bindparam(':img',$destination);
     // execute statement
     $stmt->execute();
@@ -710,11 +738,11 @@ public function hstry($id){
       return false;
     }
   }
-  public function insertcrs($title,$descrip,$destination,$cat,$tname,$tid){
+  public function insertcrs($title,$descrip,$destination,$cat,$tname,$tid,$lrn,$cdes){
     try {
     
 
-     $sql = "INSERT INTO course (c_name,category, des,  img_path,tid, tname	) VALUES (:title, :cat, :descrip,  :img,:tid, :tname)";
+     $sql = "INSERT INTO course (c_name,category, des,  img_path,tid, tname,learn, cdes	) VALUES (:title, :cat, :descrip,  :img,:tid, :tname,:lrn, :cdes)";
      $stmt = $this->db->prepare($sql);
 
      $stmt->bindparam(':title',$title);
@@ -723,6 +751,26 @@ public function hstry($id){
      $stmt->bindparam(':img',$destination);
      $stmt->bindparam(':tid',$tid);
      $stmt->bindparam(':tname',$tname);
+     $stmt->bindparam(':lrn',$lrn);
+     $stmt->bindparam(':cdes',$cdes);
+
+     $stmt->execute();
+     return true;
+    }
+
+    catch (PDOException $e) {
+      echo $e->getMessage();
+      return false;
+    }
+   }
+   public function insertstr( $cid){
+    try {
+    
+
+     $sql = "INSERT INTO stars (crs_id	) VALUES (:cid)";
+     $stmt = $this->db->prepare($sql);
+
+     $stmt->bindparam(':cid',$cid);
 
      $stmt->execute();
      return true;
@@ -886,6 +934,7 @@ public function hstry($id){
     
 
      $sql = "INSERT INTO books (bname,aname,bcat,pdf,publshr,edtn,lang,img_path) VALUES (:title, :author, :cat, :pdf, :pub, :ed, :lang, :destination)";
+     
      $stmt = $this->db->prepare($sql);
 
      $stmt->bindparam(':title',$title);
@@ -906,9 +955,9 @@ public function hstry($id){
       return false;
     }
    }
-   public function ques($cid){
+   public function ques($cid,$lvl){
     try{
-      $sql = "SELECT * FROM questions where questions.crs_id=$cid ";
+      $sql = "SELECT * FROM questions where questions.crs_id=$cid AND level='$lvl'";
       $result = $this->db->query($sql);
       return $result;
   }catch (PDOException $e) {
@@ -917,10 +966,10 @@ public function hstry($id){
  }
   
  }
- public function crct($cid,$numbr){
+ public function crct($cid,$numbr,$level){
         
   try{
-    $sql = "SELECT * FROM options WHERE options.crs_id=:cid AND question_number=:numbr AND is_correct=1;";
+    $sql = "SELECT * FROM options WHERE options.crs_id=:cid AND question_number=:numbr AND is_correct=1 AND level ='$level';";
     $stmt = $this->db->prepare($sql);
     $stmt->bindparam(':numbr', $numbr);
     
@@ -964,5 +1013,314 @@ public function usrdlt(){
 }
 
 }
+public function ides($ides){
+  try {
+   $sql = "select * from sign where   user_id = :ides";
+   $stmt = $this->db->prepare($sql);
+   $stmt->bindparam(':ides',$ides);
+   $stmt->execute();
+   $result = $stmt->fetch();
+
+   return $result;
+  
+ }
+  catch (PDOException $e) {
+    echo $e->getMessage();
+    return false;
+  }
+ }
+ public function viewvdo($id){
+  try {
+   $sql = "select * from section where   crs_id = :id";
+   $stmt = $this->db->prepare($sql);
+   $stmt->bindparam(':id',$id);
+   $stmt->execute();
+   $result = $stmt->fetch();
+
+   return $result;
+  
+ }
+  catch (PDOException $e) {
+    echo $e->getMessage();
+    return false;
+  }
+ }
+ public function viewimg($id){
+  try{
+    $sql = "SELECT * FROM slide where cid=$id";
+    $result = $this->db->query($sql);
+    return $result;
+}catch (PDOException $e) {
+    echo $e->getMessage();
+    return false;
+}
+
+}
+public function viewqus($id){
+  try{
+    $sql = "SELECT * FROM questions where crs_id=$id";
+    $result = $this->db->query($sql);
+    return $result;
+}catch (PDOException $e) {
+    echo $e->getMessage();
+    return false;
+}
+
+}
+public function viewops($id,$qn){
+  try{
+    $sql = "SELECT * FROM options where crs_id=$id AND question_number=$qn";
+    $result = $this->db->query($sql);
+    return $result;
+}catch (PDOException $e) {
+    echo $e->getMessage();
+    return false;
+}
+
+}
+public function viewcrct($id,$qn){
+  try {
+   $sql = "select * from options where   crs_id = :id AND question_number=:qn AND is_correct=1";
+   $stmt = $this->db->prepare($sql);
+   $stmt->bindparam(':id',$id);
+   
+   $stmt->bindparam(':qn',$qn);
+
+   $stmt->execute();
+   $result = $stmt->fetch();
+
+   return $result;
+  
+ }
+  catch (PDOException $e) {
+    echo $e->getMessage();
+    return false;
+  }
+ }
+ public function updtvdo($id,$destination){
+  //echo 'otp success';
+
+ try{ 
+  $sql = "UPDATE `section` SET   `video`=:vdo WHERE crs_id=:cid";
+  $stmt = $this->db->prepare($sql);
+  // bind all placeholders to the actual values
+  $stmt->bindparam(':cid',$id);
+  $stmt->bindparam(':vdo',$destination);
+  // execute statement
+  $stmt->execute();
+  return true;
+  }
+  catch (PDOException $e) {
+    echo $e->getMessage();
+    return false;
+  }
+}
+public function updtimg($id,$destination){
+  //echo 'otp success';
+
+ try{ 
+  $sql = "INSERT INTO books (bname,aname,bcat,pdf,publshr,edtn,lang,img_path) VALUES (:title, :author, :cat, :pdf, :pub, :ed, :lang, :destination)";
+     
+  $stmt = $this->db->prepare($sql);
+  // bind all placeholders to the actual values
+  $stmt->bindparam(':cid',$id);
+  $stmt->bindparam(':vdo',$destination);
+  // execute statement
+  $stmt->execute();
+  return true;
+  }
+  catch (PDOException $e) {
+    echo $e->getMessage();
+    return false;
+  }
+}
+public function deleteimg($destination, $id){
+  try{
+       $sql = "delete from slide where ansr = :img AND cid=:id";
+       $stmt = $this->db->prepare($sql);
+       $stmt->bindparam(':img', $destination);
+       
+       $stmt->bindparam(':id', $id);
+       $stmt->execute();
+       return true;
+   }catch (PDOException $e) {
+       echo $e->getMessage();
+       return false;
+   }
+}
+public function deletequs($qus, $id){
+  try{
+       $sql = "delete from questions where question_number = :qus AND crs_id=:id";
+       $stmt = $this->db->prepare($sql);
+       $stmt->bindparam(':qus', $qus);
+       
+       $stmt->bindparam(':id', $id);
+       $stmt->execute();
+       return true;
+   }catch (PDOException $e) {
+       echo $e->getMessage();
+       return false;
+   }
+}
+public function deleteops($qus, $id){
+  try{
+       $sql = "delete from options where question_number = :qus AND crs_id=:id";
+       $stmt = $this->db->prepare($sql);
+       $stmt->bindparam(':qus', $qus);
+       
+       $stmt->bindparam(':id', $id);
+       $stmt->execute();
+       return true;
+   }catch (PDOException $e) {
+       echo $e->getMessage();
+       return false;
+   }
+}
+public function deletecrs($id){
+  try{
+       $sql = "delete from course where c_id=:id";
+       $stmt = $this->db->prepare($sql);
+       $stmt->bindparam(':id', $id);
+       $stmt->execute();
+       return true;
+   }catch (PDOException $e) {
+       echo $e->getMessage();
+       return false;
+   }
+}
+public function deletecrsarc($id){
+  try{
+       $sql = "delete from archive where cid=:id";
+       $stmt = $this->db->prepare($sql);
+       $stmt->bindparam(':id', $id);
+       $stmt->execute();
+       return true;
+   }catch (PDOException $e) {
+       echo $e->getMessage();
+       return false;
+   }
+}
+
+public function deletecrsopt($id){
+  try{
+       $sql = "delete from options where crs_id=:id";
+       $stmt = $this->db->prepare($sql);
+       $stmt->bindparam(':id', $id);
+       $stmt->execute();
+       return true;
+   }catch (PDOException $e) {
+       echo $e->getMessage();
+       return false;
+   }
+}
+
+public function deletecrsqus($id){
+  try{
+       $sql = "delete from questions where crs_id=:id";
+       $stmt = $this->db->prepare($sql);
+       $stmt->bindparam(':id', $id);
+       $stmt->execute();
+       return true;
+   }catch (PDOException $e) {
+       echo $e->getMessage();
+       return false;
+   }
+}
+
+public function deletecrsqa($id){
+  try{
+       $sql = "delete from question where cid=:id";
+       $stmt = $this->db->prepare($sql);
+       $stmt->bindparam(':id', $id);
+       $stmt->execute();
+       return true;
+   }catch (PDOException $e) {
+       echo $e->getMessage();
+       return false;
+   }
+}
+
+public function deletecrsreg($id){
+  try{
+       $sql = "delete from registration where c_id=:id";
+       $stmt = $this->db->prepare($sql);
+       $stmt->bindparam(':id', $id);
+       $stmt->execute();
+       return true;
+   }catch (PDOException $e) {
+       echo $e->getMessage();
+       return false;
+   }
+}
+
+public function deletecrsrev($id){
+  try{
+       $sql = "delete from review where cid=:id";
+       $stmt = $this->db->prepare($sql);
+       $stmt->bindparam(':id', $id);
+       $stmt->execute();
+       return true;
+   }catch (PDOException $e) {
+       echo $e->getMessage();
+       return false;
+   }
+}
+
+public function deletecrssec($id){
+  try{
+       $sql = "delete from section where crs_id=:id";
+       $stmt = $this->db->prepare($sql);
+       $stmt->bindparam(':id', $id);
+       $stmt->execute();
+       return true;
+   }catch (PDOException $e) {
+       echo $e->getMessage();
+       return false;
+   }
+}
+
+public function deletecrssld($id){
+  try{
+       $sql = "delete from slide where cid=:id";
+       $stmt = $this->db->prepare($sql);
+       $stmt->bindparam(':id', $id);
+       $stmt->execute();
+       return true;
+   }catch (PDOException $e) {
+       echo $e->getMessage();
+       return false;
+   }
+}
+
+public function deletecrsstr($id){
+  try{
+       $sql = "delete from stars where crs_id=:id";
+       $stmt = $this->db->prepare($sql);
+       $stmt->bindparam(':id', $id);
+       $stmt->execute();
+       return true;
+   }catch (PDOException $e) {
+       echo $e->getMessage();
+       return false;
+   }
+}
+public function insertdwnld(){
+  try {
+  
+
+    $sql = "UPDATE `books` SET  `download`=2 WHERE bid=9";
+
+   $stmt = $this->db->prepare($sql);
+
+   $stmt->execute();
+   return true;
+
+ }
+  catch (PDOException $e) {
+    echo $e->getMessage();
+    return false;
+  }
+ }
+
   }
 ?>

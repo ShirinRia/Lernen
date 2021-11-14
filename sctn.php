@@ -2,7 +2,9 @@
 $title ='Homepage';
 require_once 'db/conn.php';  
 include_once 'includes/session.php';
-
+$_SESSION['B']='Basic';
+$_SESSION['M']='Medium';
+$_SESSION['H']='High';
 if(isset($_POST['up'])){
     $title= $_POST['crsnm'];
   //  $descrip= $_POST['crsdescrip'];
@@ -81,8 +83,6 @@ if(isset($_POST['qup'])){
         <div class="sdcntntthre sdcntnt">
         <a href="#" class="sd">Status</a></div>
         <div class="sdcntntthre sdcntnt">
-        <a href="#" class="sd">Update Content</a></div>
-        <div class="sdcntntthre sdcntnt">
         <a href="home.php" class="sd">Exit</a></div>
     </div>
     <div class="crsmid">
@@ -114,9 +114,9 @@ if(isset($_POST['qup'])){
             <div  class="bx">
        
             <div class = "menu">
-            <a href="add.php" target="_blank" class="button">Add Basic level questions</a>
-            <a href="add.php" target="_blank" class="button">Add Medium level questions</a>
-            <a href="add.php" target="_blank" class="button">Add High level questions</a><br><br><br><br>
+            <a href="add.php?lev=<?php echo $_SESSION['B'];?>" target="_blank" class="button">Add Basic level questions</a>
+            <a href="add.php?lev=<?php echo $_SESSION['M'];?>" target="_blank" class="button">Add Medium level questions</a>
+            <a href="add.php?lev=<?php echo $_SESSION['H'];?>" target="_blank" class="button">Add High level questions</a><br><br><br><br>
 </div>
             </div>
             

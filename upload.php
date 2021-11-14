@@ -5,7 +5,9 @@ require_once 'db/conn.php';
 $results = $crud->catgry();
 if(isset($_POST['upload'])){
     $title= $_POST['crsname'];
-    $descrip= $_POST['crsdescrip'];
+    $descrip= $_POST['overview'];
+    $lrn= $_POST['learn'];
+    $cdes= $_POST['crsdescrip'];
     //$sec= $_POST['crssec'];
     $cat=$_POST['catgry'];
     $_SESSION['catid'] = $cat;
@@ -21,13 +23,14 @@ if(isset($_POST['upload'])){
         $destination = "$target_dir$title.$ext";
         move_uploaded_file($orig_file,$destination);
     //exit();
-    $success = $crud->insertcrs( $title,$descrip,$destination,$cat,$tname,$tid);
+    $success = $crud->insertcrs( $title,$descrip,$destination,$cat,$tname,$tid,$lrn,$cdes);
 
     if($success) {
      //  sendemail ::sendmail($email,$full,$sub,$otp);
        //echo '<h1>sccs</h1>';
       // $success = $crud->num();
     //  header("Location: homepage.php");
+
     $id = $_GET['crsname'];
     $result = $crud->getcrsid($title);
     $_SESSION['fullname'] = $result['fullname'];
@@ -35,6 +38,7 @@ if(isset($_POST['upload'])){
     $_SESSION['sec'] = $result['sectn'];
    // $_SESSION['full'] = $full;
   //  $_SESSION['email'] = $email;
+  $rate = $crud->insertstr( $_SESSION['id']);
     header("Location:sctn.php");
        
     }
@@ -70,8 +74,12 @@ if(isset($_POST['upload'])){
                <span class="crthtxt">Select Your Course thumbnail</span>
                <!-- <input type="file" class="crvdo" name="crsthmb" placeholder="Select">-->
                 <input type="file" accept="image/*" class="custom-file-input crvdo" id="avatar" name="avatar" >
-           
-            <input type="text" class="irvw" name="crsdescrip" placeholder="Write something about your course">
+                <span class="crthtxt ovr"><b>Write Course Overview</b></span>
+            <input type="text" class="irvw" name="overview" placeholder="Write an overview of your course">
+            <span class="crthtxt updes"><b>Write Course desciption</b></span>
+            <input type="text" class="irvw updestxt" name="crsdescrip">
+            <span class="crthtxt lrn"><b>What will students learn from your course</b></span>
+            <input type="text" class="irvw uplrn" name="learn">
            
         </div>
     </div>

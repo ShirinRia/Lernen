@@ -1,14 +1,17 @@
 <?php 
 $title ='Homepage';
-
 include_once 'includes/session.php';
+
 require_once 'db/conn.php';
+
 $uid=$_SESSION['userid'];
+
 $results = $crud->mycrs($uid);
 
 $archv = $crud->myarchv($uid);
 
 ?> 
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -19,11 +22,12 @@ $archv = $crud->myarchv($uid);
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
    
+    
     <link rel = "stylesheet" href="card_my.css">
     <link rel = "stylesheet" href="mycourse.css">
-
 </head>
 <body>
+
     <div class="corse_container">
        <div class="mycourses">
            <h3 class="crstitl">My Courses</h3><br>
@@ -50,7 +54,7 @@ $archv = $crud->myarchv($uid);
         <div class="card-group">
         
         <?php while($r = $results->fetch(PDO::FETCH_ASSOC)) { ?>
-            <a href="vdo.php?sec=<?php echo $r['c_id']?>">  
+            <a href="vdo.php?sec=<?php echo $r['c_id']?>&tcr=<?php echo $r['tcr_name'];?>">  
               <div class="testng">
               <div class="crd crdth">
                 <img src="<?php echo empty($r['img_path']) ? "uploads/images (1).png" : $r['img_path'] ; ?>" class="card-img-top" alt="...">
@@ -101,5 +105,6 @@ $archv = $crud->myarchv($uid);
    }
    
 </script>
+
 </body>
 </html>

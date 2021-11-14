@@ -1,12 +1,13 @@
 <?php session_start(); ?>
 <?php  include 'db.php';
-	$level = $_GET['lev'];
-	$_SESSION['l']=$level;
+	$id=$_GET['courseid'];
+	$_SESSION['l']=$id;
 if(isset($_POST['submit'])){
+	$level = $_POST['level'];
 	$question_number = $_POST['question_number'];
 	$question_text = $_POST['question_text'];
 	$correct_choice = $_POST['correct_choice'];
-	$id=$_SESSION['id'];
+	$id=$_GET['courseid'];
 	// Choice Array
 	$choice = array();
 	$choice[1] = $_POST['choice1'];
@@ -87,11 +88,19 @@ if(isset($_POST['submit'])){
 					echo "<h4>" . $message . "</h4>";
 				} ?>
 								
-				<form method="POST" action="add.php?lev=<?php echo $_SESSION['l'];?>">
+				<form method="POST" action="add2.php?courseid=<?php echo $_SESSION['l'];?>">
+				<select class="form-select" name="level" >
+								<option selected>Select level</option>
+									<option value="Basic">Basic</option>
+									<option value="Medium">Medium</option>
+									<option value="High">High</option>
+								
+         					 </select>
 						<p>
 							<label>Question Number:</label>
 							<input type="number" name="question_number" >
 						</p>
+						
 						<p>
 							<label>Question Text:</label>
 							<input type="text" name="question_text">

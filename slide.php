@@ -2,7 +2,7 @@
 $title ='Homepage';
 require_once 'db/conn.php';  
 include_once 'includes/session.php';
- $n="four";
+
 if(isset($_POST['upld'])){
     
     $id= $_SESSION['id'];
@@ -10,7 +10,7 @@ if(isset($_POST['upld'])){
     $orig_file = $_FILES["avatar"]["tmp_name"];
     $ext = pathinfo($_FILES["avatar"]["name"], PATHINFO_EXTENSION);
     $target_dir = 'uploads/';
-    $destination = "$target_dir$n.$ext";
+    $destination = $target_dir . basename($_FILES["avatar"]["name"]);
     move_uploaded_file($orig_file,$destination);
 
    $success = $crud->insertsld($destination, $id);
@@ -38,7 +38,7 @@ if(isset($_POST['upld'])){
     <div class="input-group">
       
         <input type="file" class="form-control" id="inputGroupFile04" name="avatar" aria-describedby="inputGroupFileAddon04" aria-label="Upload">
-        <input class="btn btn-outline-secondary" type="submit" id="inputGroupFileAddon04" name="upld" value="Upload">
+        <input class="btn btn-secondary" type="submit" id="inputGroupFileAddon04" name="upld" value="Upload">
   
          </form>
     </div>

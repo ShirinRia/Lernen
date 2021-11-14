@@ -69,6 +69,7 @@
 }
 .alert-danger, .alert{
     position:absolute;
+    z-index: 10000;
     width:50%;
 }
 .pos{

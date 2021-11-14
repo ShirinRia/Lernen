@@ -15,7 +15,7 @@ if(isset($_POST['upload'])){
    $orig_file = $_FILES["avatar"]["tmp_name"];
    $ext = pathinfo($_FILES["avatar"]["name"], PATHINFO_EXTENSION);
    $target_dir = 'uploads/';
-   $destination = "$target_dir$title.$ext";
+   $destination = $target_dir . basename($_FILES["avatar"]["name"]);
    move_uploaded_file($orig_file,$destination);
    $pdf=$_FILES['pdf']['name'];
    $pdf_type=$_FILES['pdf']['type'];
@@ -34,7 +34,7 @@ if(isset($_POST['upload'])){
    // $_SESSION['user'] = $user;
    // $_SESSION['full'] = $full;
   //  $_SESSION['email'] = $email;
-    header("Location: home.php");
+    header("Location: bupload.php");
        
     }
     else{
@@ -45,9 +45,9 @@ if(isset($_POST['upload'])){
 
 ?>
      <?php require_once 'upside.php'; ?>
-    <div class="crsmid">
+    <div class="crsmid" style="height:600px;">
         <form action="<?php echo htmlentities($_SERVER['PHP_SELF']); ?>" method="post" enctype="multipart/form-data">
-        <div class="brdr">
+        <div class="brdr" style="height:500px;">
         <div class="crupper">
         <input type="text" class="name custom-file-input" name="bkname" placeholder="Enter Your Book Name">
         <select class="form-select cat " name="catgry" >
@@ -84,7 +84,7 @@ if(isset($_POST['upload'])){
             
         </div>
     </div>
-    <input type="submit" class="btn in" name="upload" value=" Upload">
+    <input type="submit" class="btn in" name="upload" value=" Upload" style="top: 400px;">
 </form>
     </div>
 </body>

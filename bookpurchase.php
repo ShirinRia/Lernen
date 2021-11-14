@@ -44,7 +44,7 @@ include 'pageheader.php';
 ?>
     <div class="prchscntnt shadow-sm p-3 mb-5 bg-body rounded">
         <div class="bookimg">
-            <img src="<?php echo ($_SESSION['imgpath']) ?>" alt="book">
+            <img src="<?php echo ($_SESSION['imgpath']) ?>" alt="book" width=100%>
         </div>
         <div class="bokdetails">
             <span class = "bname"> <?php echo $_SESSION['title'] ;  ?></span><br><br>
@@ -56,11 +56,11 @@ include 'pageheader.php';
             
             <a href="uploads/<?php echo ( $_SESSION['img'])?>" class="by crt" target="_blank"><span class ="bttn">Read</span></a>
         </div>
-        <div class="impinfo">
+       <!-- <div class="impinfo">
             <p>Cash On Delivery</p>
             <p>7 days happy exchange</p>
             <p>Delivery Charge 50TK.</p>
-        </div>
+        </div>-->
 
     </div>
     <div class="tbl">

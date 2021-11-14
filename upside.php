@@ -15,8 +15,7 @@ require_once 'db/conn.php';?>
         <a href="bupload.php">Book</a></div>
         <div class="sdcntntthre sdcntnt">
         <a href="status.php">Status</a></div>
-        <div class="sdcntntthre sdcntnt">
-        <a href="#">Update Content</a></div>
+       
         <div class="sdcntntthre sdcntnt">
         <a href="home.php">Exit</a></div>
     </div>

@@ -51,7 +51,8 @@ if(isset($_POST['sotp'])){
   $vuser= $_POST['ouser'];
   $o=$_POST['otp'];
  
-  $result=$opt->otp($email,$o);
+  $no=md5($o);
+  $result=$opt->otp($email,$no);
   if($result) {
  // echo '<h2>MATCH<h2>';
   //require_once 'index.php';
@@ -61,7 +62,8 @@ if(isset($_POST['sotp'])){
    $type= $_SESSION['tp'];
    $gender= $_SESSION['gn'];
    $newpass= $_SESSION['pass'];
-  $success = $crud->insertt($full,$user,$newpass,$gender,$type,$email);
+   $mn= 'Match';
+   $success = $crud->insertt($full,$user,$newpass,$gender,$type,$email,$mn);
   if($success) {
    
   }
