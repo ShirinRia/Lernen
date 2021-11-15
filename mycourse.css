@@ -7,10 +7,10 @@ body{
     width: 100%;
     
   background-color: whitesmoke;
-    top: 85px;
+    top: 0px;
  }
  .mycourses{
-    background-color: black;
+    background-image: url(login-back.png);
     position: relative;
     height: 15%;
     width: 100%;
@@ -40,7 +40,7 @@ body{
  }
  
  .anchor{
-    background-color:black;
+    background-color:transparent;
     color:white;
     border:none;
     position:relative;
@@ -62,7 +62,7 @@ body{
     visibility: hidden;
 }
 .testng{
-    height: 450px;
+    height: 350px;
 }
 .archv{
     border:none;

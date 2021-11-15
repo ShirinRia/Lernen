@@ -22,7 +22,7 @@ if(isset($_POST['forgtpass'])){
     header("Location: forgtsuccss.php?usr=$usr&eml=$email");
     } 
      else{
-        echo '<div class ="alert alert-danger" id= "alert">Username or Password is Incorrect! Please try again</div>';
+        echo '<div class ="alert alert-danger" id= "alert">This email is not registered</div>';
    
      }
 }
@@ -80,5 +80,7 @@ if(isset($_POST['cncl'])){
             </div>
         </form>
     </div>
+    
+    <script src="alert_copy.js" type="text/javascript"></script>
 </body>
 </html>

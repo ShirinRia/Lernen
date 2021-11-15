@@ -24,6 +24,12 @@ if(isset($_POST['submit'])){
        
     }
 }
+if(isset($_POST['cncl'])){
+  
+    header("Location: index.php");
+       
+    }
+
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -62,7 +68,7 @@ if(isset($_POST['submit'])){
               <hr>
               <h5 style="font-weight: normal;">A strong password has a combination of letters, digits and punctuation marks.</h5 ><br>
               <div class="input-group mb-3">
-                <input type="text" name="newpass" class="form-control" aria-label="Recipient's username" aria-describedby="basic-addon2" placeholder="New Password">
+                <input type="password" name="newpass" class="form-control" aria-label="Recipient's username" aria-describedby="basic-addon2" placeholder="New Password">
                <!--123ri@2018016-->
                
               </div>

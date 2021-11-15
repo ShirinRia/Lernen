@@ -449,7 +449,7 @@
 }
      public function best(){
       try{
-        $sql = "SELECT * FROM `books`WHERE bcat='Academic(College)' ";
+        $sql = "SELECT * FROM `books`WHERE bcat='Programming' ";
         $result = $this->db->query($sql);
         return $result;
     }catch (PDOException $e) {
@@ -537,7 +537,7 @@ public function college(){
 }
 public function english(){
   try{
-    $sql = "SELECT * FROM `books`WHERE bcat='Academic(College)' ";
+    $sql = "SELECT * FROM `books`WHERE bcat='Photography' ";
     $result = $this->db->query($sql);
     return $result;
 }catch (PDOException $e) {

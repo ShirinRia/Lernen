@@ -51,21 +51,21 @@ $results = $crud->crd();
             <h2 class="box_cntnt usr-num"><?php $crud->num();?></h2>
         </div>
         <div class="Instructor uiblc">
-            <h1 class="box_cntnt usr ins"> Instructors</h1>
-            <h2 class="box_cntnt usr-num"><?php $crud->tnum();?></h2>
+            <h1 class="box_cntnt usr ins" style="left: 10px;"> Instructors</h1>
+            <h2 class="box_cntnt usr-num" style="left: -100px;"><?php $crud->tnum();?></h2>
         </div>
         <div class="lerners uiblc">
-            <h1 class="box_cntnt usr"> Learners</h1>
+            <h1 class="box_cntnt usr" style="left: 20px;">Learners</h1>
             <h2 class="box_cntnt usr-num"><?php $crud->lnum();?></h2>
         </div>
         <div class="courses uiblc">
-            <h1 class="box_cntnt usr"> Courses</h1>
+            <h1 class="box_cntnt usr" style="left: 20px;" >Courses</h1>
             <h2 class="box_cntnt usr-num"><?php $crud->cnum();?></h2>
         </div>
     </div>
-    <div class="smid">
+    <div class="smid" >
            <!--Newly Launched-->
-           <div class="newlylaunched">
+           <div class="newlylaunched" style="background-color:whitesmoke;">
             <h1 class="newcrs newly">NEWLY LAUNCHED COURSES</h1>
             
             <?php 

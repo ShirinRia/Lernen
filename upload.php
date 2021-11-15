@@ -110,7 +110,7 @@ if(isset($_POST['upload'])){
         </div>
             <!--<input type="text" class="irvw updestxt" name="crsdescrip">-->
             
-            <span class="crthtxt lrn"><b>What will students learn from your course</b></span>
+            <span class="crthtxt lrnn" style="top: 750px;"><b>What will students learn from your course</b></span>
        <!--<input type="text" class="irvw uplrn" name="learn">-->
            
             <div class="irvw uplrn">

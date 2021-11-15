@@ -2,7 +2,7 @@
     overflow-x: hidden;
 }
 .bnr{
-    background-color:black;
+    background-image: url(login-back.png);
     
     color:white;
     width:100%;

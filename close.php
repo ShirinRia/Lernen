@@ -21,7 +21,7 @@ require_once 'db/conn.php';
             <span style="color:red; font-weight: 700;">WARNING : </span>
             If you close your account, you will be unsubscribed from all your courses, and will lose access forever.</h5>
             <div class="svbtn">
-            <a onclick="return confirm('Are you sure you want to delete your account?');" href="delete.php?us=<?php echo $_SESSION['user'];?>" class="p_btn u_btn">Close Account</a>
+            <a onclick="return confirm('Are you sure you want to delete your account?');" href="delete.php?us=<?php echo $_SESSION['user'];?>" class="p_btn u_btn" style="background-color:#B7264D;">Close Account</a>
         </div>
         </div>
     </div>  

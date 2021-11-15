@@ -46,7 +46,7 @@ if(isset($_POST['upload'])){
 
 ?>
      <?php require_once 'upside.php'; ?>
-    <div class="crsmid" style="height:600px;">
+    <div class="crsmid" style="height:657px;">
         <form action="<?php echo htmlentities($_SERVER['PHP_SELF']); ?>" method="post" enctype="multipart/form-data">
         <div class="brdr" style="height:500px;">
         <div class="crupper">

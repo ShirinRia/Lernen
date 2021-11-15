@@ -16,6 +16,8 @@ else{
    $_SESSION['lng'] = $result['lang'];
    $_SESSION['img'] = $result['pdf'];
    $_SESSION['size'] = $result['size'];
+   
+   $_SESSION['imgpath'] = $result['img_path'];
   // $_SESSION['author'] = $result['aname'];
    
 }  

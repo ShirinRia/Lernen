@@ -158,12 +158,12 @@ else{
             <form action="<?php echo htmlentities($_SERVER['PHP_SELF']); ?>" method="post" class="login">
             
                 <div class="lf">
-                <input type="text" class="field" name = "user" placeholder="username" >
-                <input type="password" class="field" name="pass" placeholder="password" >
+                <input type="text" class="field" name = "user" placeholder="username" style="background-color:whitesmoke">
+                <input type="password" class="field" name="pass" placeholder="password" style="background-color:whitesmoke">
                <!-- <h6><u>Sign in as</u></h6>-->
                <!-- <input type="submit" name="tsubmit" class="btn in" value=" Teacher" style="top:245px;">-->
-                <input type="submit" name="submit" class="btn in lrn" value=" Log In" style="top:245px; left: 980px;">
-                <a href="forgot .php" style="text-decoration: none; position:relative; top: 7px;padding-bottom: 5px;">Forgotten Password?</a>
+                <input type="submit" name="submit" class="in lrn" value=" Log In" style="top:245px; left: 980px;">
+                <a href="forgot .php" style="text-decoration: none; position:relative; top: 7px;padding-bottom: 5px;color:#B7264D;">Forgotten Password?</a>
            
                 <hr>
                
@@ -200,9 +200,9 @@ else{
                 </div>
                 <h5><u>Sign up as</u></h5>
                
-                <input type="submit" name="subt" class="btn up" value="Teacher">
+                <input type="submit" name="subt" class="btn up " value="Teacher">
                 
-                <input type="submit" name="sub" class="btn up lrnr" value="Learner"></div>
+                <input type="submit" name="sub" class="btn up lrnr " value="Learner"></div>
             
                     
                 </form>

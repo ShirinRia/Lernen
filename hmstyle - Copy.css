@@ -6,6 +6,7 @@
 }
 body{
    overflow-x: hidden;
+   background-color: whitesmoke;
 }
 .mheader{
    display: block;
@@ -13,7 +14,8 @@ body{
    width: 100%;
 }
 .pcontainer{
-   background-color:  blue;;
+   background:   linear-gradient(
+      45deg, #504c4c, #B7264D);
 }
 
 :before :after{
@@ -266,28 +268,29 @@ a{
 }
 .s_btn{
    width: 150px;
-   background-color:blue;color:white;
+   background-color:#B7264D;
+   color:white;
    height:40px;
    padding: 10px 0px 20px 0px;
 }
 .u_btn{
    width: 150px;
-   background-color:blue;
+   background-color:#B7264D;
    color:white;
    height:45px;
    padding: 10px 0px 10px 20px;
    
 }
 .p_btn:hover {
-   background-color: gray; /* Green */
+   background-color: #B7264D; 
    color: white;
  }
  .s_btn:hover {
-   background-color: darkblue; /* Green */
+   background-color: #9b2f4c;
    color: white;
  }
  .u_btn:hover {
-   background-color: darkblue; /* Green */
+   background-color: #9b2f4c;
    color: white;
  }
 .svbtn{
@@ -413,20 +416,20 @@ width: 100%;
    position:absolute;
    color:white;
    width:40%;
-   top: 40px;
+   top: 30px;
    left: 30px;
 }
 .contact{
    color:white;
    position:absolute;
-   bottom:30px;
+   bottom:20px;
    left: 30px;
 }
 p{
    line-height: 25px;
 }
 .vl {
-   border-left: 6px solid blue;
+   border-left: 6px solid whitesmoke;
    height: 300px;
    position:absolute;
    left: 650px;
@@ -441,7 +444,7 @@ p{
  .dftr{
     color:white;
     top:170px;
-    right: 390px;
+    right: 360px;
  }
  .middlecntnt{
     background-color: white;
@@ -461,7 +464,7 @@ p{
 }
 .middlcntnr{
   position: relative;
-   top: -1170px;
+   top: -1200px;
    left:60px;
    height: 310px;
    width:1250px;
@@ -553,7 +556,7 @@ margin:0;
    position: relative;
    background-color:white;
    width: 100%;
-   height:270px;
+   height:250px;
    top: 10px;
    border-bottom: 2px solid gray;
 }
@@ -561,11 +564,11 @@ margin:0;
    position: absolute;
    top: 10px;
    width: 250px;
-   height:250px;
+   height:230px;
 }
 .thumb{
    width: 250px;
-   height:250px;
+   height:230px;
 }
 .crsdetail{
    position: absolute;

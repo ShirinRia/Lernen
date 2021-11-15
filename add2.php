@@ -39,9 +39,9 @@ if(isset($_POST['submit'])){
 
 				//Second Query for Choices Table
 				$query = "INSERT INTO options (";
-				$query .= "question_number,is_correct,coption,crs_id)";
+				$query .= "question_number,is_correct,coption,crs_id,level)";
 				$query .= " VALUES (";
-				$query .=  "'{$question_number}','{$is_correct}','{$value}','{$id}' ";
+				$query .=  "'{$question_number}','{$is_correct}','{$value}','{$id}','{$level}' ";
 				$query .= ")";
 
 				$insert_row = mysqli_query($connection,$query);

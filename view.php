@@ -37,7 +37,7 @@ $qus = $crud->viewqus($_SESSION['cid']);
             top: 20px;
         }
         .title{
-            background-color: rgb(119, 156, 51); 
+            background-color: #9b2f4c; 
             color:white; 
             width: 100%; 
             height: 50px; 
@@ -165,7 +165,8 @@ $qus = $crud->viewqus($_SESSION['cid']);
                   <tr>
                    
                     <td colspan="4" align="center">
-                        <a href="add2.php?courseid=<?php echo $_SESSION['cid']?>" target="_blank"class="btn btn-primary"> ADD Questions</a>
+                        <a href="add2.php?courseid=<?php echo $_SESSION['cid']?>" target="_blank"class="btn" style=" background: linear-gradient(
+        45deg, #842E62, #B7264D); color:white;"> ADD Questions</a>
                        
                     </td>
                   </tr>

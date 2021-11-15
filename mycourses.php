@@ -29,7 +29,7 @@ $archv = $crud->myarchv($uid);
 <body>
 
     <div class="corse_container">
-       <div class="mycourses">
+       <div class="mycourses" >
            <h3 class="crstitl">My Courses</h3><br>
            <div class="my_menu">
                 <nav class="my_main_menu">
@@ -93,6 +93,7 @@ $archv = $crud->myarchv($uid);
 </div>
 </div>
 </div>
+
 <script>
     function togglePanel() {
     document.getElementById("archvd").classList.remove("invisible");

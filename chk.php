@@ -4,7 +4,7 @@ require_once 'includes/h3.php';
 require_once 'db/conn.php';
 $results = $crud->crd();
 ?>  
-      <div class="slider owl-carousel">
+      <div class="slider owl-carousel" style="background-color:whitesmoke;">
        
       
       <?php while($r = $results->fetch(PDO::FETCH_ASSOC)) { ?>

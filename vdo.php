@@ -47,6 +47,8 @@ if(isset($_POST['qustn'])){
   $user=  $_SESSION['user'] ;
  $cid=$_SESSION['sec'];
   $qs= $_POST['qus'];
+  
+  $tcrname=  $_SESSION['tcrname'];
   $success = $crud->insertqus($user,$qs,$cid);
   if($success){
     header("Location: vdo.php?sec=$cid");
@@ -62,7 +64,7 @@ if(isset($_POST['answer'])){
   $ans= $_POST['ansr'];
   $success = $crud->insertans($id,$ans,$cid);
   if($success){
-    header("Location: vdo.php?sec=$cid");
+    header("Location: vdo.php?sec=$cid&tcr=$tcrname");
   }
  
 }
@@ -77,6 +79,8 @@ if(isset($_POST['qstatus'])){
   $qm= $_POST['qmstatus'];
   $vd= $_POST['vstatus'];
   $slde= $_POST['vstatus'];
+  
+  $tcrname=  $_SESSION['tcrname'];
   $cid=$_SESSION['sec'];
   $user=  $_SESSION['user'] ;
   if($vd=="done" && $slde=="done" && $qb=="done" && $qm=="done"){
@@ -84,11 +88,11 @@ if(isset($_POST['qstatus'])){
       
       
       $status = $crud->updtstts($user,$cid);
-      header("Location: vdo.php?sec=$cid");
+      header("Location: vdo.php?sec=$cid&tcr=$tcrname");
       
   }
     else{
-      header("Location: vdo.php?sec=$cid");
+      header("Location: vdo.php?sec=$cid&tcr=$tcrname");
     }
    
   }
