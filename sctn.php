@@ -79,11 +79,11 @@ if(isset($_POST['qup'])){
         <div class="sdcntnton sdcntnt">
         <a href="upload.php" class="sd">Course</a></div>
         <div class="sdcntnttwo sdcntnt">
-        <a href="#" class="sd">Book</a></div>
+        <a href="bupload.php" class="sd">Book</a></div>
         <div class="sdcntntthre sdcntnt">
-        <a href="#" class="sd">Status</a></div>
+        <a href="status.php" class="sd">Status</a></div>
         <div class="sdcntntthre sdcntnt">
-        <a href="home.php" class="sd">Exit</a></div>
+        <a href="index.php" class="sd">Exit</a></div>
     </div>
     <div class="crsmid">
         <form class="frmmid" action="<?php echo htmlentities($_SERVER['PHP_SELF']); ?>" method="post" enctype="multipart/form-data">
@@ -107,16 +107,20 @@ if(isset($_POST['qup'])){
            <br>
             <div  class="bx">
             <div class = "menu">
-        <a href="slide.php" target="_blank" class="button">Add Slide</a>
+        <a href="slide.php" target="_blank" class="button" style="background: linear-gradient(
+        45deg, #842E62, #B7264D);">Add Slide</a>
         </div>
            
             </div>
             <div  class="bx">
        
             <div class = "menu">
-            <a href="add.php?lev=<?php echo $_SESSION['B'];?>" target="_blank" class="button">Add Basic level questions</a>
-            <a href="add.php?lev=<?php echo $_SESSION['M'];?>" target="_blank" class="button">Add Medium level questions</a>
-            <a href="add.php?lev=<?php echo $_SESSION['H'];?>" target="_blank" class="button">Add High level questions</a><br><br><br><br>
+            <a href="add.php?lev=<?php echo $_SESSION['B'];?>" target="_blank" class="button" style="background: linear-gradient(
+        45deg, #842E62, #B7264D);">Add Basic level questions</a>
+            <a href="add.php?lev=<?php echo $_SESSION['M'];?>" target="_blank" class="button" style="background: linear-gradient(
+        45deg, #842E62, #B7264D);">Add Medium level questions</a>
+            <a href="add.php?lev=<?php echo $_SESSION['H'];?>" target="_blank" class="button" style="background: linear-gradient(
+        45deg, #842E62, #B7264D);">Add High level questions</a><br><br><br><br>
 </div>
             </div>
             

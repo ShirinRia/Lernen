@@ -18,6 +18,10 @@ if(isset($_GET['sec'])){
    }
 }
 if(isset($_POST['reg'])){
+  if($_SESSION['user']=='NULL'){
+    header("Location: index1.php");
+  }
+  else{
   $user=  $_SESSION['user'] ;
   $tcr=  $_SESSION['tcrid'] ;
   $crsid=  $_SESSION['sec'];
@@ -26,8 +30,10 @@ if(isset($_POST['reg'])){
   $uid=$_SESSION['userid'];
   $success = $crud->insertreg($user,$crsid,$corsname,$teacrname,$uid,$tcr);
   if(!$success){
+    
     echo '<div class ="alert alert-danger" id= "alert">Already Enrolled</div>';
    //echo 'failllll';
+}
 }
 }
 
@@ -122,8 +128,21 @@ if(isset($_POST['qstatus'])){
     <link rel = "stylesheet" href="vdo.css">
     <link rel = "stylesheet" href="review.css">
    
-  
- 
+    <script src='https://cdn.tiny.cloud/1/fkrd0r3n731w7mfc23kaaldls1z1msifaezn9lr1bufammwb/tinymce/5/tinymce.min.js' referrerpolicy="origin"></script>
+  <script>
+  tinymce.init({
+    selector: '#mytextarea'
+
+  });
+  </script>
+ <script>
+    tinymce.init({
+      selector: '#mytxtarea'
+      
+    });
+    </script>
+     
+        </script>
     <style>
        .spce{
         padding-left: 10px;
@@ -154,6 +173,9 @@ if(isset($_POST['qstatus'])){
     .vdosld{
       visibility: hidden;
 }
+.tox-statusbar__text-container{
+          visibility: hidden;
+      }
   </style>
     
 </head>
@@ -202,8 +224,12 @@ if(isset($_POST['qstatus'])){
               <div class="wrtrvw">
                  <h5 class="txt"><span>Write a Review</span></h5> 
                  <form action="<?php echo htmlentities($_SERVER['PHP_SELF']); ?>" method="post">
-                  <input type="text" class="irvw" name="rev" placeholder="Write your review here"><br><br>
-                  <input type="submit" class="rbtn" name="review" value="Submit Review"></form>
+                 <div class="irvw updestxt">
+            <textarea id="mytxtarea" name="rev" ></textarea>
+        </div>
+                  <!--<input type="text" class="irvw" name="rev" placeholder="Write your review here">-->
+                  <input type="submit" class="rbtn" name="review" value="Submit Review" style="top:70px;background: linear-gradient(
+        45deg, #842E62, #B7264D);"></form>
               </div>
        
         </div>
@@ -213,8 +239,12 @@ if(isset($_POST['qstatus'])){
       <div class="wrtrvw">
          <h5 class="txt"><span>Ask Your Question</span></h5> 
          <form action="<?php echo htmlentities($_SERVER['PHP_SELF']); ?>" method="post">
-          <input type="text" class="irvw" name="qus" placeholder="I didn't understand this part"><br><br>
-          <input type="submit" class="rbtn" name="qustn" value="ASK"></form>
+         <div class="irvw updestxt">
+            <textarea id="mytextarea" name="qus" ></textarea>
+        </div>
+         <!-- <input type="text" class="irvw" name="qus" placeholder="I didn't understand this part">-->
+          <input type="submit" class="rbtn" name="qustn" value="ASK" style="top: 70px;background: linear-gradient(
+        45deg, #842E62, #B7264D);"></form>
       </div>
       <div class="askd">
         <h2> <span class="bordr">Already Asked</span></h2>
@@ -231,12 +261,16 @@ if(isset($_POST['qstatus'])){
       <div class="rply" id="<?php echo $r['id'] ?>">
       </div>
     
-      <div class="posi rplybx" id="ans">
-      <input type="text"  class="btn" name="ansr" placeholder="Write Your Answer"><br>
+      <div class="posi rplybx" id="ans" style="border:none;">
+      
+            <textarea  col="30" name="ansr" style="height: 100%;width: 100%;" >Add Your Answer </textarea>
+      
+     <!-- <input type="text"  class="btn" name="ansr" placeholder="Write Your Answer">-->
       <input type="text"  class="no" name="tstis" value="<?php echo $r['id'] ?>">
         
         
-        <input type="Submit"  class="btn posia"  name="answer" placeholder="Answer">
+        <input type="Submit"  class="btn posia"  name="answer" value="Answer" style="left: 500px;background: linear-gradient(
+        45deg, #842E62, #B7264D);">
            
       </div>
     </form>

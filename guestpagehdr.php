@@ -40,6 +40,8 @@ $_SESSION['cat17'] = $cat17;
 $_SESSION['cat18'] = $cat18;
 $_SESSION['cat19'] = $cat19;
 $_SESSION['cat20'] = $cat20;
+$_SESSION['type'] = 'NULL';
+$_SESSION['user'] = 'NULL';
 $results = $crud->crd();
 ?>  
 
@@ -48,7 +50,7 @@ $results = $crud->crd();
             <div class="mrow">
                 <div class="headeritem left">
                     <div class="logo">
-                        <a href="home.php" class=anchor >Lernen</a>
+                        <a href="index.php" class=anchor >Lernen</a>
                     </div>
                 </div>
                 
@@ -57,7 +59,7 @@ $results = $crud->crd();
                     <nav class="menu">
                         <ul class="mainmenu">
                             <li>
-                                <a href="home.php" class="anchor" >Home</a>
+                                <a href="index.php" class="anchor" >Home</a>
                             </li>
                             <li class="children">
                                 <a href="allcourselst.php" class="anchor">
@@ -128,11 +130,11 @@ $results = $crud->crd();
                                 <a href="bklst.php" class="anchor">Books</a>
                             </li>
                             
-                            <li class="children ">
+                            <!--  <li class="children ">
                                 <a href="profile.php?us=<?php echo $_SESSION['user'];?>" class="anchor prfl">
-                                <input type="submit" class="uname"  value= "<?php echo $_SESSION['user'];?>">
+                                <input type="text" class="uname"  value= "<?php echo $_SESSION['user'];?>">
                                 </a>
-                                <div class="submenu crsmega mega-menu-column-2 c_prfl">
+                             <div class="submenu crsmega mega-menu-column-2 c_prfl">
                                 
                                     <div class="list-item_profile">
                                             
@@ -144,7 +146,7 @@ $results = $crud->crd();
                                     
                                     </div>
                                 </div>
-                            </li>
+                            </li>-->
                             <li class="search-container"> 
                                 <form action="searchlist_copy.php" method="post">
                                 <input type="text" placeholder="Search.." name="serch" class="src">
@@ -158,7 +160,7 @@ $results = $crud->crd();
                 
                      <div class="headeritem right">
                      <a href="login.php" class="anchor">
-                         <input type="submit" class="uname"  value= "Sign Out">
+                         <input type="text" class="uname"  value= "Sign In">
                                 </a>
                     </div>
             </div>

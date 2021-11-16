@@ -83,7 +83,6 @@
    position:relative;
     left:20px;
     top: -10px;
-    border:1px solid gray;
     width:70%;
     color:black;
     
@@ -96,7 +95,7 @@
     border:1px solid gray;
     width:20%;
     color:white;
-    background-color:black;
+    background-color:#B7264D;
 }
 .no{
     display:none;

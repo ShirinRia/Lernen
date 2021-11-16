@@ -20,13 +20,13 @@ if(isset($_POST['submit'])){
     $_SESSION['tp'] = $type;
     $_SESSION['gn'] = $gender;
     $_SESSION['pass'] = $newpass;
-    header("Location: index.php");
+    header("Location: index1.php");
        
     }
 }
 if(isset($_POST['cncl'])){
   
-    header("Location: index.php");
+    header("Location: index1.php");
        
     }
 

@@ -29,7 +29,7 @@ if(isset($_POST['forgtpass'])){
 if(isset($_POST['cncl'])){
     
   
-    header("Location: index.php");
+    header("Location: index1.php");
    
 }
 ?>

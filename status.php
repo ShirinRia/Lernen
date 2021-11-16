@@ -32,9 +32,9 @@ $results = $crud->status($_SESSION['userid']);
         <div class="sdcntntthre sdcntnt">
         <a href="status.php">Status</a></div>
         <div class="sdcntntthre sdcntnt">
-        <a href="home.php">Exit</a></div>
+        <a href="index.php">Exit</a></div>
     </div>
-    <div class="crsmid">
+    <div class="crsmid" style="height: 1600px;">
        <div class="sttsbar">
            
            <div class="enrll">
@@ -64,7 +64,7 @@ $results = $crud->status($_SESSION['userid']);
                 <td><?php $crud->stdntnum($r['c_id']);?></td>
                 <td align="center">
                   
-                        <input type=submit class="btn" name="cdelete" value="Delete">
+                        <input type=submit class="btn" name="cdelete" value="Delete" style="background: gray;">
                         <?php $_SESSION['cid']= $r['c_id'] ?>
                         <a href="view.php?courseid=<?php echo $_SESSION['cid']?>" target="_blank"class="btn" style="background-color:#B7264D;"> View</a>
                     </td>

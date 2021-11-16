@@ -116,14 +116,15 @@ $results = $crud->crd();
         <div class="middlecntnt one">
            
             <h4 class="box_cntnt">Numerous online courses</h4><br>
-           <p class="box_cntnt"> Choose the course you need from Lernen</p> 
+           <p class="box_cntnt"> Choose the course you need from Lernen.<br>You can get free access to our all courses.</p> 
         </div>
         <div class="middlecntnt two">
             <h4 class="box_cntnt"> Interesting Quizzes</h4><br>
-        <p class="box_cntnt"> Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p> 
+        <p class="box_cntnt">We also have interesting insights and other quiz assesments that you can try here. <br>These quiz assesments can help you explore your knowledge.</p> 
         </div>
         <div class="middlecntnt three">
             <h4 class="box_cntnt"> Learn as you wish!</h4>
+            <p class="box_cntnt"> This site gives you easy access to the invaluable learning techniques used by experts.<br> You can learn at your own pace.</p> 
         </div>
     </div>
     <script src="home.js" type="text/javascript"></script>

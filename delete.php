@@ -13,7 +13,7 @@ if(!isset($_GET['us'])){
     
     if($result)
     {
-        header("Location: index.php");
+        header("Location: login.php");
     }
     else{
        echo 'error';

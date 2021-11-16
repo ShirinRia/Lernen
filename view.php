@@ -145,8 +145,8 @@ $qus = $crud->viewqus($_SESSION['cid']);
                 <tr>
                     <th ><?php echo ($r['level']) ?></th>
                     <td><?php echo ($r['question_text']) ?></td>
-                    <?php $ops = $crud->viewops($id,$r['question_number']);?>
-                    <?php $crctans = $crud->viewcrct($id,$r['question_number']);?>
+                    <?php $ops = $crud->viewops($id,$r['question_number'],$r['level']);?>
+                    <?php $crctans = $crud->viewcrct($id,$r['question_number'],$r['level']);?>
                     <td>
                         <ul>
                         <?php while($r = $ops->fetch(PDO::FETCH_ASSOC)) { ?>

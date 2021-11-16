@@ -14,8 +14,11 @@ require_once 'db/conn.php';
                 $tp = $_SESSION['type'];
                  if($tp=="Learner"){
                 include 'lrnrpagehdr.php';}
-                else
+                else if($tp=="Teacher")
                 include 'pageheader.php';
+                else{
+                
+                    include 'guestpagehdr.php';}
                 ?> 
 <style>
     body{

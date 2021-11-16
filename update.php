@@ -2,6 +2,7 @@
 $title ='Homepage';
 require_once 'includes/header_2.php';
 require_once 'db/conn.php';
+
 if(isset($_POST['save'])){
     $n= $_POST['name'];
     $em= $_POST['email'];
@@ -21,7 +22,7 @@ if(isset($_POST['save'])){
     $_SESSION['mobile'] = $mb;
     $_SESSION['bdate'] = $bd;
     $_SESSION['cntry'] = $cn;
-    header("Location: home.php");
+    header("Location: update.php");
        
     }
     else{
@@ -41,7 +42,14 @@ if(isset($_POST['save'])){
     </style>
     <?php 
                 
-                include 'pageheader.php';
+                $tp = $_SESSION['type'];
+                if($tp=="Learner"){
+               include 'lrnrpagehdr.php';}
+               else if($tp=="Teacher")
+               include 'pageheader.php';
+               else{
+               
+                   include 'guestpagehdr.php';}
                 ?> 
     <div class="full">
     <?php require_once 'side.php'; ?>
@@ -58,7 +66,7 @@ if(isset($_POST['save'])){
             <form action="<?php echo htmlentities($_SERVER['PHP_SELF']); ?>" method="post" enctype="multipart/form-data" class="fprfl">
                 <div class="udate" style="padding-top:10px;">
                     <label for="" >Full Name</label><br><br>
-                    <input type="text" name="name" class="text" value= "<?php echo $_SESSION['name'];?>">
+                    <input type="text" name="name" class="text" value= "<?php echo $_SESSION['fname'];?>">
                 </div>
 
                 <div class="udate">
@@ -83,7 +91,7 @@ if(isset($_POST['save'])){
 
                 <div class="udate">
                     <label for="">Change Your Photo</label><br><br>
-                    <input type="file" name="avatar" class="text" >
+                    <input type="file" name="avatar" class="text" style="border:none;">
                 </div>
                 <div class="udate">
                     <label for="">Write Something about yourself</label><br><br>

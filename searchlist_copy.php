@@ -4,7 +4,14 @@ require_once 'includes/header_2.php';
 //require_once 'db/conn.php';
 
                 
-                include 'pageheader.php';
+$tp = $_SESSION['type'];
+if($tp=="Learner"){
+include 'lrnrpagehdr.php';}
+else if($tp=="Teacher")
+include 'pageheader.php';
+else{
+
+   include 'guestpagehdr.php';}
                
 
    if(isset($_POST['search'])){

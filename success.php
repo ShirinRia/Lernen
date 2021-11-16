@@ -67,7 +67,7 @@ if(isset($_POST['sotp'])){
   if($success) {
    
   }
-  header("Location: home.php");
+  header("Location: homes.php");
      
   }
   else{

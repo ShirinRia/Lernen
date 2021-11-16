@@ -135,7 +135,7 @@ $results = $crud->crd();
                             </li>
                             <li class="children ">
                                 <a href="profile.php?us=<?php echo $_SESSION['user'];?>" class="anchor prfl">
-                                <input type="text" class="uname"  value= "<?php echo $_SESSION['user'];?>">
+                                <input type="submit" class="uname"  value= "<?php echo $_SESSION['user'];?>">
                                 </a>
                                 <div class="submenu crsmega mega-menu-column-2 c_prfl">
                                 
@@ -161,9 +161,9 @@ $results = $crud->crd();
                 <!--menu ends-->
                
                 
-                     <div class="headeritem right">
-                     <a href="index.php" class="anchor">
-                         <input type="text" class="uname"  value= "Sign Out">
+                     <div class="headeritem right" style="cursor: pointer;">
+                     <a href="login.php" class="anchor" style="cursor: pointer;">
+                         <input type="submit" class="uname"  value= "Sign Out">
                                 </a>
                     </div>
             </div>

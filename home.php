@@ -10,8 +10,9 @@ $results = $crud->crd();
                  $tp = $_SESSION['type'];
                  if($tp=="Learner"){
                 include 'lrnrpagehdr.php';}
-                else
+                else if($tp=="Teacher")
                 include 'pageheader.php';
+               
                 ?> 
   <?php 
                 

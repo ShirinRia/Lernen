@@ -40,8 +40,11 @@ else{
 $tp = $_SESSION['type'];
 if($tp=="Learner"){
 include 'lrnrpagehdr.php';}
-else
+else if($tp=="Teacher")
 include 'pageheader.php';
+else{
+
+    include 'guestpagehdr.php';}
  
 ?>
     <div class="prchscntnt shadow-sm p-3 mb-5 bg-body rounded">

@@ -11,7 +11,7 @@ if(isset($_POST['upload'])){
     //$sec= $_POST['crssec'];
     $cat=$_POST['catgry'];
     $_SESSION['catid'] = $cat;
-   $tname= $_SESSION['tcrname'];
+   $tname= $_SESSION['fname'];
     $tid=$_SESSION['userid'];
    // $orig_file = $_FILES["avatar"]["tmp_name"];
    // $target_dir = 'uploads/';
@@ -30,9 +30,9 @@ if(isset($_POST['upload'])){
        //echo '<h1>sccs</h1>';
       // $success = $crud->num();
     //  header("Location: homepage.php");
-
-    $id = $_GET['crsname'];
-    $result = $crud->getcrsid($title);
+    $id = $success;
+    //$id = $_GET['crsname'];
+    $result = $crud->getcrsid($id );
     $_SESSION['fullname'] = $result['fullname'];
     $_SESSION['id'] = $result['c_id'];
     $_SESSION['sec'] = $result['sectn'];

@@ -331,7 +331,7 @@
        public function getcrsid($title){
         
         try{
-          $sql = "select * from course where c_name = :title";
+          $sql = "select * from course where c_id = :title";
           $stmt = $this->db->prepare($sql);
           $stmt->bindparam(':title', $title);
           $stmt->execute();
@@ -755,7 +755,8 @@ public function hstry($id){
      $stmt->bindparam(':cdes',$cdes);
 
      $stmt->execute();
-     return true;
+     $last_id =$this->db-> lastInsertId();
+     return $last_id;
     }
 
     catch (PDOException $e) {
@@ -1068,9 +1069,9 @@ public function viewqus($id){
 }
 
 }
-public function viewops($id,$qn){
+public function viewops($id,$qn,$lv){
   try{
-    $sql = "SELECT * FROM options where crs_id=$id AND question_number=$qn";
+    $sql = "SELECT * FROM options where crs_id=$id AND question_number=$qn AND level='$lv'";
     $result = $this->db->query($sql);
     return $result;
 }catch (PDOException $e) {
@@ -1079,12 +1080,12 @@ public function viewops($id,$qn){
 }
 
 }
-public function viewcrct($id,$qn){
+public function viewcrct($id,$qn,$lv){
   try {
-   $sql = "select * from options where   crs_id = :id AND question_number=:qn AND is_correct=1";
+   $sql = "select * from options where   crs_id = :id AND question_number=:qn AND is_correct=1 AND level=:lv";
    $stmt = $this->db->prepare($sql);
    $stmt->bindparam(':id',$id);
-   
+   $stmt->bindparam(':lv',$lv);
    $stmt->bindparam(':qn',$qn);
 
    $stmt->execute();

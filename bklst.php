@@ -5,8 +5,11 @@ include_once 'includes/session.php';
 $tp = $_SESSION['type'];
 if($tp=="Learner"){
 include 'lrnrpagehdr.php';}
-else
+else if($tp=="Teacher")
 include 'pageheader.php';
+else{
+
+    include 'guestpagehdr.php';}
 $best = $crud->best();  
 $dev= $crud->devlpmnt();  
 $gk = $crud->genknw();  
