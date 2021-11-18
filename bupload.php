@@ -25,16 +25,7 @@ if(isset($_POST['upload'])){
    $_SESSION['pdf']=$pdf_size/1048576;
    move_uploaded_file($pdf_tmp_loc,$pdf_store);
    $success = $crud->insertbooks( $title,$author,$cat,$pdf,$pub,$ed,$lang, $destination,$_SESSION['pdf']);
-  
-
     if($success) {
-     //  sendemail ::sendmail($email,$full,$sub,$otp);
-       //echo '<h1>sccs</h1>';
-      // $success = $crud->num();
-    //  header("Location: homepage.php");
-   // $_SESSION['user'] = $user;
-   // $_SESSION['full'] = $full;
-  //  $_SESSION['email'] = $email;
     header("Location: bupload.php");
        
     }

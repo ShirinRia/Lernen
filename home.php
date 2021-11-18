@@ -1,6 +1,5 @@
 <?php 
 $title ='Homepage';
-
 include_once 'includes/session.php';
 require_once 'db/conn.php';
 $results = $crud->crd();

@@ -29,7 +29,7 @@ else{
     //$executerrecord=$result->execute(array(":data"=>$data));
     echo '<div class="crslist"><div class="lsthead">
     <h2><span>&nbsp;</span>Courses</h2>
-</div></div>';
+    </div></div>';
     while($row = mysqli_fetch_assoc($result)){
         $title = $row['c_name'];
         $desc = $row['des']; 

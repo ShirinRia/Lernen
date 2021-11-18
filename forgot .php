@@ -1,37 +1,27 @@
 <?php 
-
 include_once 'includes/session.php';
 require_once 'db/conn.php';
 require_once 'sendmail.php';
 if(isset($_POST['forgtpass'])){
-    
-  
     $email= $_POST['email'];
-   
     $sub="VERIFICATION";
     $otp=rand(1000,99999);
     $res=$login->getemail($email,$otp);
     if($res){
       sendemail ::sendmail($email,$full,$sub,$otp);
-       //echo '<h1>sccs</h1>';
-      // $success = $crud->num();
-    //  header("Location: homepage.php");
     $usr = $res['username'];
     $_SESSION['user'] = $usr;
     $_SESSION['email'] = $email;
     header("Location: forgtsuccss.php?usr=$usr&eml=$email");
     } 
-     else{
+     else
         echo '<div class ="alert alert-danger" id= "alert">This email is not registered</div>';
-   
-     }
+
 }
-if(isset($_POST['cncl'])){
-    
+if(isset($_POST['cncl']))
   
     header("Location: index1.php");
-   
-}
+
 ?>
 <!DOCTYPE html>
 <html lang="en">

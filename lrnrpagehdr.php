@@ -153,10 +153,10 @@ $results = $crud->crd();
                         </ul>
                     </nav>
                 </div>
-                <!--menu ends-->
+                <!--menu ends style="right:450px;"-->
                
                 
-                     <div class="headeritem right">
+                     <div class="headeritem right" >
                      <a href="login.php" class="anchor">
                          <input type="submit" class="uname"  value= "Sign Out">
                                 </a>

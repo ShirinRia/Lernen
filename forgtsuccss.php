@@ -3,7 +3,6 @@ $title ='Index';
 require_once 'includes/header.php';
 require_once 'db/conn.php';
 require_once 'sendmail.php';
-
 $usser = $_SESSION['user'];
 $eml =  $_SESSION['email'] ;
 if (isset($_POST['rsnd'])) {
@@ -13,31 +12,21 @@ if (isset($_POST['rsnd'])) {
   $newotp=rand(1000,99999);
   $res=$opt->u_otp($vuser,$newotp);
   $sub="VERIFICATION";
-  if($res) {
-    sendemail ::sendmail($email,$full,$sub,$newotp);
-    
-  }
-  else{
-      
+  if($res)
+    sendemail ::sendmail($email,$full,$sub,$newotp); 
+  else 
      echo 'failupdt';
-  }
-
 }
-if(isset($_POST['sotp'])){
-   
+if(isset($_POST['sotp'])){ 
   $vuser= $_POST['ouser'];
   $o=$_POST['otp'];
- 
   $result=$opt->otp($eml,$o);
   if($result) {
   $user=$_SESSION['user']  ;
-  
-  header("Location: rpass.php");
-     
+  header("Location: rpass.php");   
   }
-  else{
+  else
     echo '<div class="alert alert-danger" id= "alert">OTP doesnot match</div>';
-  }
 }
 ?>
 <div class="otp_containr" id="otp_pop">

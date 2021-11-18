@@ -82,9 +82,9 @@ if(!isset($_GET['cat'])){
        <?php while($r = $rvw->fetch(PDO::FETCH_ASSOC)) { ?>
         <div class="bx">
         <div  class="vdbx">
-           <h4><?php echo ($r['user']) ?></h4>
+           <h3><?php echo ($r['user']) ?></h3>
          <!--  <span>&#11088;</span>-->
-          <h5><?php echo ($r['review']) ?></h5>
+          <h4><?php echo ($r['review']) ?></h4>
         </div>
         
     </div>

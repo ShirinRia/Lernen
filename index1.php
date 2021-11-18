@@ -15,7 +15,6 @@ if($result) {
     $_SESSION['user']=$duser;
     $_SESSION['userid']=$result['user_id'];
     $_SESSION['fname'] = $result['fullname'];
-    
     $_SESSION['pimg'] = $result['img_path'];
     $_SESSION['type']=$result['type'];
     $typ=$_SESSION['type'];
@@ -37,16 +36,11 @@ if(isset($_POST['sub'])){
     $sub="VERIFICATION";
     $otp=rand(1000,99999);
     
-    $notp=md5($otp);
+  //  $notp=md5($otp);
     if($newpass==$cnfpass){
-   // $success = $crud->insert($full,$user,$newpass,$email,$gender,$otp,$type);
-    $success = $crud->insert($email,$notp,$user);
-  //echo $otp;
+    $success = $crud->insert($email,$otp,$user);
     if($success) {
       sendemail ::sendmail($email,$full,$sub,$otp);
-       //echo '<h1>sccs</h1>';
-      // $success = $crud->num();
-    //  header("Location: homepage.php");
     $_SESSION['user'] = $user;
     $_SESSION['full'] = $full;
     $_SESSION['email'] = $email;
@@ -85,16 +79,12 @@ else if(isset($_POST['subt'])){
   //echo $otp;
     if($success) {
         sendemail ::sendmail($email,$full,$sub,$otp);
-        //echo '<h1>sccs</h1>';
-       // $success = $crud->num();
-     //  header("Location: homepage.php");
      $_SESSION['user'] = $user;
      $_SESSION['full'] = $full;
      $_SESSION['email'] = $email;
      $_SESSION['tp'] = $type;
      $_SESSION['gn'] = $gender;
      $_SESSION['pass'] = $newpass;
-     //header("Location: lrnrsccs.php");
     header("Location: success.php");
        
     }
@@ -108,43 +98,33 @@ else{
 }
 
 if(isset($_POST['submit'])){
-    
-    $duser= $_POST['user'];
+     $duser= $_POST['user'];
     $pass=$_POST['pass'];
     $newpass=md5($pass);
 $result=$login->getuser($duser,$newpass);
 if(isset($_POST['remembrme'])){
     setcookie('usernamecookie',$duser,time()+31536000);
-    
     setcookie('passecookie',$pass,time()+31536000);
 }
 if($result) {
     $_SESSION['user']=$duser;
     $_SESSION['userid']=$result['user_id'];
     $_SESSION['fname'] = $result['fullname'];
-    
     $_SESSION['type']=$result['type'];
     $typ=$_SESSION['type'];
     header("Location: home.php");
-    //require_once 'homepage.php';
 }
 else{
-   // $res=$login->getem($_SESSION['email']);
     $res=$login->getem($duser);
     if($res) {
-      //  echo '<div class ="alert alert-danger" id= "alert">Please verify your account</div>';
         header("Location: lrnrsccs.php");
     }
     else
     echo '<div class ="alert alert-danger" id= "alert">Username or Password is Incorrect! Please try again</div>';
-   
-    //echo 'failllll';
 }
 }
 }
 ?>
-
-
 <div class="inup">
 
         <div class="side">

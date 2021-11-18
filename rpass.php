@@ -5,32 +5,24 @@ require_once 'db/conn.php';
 $usser = $_SESSION['user'];
 
 if(isset($_POST['submit'])){
-  
     $pass=$_POST['newpass'];
     $newpass=md5($pass);
-   
-   
     $success = $login->updtpass($usser,$newpass);
-  
     if($success) {
-    
     $_SESSION['user'] = $user;
     $_SESSION['full'] = $full;
     $_SESSION['email'] = $email;
     $_SESSION['tp'] = $type;
     $_SESSION['gn'] = $gender;
     $_SESSION['pass'] = $newpass;
-    header("Location: index1.php");
-       
+    header("Location: index1.php");  
     }
 }
-if(isset($_POST['cncl'])){
+if(isset($_POST['cncl']))
   
-    header("Location: index1.php");
-       
-    }
-
+    header("Location: index1.php");  
 ?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>

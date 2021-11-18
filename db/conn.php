@@ -4,18 +4,14 @@
     $user='root';
     $pass='';
     $charset='utf8mb4';
-
     $dsn = "mysql:host=$host;dbname=$db;charset=$charset";
-
     try {
         $pdo = new PDO($dsn , $user , $pass);
-        $pdo-> setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-        
+        $pdo-> setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION); 
     }
     catch (PDOException $e) {
         throw new PDOException($e->getMessage());
     }
-   
     require_once 'login.php';
     $login = new login($pdo);
     require_once 'crud.php';
@@ -24,5 +20,4 @@
     require_once 'quiz.php';
     $quiz = new quiz($pdo);
     $opt = new opt($pdo);
-    // //<?php if($_SERVER['REQUEST_METHOD']=='POST') echo $_['username'];
 ?>

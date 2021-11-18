@@ -8,10 +8,8 @@
        try {
         $sql = "select * from sign where username = :user AND passwor = :pass";
         $stmt = $this->db->prepare($sql);
-
         $stmt->bindparam(':user',$user);
         $stmt->bindparam(':pass',$pass);
-       
         $stmt->execute();
         $result=$stmt->fetch();
         return $result;
@@ -25,12 +23,9 @@
         try {
          $sql = "select * from sign where username = :user AND otpmtch='Not Match'";
          $stmt = $this->db->prepare($sql);
- 
          $stmt->bindparam(':user',$em);
-        
          $stmt->execute();
          $result=$stmt->fetch();
-         
          return $result;
         } 
         catch (PDOException $e) {

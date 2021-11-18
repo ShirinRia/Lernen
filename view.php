@@ -11,9 +11,6 @@ if($results){
 }
 $slide = $crud->viewimg($_SESSION['cid']);
 $qus = $crud->viewqus($_SESSION['cid']);
-//$ops = $crud->viewops($id);
-
- 
 ?>
 <!DOCTYPE html>
 <html lang="en">

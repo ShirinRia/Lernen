@@ -8,44 +8,27 @@ if(isset($_POST['upload'])){
     $descrip= $_POST['overview'];
     $lrn= $_POST['learn'];
     $cdes= $_POST['crsdescrip'];
-    //$sec= $_POST['crssec'];
     $cat=$_POST['catgry'];
     $_SESSION['catid'] = $cat;
    $tname= $_SESSION['fname'];
     $tid=$_SESSION['userid'];
-   // $orig_file = $_FILES["avatar"]["tmp_name"];
-   // $target_dir = 'uploads/';
-   // $destination =$target_dir . basename($_FILES["avatar"]["name"]);
-  //  move_uploaded_file($orig_file,$destination);
     $orig_file = $_FILES["avatar"]["tmp_name"];
         $ext = pathinfo($_FILES["avatar"]["name"], PATHINFO_EXTENSION);
         $target_dir = 'uploads/';
         $destination = "$target_dir$title.$ext";
         move_uploaded_file($orig_file,$destination);
-    //exit();
     $success = $crud->insertcrs( $title,$descrip,$destination,$cat,$tname,$tid,$lrn,$cdes);
-
     if($success) {
-     //  sendemail ::sendmail($email,$full,$sub,$otp);
-       //echo '<h1>sccs</h1>';
-      // $success = $crud->num();
-    //  header("Location: homepage.php");
     $id = $success;
-    //$id = $_GET['crsname'];
     $result = $crud->getcrsid($id );
     $_SESSION['fullname'] = $result['fullname'];
     $_SESSION['id'] = $result['c_id'];
     $_SESSION['sec'] = $result['sectn'];
-   // $_SESSION['full'] = $full;
-  //  $_SESSION['email'] = $email;
-  $rate = $crud->insertstr( $_SESSION['id']);
-    header("Location:sctn.php");
-       
+    $rate = $crud->insertstr( $_SESSION['id']);
+    header("Location:sctn.php");   
     }
-    else{
-        echo '<div class="alert alert-danger" id= "alert">Fail To Upload! Please try again. </div>';
-    }
-   
+    else
+        echo '<div class="alert alert-danger" id= "alert">Fail To Upload! Please try again. </div>'; 
 }
 ?> 
     <?php require_once 'upside.php'; ?>

@@ -25,15 +25,11 @@
        }
       }
       public function u_otp($email,$otp){
-        echo 'otp success';
-
        try{ 
         $sql = "UPDATE `sign` SET `OTP`=:otp WHERE email=:email ";
         $stmt = $this->db->prepare($sql);
-        // bind all placeholders to the actual values
         $stmt->bindparam(':email',$email);
         $stmt->bindparam(':otp',$otp);
-        // execute statement
         $stmt->execute();
         return true;
         }

@@ -1,5 +1,4 @@
 <?php
-
 include_once 'includes/session.php';
     $conn = new mysqli('localhost', 'root', '', 'learnen_two');
     $crs_id=$_SESSION['sec'];
@@ -7,12 +6,8 @@ include_once 'includes/session.php';
     if (isset($_POST['save'])) {
         $uID = $conn->real_escape_string($_POST['uID']);
         $ratedIndex = $conn->real_escape_string($_POST['ratedIndex']);
-        
         $ratedIndex++;
-
         if (!$uID) {
-           // $sql=$conn->query("DELETE FROM `stars` WHERE user=0");
-            //$dlt = $sql->fetch_assoc();
             $conn->query("INSERT INTO stars (rateIndex,user,crs_id) VALUES ('$ratedIndex','$usr_id','$crs_id')");
             $sql = $conn->query("SELECT id FROM stars ORDER BY id DESC LIMIT 1");
             $uData = $sql->fetch_assoc();
@@ -21,22 +16,18 @@ include_once 'includes/session.php';
             $sql= $conn->query("SELECT * FROM stars WHERE user='$usr_id' AND crs_id='$crs_id'");
             $Data = $sql->fetch_assoc();
             $useR = $sql->num_rows;
-            if($useR==0){
+            if($useR==0)
                 $conn->query("INSERT INTO stars (rateIndex,user,crs_id) VALUES ('$ratedIndex','$usr_id','$crs_id')"); 
-            }
             else
             $conn->query("UPDATE stars SET rateIndex='$ratedIndex' WHERE user='$usr_id' AND crs_id='$crs_id'");
         }
         exit(json_encode(array('id' => $uID)));
     }
-
     $sql = $conn->query("SELECT id FROM stars WHERE crs_id='$crs_id'");
     $numR = $sql->num_rows;
-
     $sql = $conn->query("SELECT SUM(rateIndex) AS total FROM stars WHERE crs_id='$crs_id'");
     $rData = $sql->fetch_array();
     $total = $rData['total'];
-
     $avg = $total / ($numR-1);
     $_SESSION['ratng']=$avg;
     $conn->query("UPDATE course SET rating='$avg' WHERE c_id='$crs_id'");
@@ -59,7 +50,7 @@ include_once 'includes/session.php';
         <i class="fa fa-star fa-2x" data-index="3"></i>
         <i class="fa fa-star fa-2x" data-index="4"></i>
         <br><br>
-        <?php echo round($avg,2) ?>
+       
     </div>
 
    

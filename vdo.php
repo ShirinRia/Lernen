@@ -10,7 +10,7 @@ if(isset($_GET['sec'])){
    $_SESSION['sec']=$id;
    $best = $crud->section($id);  
    $fvdo = $crud->section($id); 
-   $vdo = $crud->vdo($id);
+   $slide = $crud->vdo($id);
    $descrip = $crud->descrption($id); 
    if($descrip){
     $_SESSION['cdes'] = $descrip['cdes'];
@@ -29,8 +29,7 @@ if(isset($_POST['reg'])){
   $teacrname=$_SESSION['tcrname'];
   $uid=$_SESSION['userid'];
   $success = $crud->insertreg($user,$crsid,$corsname,$teacrname,$uid,$tcr);
-  if(!$success){
-    
+  if(!$success){  
     echo '<div class ="alert alert-danger" id= "alert">Already Enrolled</div>';
    //echo 'failllll';
 }
@@ -53,7 +52,6 @@ if(isset($_POST['qustn'])){
   $user=  $_SESSION['user'] ;
  $cid=$_SESSION['sec'];
   $qs= $_POST['qus'];
-  
   $tcrname=  $_SESSION['tcrname'];
   $success = $crud->insertqus($user,$qs,$cid);
   if($success){
@@ -65,8 +63,6 @@ if(isset($_POST['answer'])){
   $user=  $_SESSION['user'] ;
   $cid=$_SESSION['sec'];
   $id= $_POST['tstis'];
- // print_r($id);
-  //$id=20;
   $ans= $_POST['ansr'];
   $success = $crud->insertans($id,$ans,$cid);
   if($success){
@@ -91,11 +87,8 @@ if(isset($_POST['qstatus'])){
   $user=  $_SESSION['user'] ;
   if($vd=="done" && $slde=="done" && $qb=="done" && $qm=="done"){
      
-      
-      
       $status = $crud->updtstts($user,$cid);
       header("Location: vdo.php?sec=$cid&tcr=$tcrname");
-      
   }
     else{
       header("Location: vdo.php?sec=$cid&tcr=$tcrname");
@@ -176,8 +169,14 @@ if(isset($_POST['qstatus'])){
 .tox-statusbar__text-container{
           visibility: hidden;
       }
+      .color{
+        background-color: gray;
+      }
+      .clr{
+       
+        color: white;
+      }
   </style>
-    
 </head>
 <body>
  <div class="sec1">
@@ -191,7 +190,7 @@ if(isset($_POST['qstatus'])){
       </div>
       <div class="vdo_cntnr vs">
       <div class="slider" id="ppt">
-      <?php while($r = $vdo->fetch(PDO::FETCH_ASSOC)) { ?>
+      <?php while($r = $slide->fetch(PDO::FETCH_ASSOC)) { ?>
   <div><img src="<?php echo ($r['ansr']) ?>" width="100%" height="450px"></div>
   <?php }?> 
 
@@ -202,15 +201,16 @@ if(isset($_POST['qstatus'])){
       <div class="dbar">
         <nav id="navbar-example2" class="navbar navbar-light bg-light px-3">
            
-        <ul class="nav nav-pills ">
-              <li class="nav-item">
-                <button onclick="togglePanel3()" class="navbar-brand" >Overview</button>
+        <ul class="nav nav-pills " style="  background: linear-gradient(
+        45deg, #842E62, #B7264D); ">
+              <li class="nav-item" id="ovr" style="border-bottom:none; border-top:none;  "> 
+                <button   onclick="togglePanel3()" class="navbar-brand" style="background-color:transparent; color:white">Overview</button>
               </li>
-              <li class="nav-item">
-                <button onclick="togglePanel2()" class="navbar-brand" >Q&A</button>
+              <li class="nav-item" id="ovr2" style="border-bottom:none; border-top:none;  ">
+                <button onclick="togglePanel2()" class="navbar-brand" style="background-color:transparent; color:white">Q&A</button>
               </li>
-              <li class="nav-item">
-                <button onclick="togglePanel()" class="navbar-brand" >Review</button>
+              <li class="nav-item" id="ovr3" style="   border-bottom:none; border-top:none; ">
+                <button onclick="togglePanel()" class="navbar-brand" style="background-color:transparent; color:white">Review</button>
               </li>
             </ul>
           </nav>
@@ -339,17 +339,26 @@ if(isset($_POST['qstatus'])){
         document.getElementById("qus").classList.remove("visible");
         
         document.getElementById("ovrviw").classList.add("invisible");
+        document.getElementById("ovr3").classList.add("color");
+        document.getElementById("ovr").classList.remove("color");
+        document.getElementById("ovr2").classList.remove("color");
        }
        function togglePanel2() {
         document.getElementById("rvw").classList.remove("visible");
         document.getElementById("qus").classList.add("visible");
         
         document.getElementById("ovrviw").classList.add("invisible");
+        document.getElementById("ovr2").classList.add("color");
+        document.getElementById("ovr3").classList.remove("color");
+        document.getElementById("ovr").classList.remove("color");
        }
        function togglePanel3() {
         document.getElementById("rvw").classList.remove("visible");
         document.getElementById("qus").classList.remove("visible");
         document.getElementById("ovrviw").classList.remove("invisible");
+        document.getElementById("ovr").classList.add("color");
+        document.getElementById("ovr2").classList.remove("color");
+        document.getElementById("ovr3").classList.remove("color");
        }
        function togglePanelppt() {
         document.getElementById("ppt").classList.add("visible");

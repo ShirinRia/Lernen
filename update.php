@@ -31,6 +31,13 @@ if(isset($_POST['save'])){
    
 }
 ?> 
+ <script src='https://cdn.tiny.cloud/1/fkrd0r3n731w7mfc23kaaldls1z1msifaezn9lr1bufammwb/tinymce/5/tinymce.min.js' referrerpolicy="origin"></script>
+  <script>
+  tinymce.init({
+    selector: '#mytextarea'
+
+  });
+  </script>
 <style>
     .udate{
         height: 80px;
@@ -39,6 +46,10 @@ if(isset($_POST['save'])){
    padding-bottom:120px;
    font-weight: bold;
     }
+    
+.tox-statusbar__text-container{
+          visibility: hidden;
+      }
     </style>
     <?php 
                 
@@ -95,12 +106,16 @@ if(isset($_POST['save'])){
                 </div>
                 <div class="udate">
                     <label for="">Write Something about yourself</label><br><br>
-                    <input type="text" name="ides" class="text" >
+                   <div>
+            <textarea id="mytextarea" name="ides" ></textarea>
+        </div>
+                  <!--   <input type="text" name="ides" class="text" >-->
                 </div>
                 <div class="svbtn">
-                <input type="submit" name="save" class="p_btn s_btn" value="SAVE"></div>
+                <input type="submit" name="save" class="p_btn s_btn" value="SAVE"style="position: relative;top: 150px;"></div>
             </form><br><br><br>
         </div>
     </div>
+   
 </body>
 </html>

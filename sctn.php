@@ -7,28 +7,15 @@ $_SESSION['M']='Medium';
 $_SESSION['H']='High';
 if(isset($_POST['up'])){
     $title= $_POST['crsnm'];
-  //  $descrip= $_POST['crsdescrip'];
     $id= $_SESSION['id'];
-
     $orig_file = $_FILES["crsvdo"]["tmp_name"];
     $ext = pathinfo($_FILES["crsvdo"]["name"], PATHINFO_EXTENSION);
     $target_dir = 'uploads/';
     $destination = "$target_dir$title$id.$ext";
     move_uploaded_file($orig_file,$destination);
-
    $success = $crud->insertsec($title,$id,$destination);
   
 } 
-
-if(isset($_POST['qup'])){
-    $q= $_POST['quiz'];
-  //  $descrip= $_POST['crsdescrip'];
-    $id= $_SESSION['id'];
-
-   $success = $crud->insertqz($q,$id);
-  
-} 
-
 ?>
 
 <!DOCTYPE html>

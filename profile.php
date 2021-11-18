@@ -15,6 +15,8 @@ else{
     $_SESSION['mobil'] = $result['mobile'];
     $_SESSION['bddate'] = $result['bdate'];
     $_SESSION['cntry'] = $result['country'];
+    $_SESSION['prfl'] = $result['img_path'];
+    
     
 }
 ?> 
@@ -63,7 +65,7 @@ else{
 
                 <div class="mobile udate">
                     <label for="">Mobile No.</label><br><br>
-                    <input type="text" name="Update" class="text" value=" <?php echo $_SESSION['mobil'] ;  ?>">
+                    <input type="text" name="Update" class="text" value=" <?php echo empty($_SESSION['mobil']) ? "" : $_SESSION['mobil'] ; ?>">
                 </div>
 
                 <div class="birth udate ">
