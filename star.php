@@ -30,7 +30,7 @@ include_once 'includes/session.php';
     $total = $rData['total'];
     $avg = $total / ($numR-1);
     $_SESSION['ratng']=$avg;
-    $conn->query("UPDATE course SET rating='$avg' WHERE c_id='$crs_id'");
+    $conn->query("UPDATE `course` SET rating='$avg' WHERE c_id='$crs_id'");
 ?>
 <!doctype html>
 <html lang="en">

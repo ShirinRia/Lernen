@@ -32,7 +32,7 @@ $results = $crud->status($_SESSION['userid']);
         <div class="sdcntntthre sdcntnt">
         <a href="status.php">Status</a></div>
         <div class="sdcntntthre sdcntnt">
-        <a href="index.php">Exit</a></div>
+        <a href="home.php">Exit</a></div>
     </div>
     <div class="crsmid" style="height: 1600px;">
        <div class="sttsbar">

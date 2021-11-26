@@ -238,6 +238,20 @@
             return false;
           }
         }
+        public function updtstr($cid,$uid){
+          try{ 
+           $sql = "UPDATE `stars` SET `rateIndex`=1, `user`=:uid WHERE crs_id=:cid";
+           $stmt = $this->db->prepare($sql);
+            $stmt->bindparam(':uid',$uid);
+           $stmt->bindparam(':cid',$cid);
+           $stmt->execute();
+           return true;
+           }
+           catch (PDOException $e) {
+             echo $e->getMessage();
+             return false;
+           }
+         }
        public function bkdata($id){
         try{
           $sql = "select * from books where bid = :bid";
@@ -753,6 +767,25 @@ public function hstry($id){
     
 
      $sql = "INSERT INTO slide (ansr,cid) VALUES (:destination,:cid)";
+     $stmt = $this->db->prepare($sql);
+
+     $stmt->bindparam(':destination',$destination);
+     $stmt->bindparam(':cid',$cid);
+     $stmt->execute();
+     return true;
+    }
+
+    catch (PDOException $e) {
+      echo $e->getMessage();
+      return false;
+    }
+   }
+   public function updtsld($destination,$cid){
+    try {
+    
+
+     $sql = " UPDATE `slide` SET `ansr`=:destination WHERE cid=:cid ";
+    
      $stmt = $this->db->prepare($sql);
 
      $stmt->bindparam(':destination',$destination);

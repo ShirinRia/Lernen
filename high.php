@@ -12,7 +12,7 @@ $results = $crud->high();
           <div class="card">
             <img src="images\img1.jpg" class="card-img-top" alt="...">
             <div class="card-body">
-              <h5 class="card-title"><?php echo $r['c_name'] ?></h5>
+              <h5 class="card-title" style="font-weight:700;"><?php echo $r['c_name'] ?></h5>
               <p class="card-text"><?php echo $r['des'] ?></p>
             </div>
             <div class="card-footer">

@@ -30,7 +30,7 @@ if(isset($_POST['upload'])){
       $destination = $target_dir . basename($_FILES["img"]["name"]);
       move_uploaded_file($orig_file,$destination);
   
-     $success = $crud->insertsld($destination, $id);
+     $success = $crud->updtsld($destination, $id);
     if($success)
     header("Location: view.php?courseid=$id");
   } 

@@ -70,7 +70,7 @@ if(isset($_POST['up'])){
         <div class="sdcntntthre sdcntnt">
         <a href="status.php" class="sd">Status</a></div>
         <div class="sdcntntthre sdcntnt">
-        <a href="index.php" class="sd">Exit</a></div>
+        <a href="home.php" class="sd">Exit</a></div>
     </div>
     <div class="crsmid">
         <form class="frmmid" action="<?php echo htmlentities($_SERVER['PHP_SELF']); ?>" method="post" enctype="multipart/form-data">
@@ -93,7 +93,7 @@ if(isset($_POST['up'])){
             
            <br>
             <div  class="bx">
-            <div class = "menu">
+            <div class = "menu" style="height:100px;">
         <a href="slide.php" target="_blank" class="button" style="background: linear-gradient(
         45deg, #842E62, #B7264D);">Add Slide</a>
         </div>

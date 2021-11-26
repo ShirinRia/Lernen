@@ -7,14 +7,16 @@ $tcrname = $_GET['tcr'];
 $_SESSION['tcr']=$tcrname;
 if(isset($_GET['sec'])){
    $id = $_GET['sec'];
+   
    $_SESSION['sec']=$id;
+  // $rate = $crud->updtstr( $_SESSION['sec'],$_SESSION['userid']);
    $best = $crud->section($id);  
    $fvdo = $crud->section($id); 
    $slide = $crud->vdo($id);
    $descrip = $crud->descrption($id); 
    if($descrip){
     $_SESSION['cdes'] = $descrip['cdes'];
-
+    $_SESSION['tcrid'] = $descrip['tid'];
    }
 }
 if(isset($_POST['reg'])){
@@ -26,7 +28,7 @@ if(isset($_POST['reg'])){
   $tcr=  $_SESSION['tcrid'] ;
   $crsid=  $_SESSION['sec'];
   $corsname= $_SESSION['crsname'] ;
-  $teacrname=$_SESSION['tcrname'];
+  $teacrname=$_SESSION['tcr'];
   $uid=$_SESSION['userid'];
   $success = $crud->insertreg($user,$crsid,$corsname,$teacrname,$uid,$tcr);
   if(!$success){  
@@ -70,7 +72,7 @@ if(isset($_POST['answer'])){
   }
  
 }
-$ides = $crud->ides(2); 
+$ides = $crud->ides($_SESSION['tcrid']); 
 
 $qutn = $crud->qustn($_SESSION['sec']); 
 $qustn = $crud->questn($_SESSION['sec']); 
@@ -104,15 +106,12 @@ if(isset($_POST['qstatus'])){
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
-    <link rel="stylesheet" 
-    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" 
-    integrity="sha512-1ycn6IcaQQ40/MKBW2W4Rhis/DbILU74C1vSrLJxCq57o941Ym01SwNsOMqvEBFlcgUa6xLiPY/NS5R+E6ztJQ==" 
-    crossorigin="anonymous" referrerpolicy="no-referrer" />
    
-    <link rel = "stylesheet" href="css\jquery.bxslider.css">
+   
+    
     <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
     
-  <script type="text/javascript" src="js\jquery.bxslider.js"></script>
+
 
   
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-F3w7mX95PdgyTmZZMECAngseQB83DfGTowi0iMjiWaeVhAn4FJkqJByhZMI3AhiU" crossorigin="anonymous">
@@ -191,7 +190,9 @@ if(isset($_POST['qstatus'])){
       <div class="vdo_cntnr vs">
       <div class="slider" id="ppt">
       <?php while($r = $slide->fetch(PDO::FETCH_ASSOC)) { ?>
-  <div><img src="<?php echo ($r['ansr']) ?>" width="100%" height="450px"></div>
+  <div>
+    <!--<img src="<?php echo ($r['ansr']) ?>" width="100%" height="450px">-->
+    <iframe src="<?php echo ($r['ansr']) ?>" width="100%" height="450px" ></iframe></div>
   <?php }?> 
 
 

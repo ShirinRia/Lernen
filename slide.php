@@ -30,7 +30,7 @@ if(isset($_POST['upld'])){
 </head>
 <body>
     <div class="slidbx">
-    <h4>Upload your slide image</h4>
+    <h4>Upload your PDF</h4>
 <hr>
 <form action="<?php echo htmlentities($_SERVER['PHP_SELF']); ?>" method="post" enctype="multipart/form-data">
          

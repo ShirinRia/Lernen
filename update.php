@@ -87,12 +87,12 @@ if(isset($_POST['save'])){
 
                 <div class="udate">
                     <label for="">Mobile No.</label><br><br>
-                    <input type="text" name="mobile" class="text" value= "<?php echo  $_SESSION['mobile']?>">
+                    <input type="text" name="mobile" class="text" >
                 </div>
 
                 <div class="udate">
                     <label for="" >Birth Date</label><br><br>
-                    <input type="date" name="bdate" class="text" value= "<?php echo  $_SESSION['bdate']?>">
+                    <input type="date" name="bdate" class="text" >
                  </div>
 
                 <div class="udate">

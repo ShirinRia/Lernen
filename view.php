@@ -98,25 +98,13 @@ $qus = $crud->viewqus($_SESSION['cid']);
     <div class="quiz slid">
         
         <div class="title">Slide Image</div>
-        
-        <div class="dlt">
         <?php while($r = $slide->fetch(PDO::FETCH_ASSOC)) { ?>
-            <form action="chng.php?courseid=<?php echo $_SESSION['cid']?>&img=<?php echo ($r['ansr']) ?>" method="post" enctype="multipart/form-data">
-            <div class="sldmg" >
-        <img src="<?php echo ($r['ansr']) ?>" class="rounded float-start" alt="img" width="170px" style="padding: 15px;" >
-      
-        <div class="bk"></div>
-        <div class="addtocrt">
-          <input type="submit" value="Delete" name="delete" class="addcrt">
-        </div>
-    </div>
-    </form>
-    <?php }?> 
-    </div>
+        <iframe src="<?php echo ($r['ansr']) ?>" width="100%" height="450px" ></iframe>
         
+        <?php }?> 
     <form action="chng.php?courseid=<?php echo $_SESSION['cid']?>" method="post" enctype="multipart/form-data">
         <div class="img"> 
-            <div  class="ttl" style="width: 10rem; height:1.9rem; font-weight: bolder; font-size : 20px;">Add Image</div>
+            <div  class="ttl" style="width: 10rem; height:1.9rem; font-weight: bolder; font-size : 20px;">Change PDF</div>
           <div class="input-group mb-3">
               <input type="file" class="form-control" name="img">
               <input class="btn btn-secondary" type="submit"  name="upload" value="Upload">
